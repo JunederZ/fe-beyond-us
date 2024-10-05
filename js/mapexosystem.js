@@ -113,7 +113,7 @@ async function init() {
   // Add event listener for text click
   starText.addEventListener('click', () => {
     if (clickedStar) {
-      window.location.replace("orbit.html?name="+star.userData.hostname);
+      window.location.replace("/pages/orbit?name="+star.userData.hostname);
     }
   });
 }

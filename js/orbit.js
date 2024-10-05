@@ -16,6 +16,7 @@ async function fetchData(name) {
 
 let scene, camera, renderer, controls, raycaster, mouse;
 planets = [];
+texts=[]
 let params = new URLSearchParams(document.location.search); //htttp*/?
 let name = params.get("name")
 console.log(name)
@@ -41,6 +42,28 @@ async function init() {
     );
 
     scene.add(sun);
+    
+    //add text
+     const loader = new THREE.FontLoader();
+  loader.load('https://threejs.org/examples/fonts/helvetiker_regular.typeface.json', function (font) {
+    const textGeometry = new THREE.TextGeometry('our star', {
+      font: font,
+      size: 1,
+      height: 0.01,
+      curveSegments: 1,
+    });
+    const textMaterial = new THREE.MeshBasicMaterial({ color: 0xffffff });
+    const text = new THREE.Mesh(textGeometry, textMaterial);
+
+  
+    text.position.set(3, 0.1, 0);
+
+    text.rotateX(3*Math.PI / 2);
+    
+
+    
+    scene.add(text);
+  });//end text
   for (key in planetDatax) {
   const geometry = new THREE.RingGeometry( planetDatax[key][0]+0.3, planetDatax[key][0], 32 ); const material = new THREE.MeshBasicMaterial( { color: 0xffffff, side: THREE.DoubleSide } ); const mesh = new THREE.Mesh( geometry, material );
   geometry.rotateX(Math.PI / 2); scene.add( mesh ); 
@@ -60,7 +83,28 @@ async function init() {
         scene.add(planet);
 
         planets.push(planet);
-        console.log(planetDatax[key][0],);
+//        console.log(planetDatax[key][0],);
+const loader = new THREE.FontLoader();
+  loader.load('https://threejs.org/examples/fonts/helvetiker_regular.typeface.json', function (font) {
+    const textGeometry = new THREE.TextGeometry(key, {
+      font: font,
+      size: 1,
+      height: 0.01,
+      curveSegments: 1,
+    });
+    const textMaterial = new THREE.MeshBasicMaterial({ color: 0xffffff });
+    const text = new THREE.Mesh(textGeometry, textMaterial);
+
+  
+    text.position.set(planetDatax[key][0]+3, 0, 0);
+
+    text.rotateX(3*Math.PI / 2);
+    
+
+    
+    scene.add(text);
+    texts.push(text);
+  });
 
     }
   // Add lighting to the scene
@@ -118,10 +162,12 @@ async function animate() {
     for (key in planetDatax) {
 
         const planet = planets[i];
-
+				const tex=texts[i];
         planet.position.x = planetDatax[key][0] * Math.cos(Date.now() * planet.speed);
-
+        tex.position.z = planetDatax[key][0] * Math.sin(Date.now() * planet.speed);
+        tex.position.x = planetDatax[key][0] * Math.cos(Date.now() * planet.speed);
         planet.position.z = planetDatax[key][0] * Math.sin(Date.now() * planet.speed);
+        
         i+=1;
 
     }
