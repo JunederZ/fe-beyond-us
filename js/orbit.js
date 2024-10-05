@@ -1,3 +1,38 @@
+function typePlanet(inttype){
+if(inttype==0){return "rocky";}
+else if(inttype==1){return "water";}
+else if(inttype==2){return "ice giant";}
+else{return "gas giant";}
+}
+
+function intToHexColor(intValue) {
+  if (intValue < 10) {
+    intValue = 10; // Clamp values less than 10 to 10
+  } else if (intValue > 20000) {
+    intValue = 20000; // Clamp values greater than 20000 to 20000
+  }
+
+  let red, green, blue;
+
+  if (intValue <= 500) {
+    // Map intValue from 10-500 to red (pure red to greyish red)
+    const scale = (intValue - 10) / (500 - 10); // Normalize to [0, 1]
+    red = Math.round(255 - 167 * scale); // Transition from FF (255) to 88 (136)
+    green = Math.round(0 + 136 * scale); // Transition from 00 (0) to 88 (136)
+    blue = Math.round(0 + 136 * scale); // Transition from 00 (0) to 88 (136)
+  } else {
+    // Map intValue from 500-20000 to greyish red to pure blue
+    const scale = (intValue - 500) / (20000 - 500); // Normalize to [0, 1]
+    red = Math.round(136 * (1 - scale)); // Transition from 88 (136) to 00 (0)
+    green = Math.round(136 * (1 - scale)); // Transition from 88 (136) to 00 (0)
+    blue = Math.round(136 + 119 * scale); // Transition from 88 (136) to FF (255)
+  }
+
+  // Convert RGB to a hex number
+  const hexColor = (red << 16) + (green << 8) + blue;
+  
+  return hexColor; // Return hex value as number (e.g., 0x888888)
+}
 async function fetchData(name) {
   try {
     const response = await fetch('../database/systemplanet.json');
@@ -13,16 +48,33 @@ async function fetchData(name) {
     return null; // Return null if there was an error
   }
 }
+async function fetchData2(namesistem) {
+  try {
+    const response = await fetch('../database/tesout.json');
+
+    if (!response.ok) {
+      throw new Error('Network response was not ok');
+    }
+
+    const data = await response.json(); // Parse and return the JSON data
+    return data[namesistem]; // Return the JSON data to be used outside
+  } catch (error) {
+    console.error('Error fetching JSON file:', error);
+    return null; // Return null if there was an error
+  }
+}
 
 let scene, camera, renderer, controls, raycaster, mouse;
 planets = [];
 texts=[]
 let params = new URLSearchParams(document.location.search); //htttp*/?
-let name = params.get("name")
+let name = params.get("name");
+let namesistem=params.get("sistem");
 console.log(name)
 
 
   let  planetDatax=null;
+  let sistemDatax=null;
 
 
 async function init() {
@@ -46,9 +98,9 @@ async function init() {
     //add text
      const loader = new THREE.FontLoader();
   loader.load('https://threejs.org/examples/fonts/helvetiker_regular.typeface.json', function (font) {
-    const textGeometry = new THREE.TextGeometry('our star', {
+    const textGeometry = new THREE.TextGeometry(name, {
       font: font,
-      size: 1,
+      size: 8,
       height: 0.01,
       curveSegments: 1,
     });
@@ -72,13 +124,14 @@ async function init() {
 
             new THREE.SphereGeometry(1.1, 30, 30),
 
-            new THREE.MeshBasicMaterial({ color:  0x3374ff})
+            new THREE.MeshBasicMaterial({ color:  intToHexColor(planetDatax[key][0])})
 
         );
 
         planet.position.x = planetDatax[key][0];
 
         planet.speed = planetDatax[key][1];
+        planet.userData.type=planetDatax[key][7];
 
         scene.add(planet);
 
@@ -88,15 +141,15 @@ const loader = new THREE.FontLoader();
   loader.load('https://threejs.org/examples/fonts/helvetiker_regular.typeface.json', function (font) {
     const textGeometry = new THREE.TextGeometry(key, {
       font: font,
-      size: 1,
+      size: 10,
       height: 0.01,
       curveSegments: 1,
     });
     const textMaterial = new THREE.MeshBasicMaterial({ color: 0xffffff });
-    const text = new THREE.Mesh(textGeometry, textMaterial);
+    var text = new THREE.Mesh(textGeometry, textMaterial);
 
   
-    text.position.set(planetDatax[key][0]+3, 0, 0);
+    text.position.set(planetDatax[key][0]+3, 0.0, 0.0);
 
     text.rotateX(3*Math.PI / 2);
     
@@ -119,7 +172,7 @@ const loader = new THREE.FontLoader();
   controls.enableDamping = true;
   controls.dampingFactor = 0.05;
   controls.screenSpacePanning = false;
-  controls.minDistance = 70;
+  controls.minDistance = 40;
   controls.maxDistance = 1000;
   controls.target = new THREE.Vector3(0, 0, 0); // Set the target to the center of the scene
   controls.update();
@@ -165,7 +218,7 @@ async function animate() {
 				const tex=texts[i];
         planet.position.x = planetDatax[key][0] * Math.cos(Date.now() * planet.speed);
         tex.position.z = planetDatax[key][0] * Math.sin(Date.now() * planet.speed);
-        tex.position.x = planetDatax[key][0] * Math.cos(Date.now() * planet.speed);
+        tex.position.x = planetDatax[key][0] * Math.cos(Date.now() * planet.speed)+3;
         planet.position.z = planetDatax[key][0] * Math.sin(Date.now() * planet.speed);
         
         i+=1;
@@ -175,8 +228,9 @@ async function animate() {
 }
 async function main(){
 planetDatax=await fetchData(name);
-console.log("yo");
-console.log(planetDatax);
+sistemDatax= await fetchData2(namesistem);
+console.log("let it go");
+console.log(sistemDatax);
  await init();
  await animate();
 

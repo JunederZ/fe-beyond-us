@@ -104,7 +104,7 @@ async function init() {
     const intersects = raycaster.intersectObjects(stars);
     if (intersects.length > 0) {
       const star = intersects[0].object;
-      window.location.replace("orbit.html?name="+star.userData.hostname);
+      window.location.href=("/pages/orbit?name="+star.userData.hostname+"&sistem="+star.userData.sysname);
        // alert(`system name= ${star.userData.hostname}`);
      
     }
@@ -113,7 +113,7 @@ async function init() {
   // Add event listener for text click
   starText.addEventListener('click', () => {
     if (clickedStar) {
-      window.location.replace("/pages/orbit?name="+star.userData.hostname);
+      window.location.href=("/pages/orbit?name="+star.userData.hostname);
     }
   });
 }
