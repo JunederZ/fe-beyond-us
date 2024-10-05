@@ -1,13 +1,9 @@
-@import url('https://fonts.googleapis.com/css2?family=Urbanist:ital,wght@0,100..900;1,100..900&display=swap');
+const cockpitButton = document.getElementById('cockpit-button');
 
-
-html,body {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    min-height: 100%;
-    transition: all 0.7s;
-    margin: 0 0 0 0;
-    scroll-behavior: smooth;
-}
+cockpitButton.addEventListener('click', () => {
+    console.log('Start button clicked');
+    document.body.style.opacity = 0;
+    setTimeout(() => {
+        window.location.href = '/pages/cockpit';
+    }, 2000);
+})

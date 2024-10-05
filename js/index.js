@@ -5,6 +5,6 @@ nextButton.addEventListener('click', () => {
     console.log('Start button clicked');
     document.body.style.opacity = 0;
     setTimeout(() => {
-        window.location.href = '/pages/mission.html';
+        window.location.href = '/pages/mission';
     }, 2000);
 })
