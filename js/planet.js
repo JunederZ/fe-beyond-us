@@ -1,14 +1,13 @@
-
 import * as THREE from "three";
-import { PointerLockControls } from "three/examples/jsm/controls/PointerLockControls.js";
 import { Noise } from "noisejs";
 import * as dat from "dat.gui";
 import sky from "../images/sky.jpg";
+import {GLTFLoader} from 'three/addons/loaders/GLTFLoader.js';
 
 const noise = new Noise(Math.random());
 
-//skyline
-var skyDome;
+// Skyline
+let skyDome;
 const skyTexture = new THREE.TextureLoader().load(
   sky,
   () => {
@@ -19,10 +18,6 @@ const skyTexture = new THREE.TextureLoader().load(
       side: THREE.BackSide
     });
     skyDome = new THREE.Mesh(skyGeo, skyMat);
-    console.log(skyTexture);
-    console.log(skyTexture.image); 
-
-    // skyDome.material.side = THREE.BackSide;
     scene.add(skyDome);
   },
   undefined,
@@ -32,16 +27,16 @@ const skyTexture = new THREE.TextureLoader().load(
 );
 
 const scene = new THREE.Scene();
-// scene.background = new THREE.Color("#2c3e50"); // Initial sky color
 
 // Camera setup
 const camera = new THREE.PerspectiveCamera(
-  75,
+  90,
   window.innerWidth / window.innerHeight,
-  1,
-  4000
+  10,
+  6000
 );
 camera.position.set(0, 20, 100);
+
 const light = new THREE.DirectionalLight(0xffffff, 1);
 light.position.set(0, 1, 0).normalize();
 scene.add(light);
@@ -65,80 +60,23 @@ const params = {
   ambientLightIntensity: 0.5,
   directionalLightIntensity: 1.5,
   cameraHeight: 20,
-  // skyColor: "#2c3e50",
 };
 
 let param = new URLSearchParams(document.location.search);
 console.log(param.get("tColor"));
 params.terrainColor = param.get("tColor");
-// params.terrainType = param.get("tType");
 params.noiseFrequency = parseFloat(param.get("noiseFreq"));
 params.maxHeight = parseInt(param.get("maxHeight"));
 params.octaves = parseInt(param.get("octaves"));
 params.persistence = parseFloat(param.get("per"));
 params.lacunarity = parseFloat(param.get("lac"));
 params.movementSpeed = parseFloat(param.get("spd"));
-// params.fogDensity = parseFloat(param.get("fog"));
+params.fogDensity = parseFloat(param.get("fog"));
 params.terrainScale = parseFloat(param.get("tScale"));
-// params.ambientLightIntensity = parseFloat(param.get("ambient"));
-// params.directionalLightIntensity = parseFloat(param.get("light"));
-// params.cameraHeight = parseFloat(param.get("cameraHeight"));
-
 
 const gui = new dat.GUI();
-gui
-  .addColor(params, "terrainColor")
-  .name("Terrain Color")
-  .onChange(updateTerrainMaterial);
-gui
-  .add(params, "terrainType", ["Gas", "Solid", "Liquid"])
-  .name("Terrain Type")
-  .onChange(updateTerrainType);
-gui
-  .add(params, "noiseFrequency", 0.1, 5.0)
-  .name("Noise Frequency")
-  .onChange(regenerateTerrain);
-gui
-  .add(params, "maxHeight", 1, 100)
-  .name("Max Height")
-  .onChange(regenerateTerrain);
-gui
-  .add(params, "octaves", 1, 10, 1)
-  .name("Octaves")
-  .onChange(regenerateTerrain);
-gui
-  .add(params, "persistence", 0.1, 1.0)
-  .name("Persistence")
-  .onChange(regenerateTerrain);
-gui
-  .add(params, "lacunarity", 1.0, 4.0)
-  .name("Lacunarity")
-  .onChange(regenerateTerrain);
-gui
-  .add(params, "terrainScale", 0.1, 5.0)
-  .name("Terrain Scale")
-  .onChange(regenerateTerrain);
-gui
-  .add(params, "wireframe")
-  .name("Wireframe Mode")
-  .onChange(updateWireframeMode);
-gui.add(params, "movementSpeed", 100, 1000).name("Movement Speed");
-gui
-  .add(params, "fogDensity", 0.0001, 0.01)
-  .name("Fog Density")
-  .onChange(updateFogDensity);
-gui
-  .add(params, "ambientLightIntensity", 0, 2.0)
-  .name("Ambient Light")
-  .onChange(updateLights);
-gui
-  .add(params, "directionalLightIntensity", 0, 3.0)
-  .name("Directional Light")
-  .onChange(updateLights);
-gui
-  .add(params, "cameraHeight", 1, 100)
-  .name("Camera Height")
-  .onChange(updateCameraHeight);
+gui.hide();
+
 
 const ambientLight = new THREE.AmbientLight(
   0x404040,
@@ -153,25 +91,26 @@ const directionalLight = new THREE.DirectionalLight(
 directionalLight.position.set(-100, 100, -100).normalize();
 scene.add(directionalLight);
 
-const controls = new PointerLockControls(camera, document.body);
-scene.add(controls.object);
+// Create a rover object
+const rover = new THREE.Object3D();
+rover.position.set(0, 0, 0); // Starting position
 
-const blocker = document.getElementById("blocker");
-const instructions = document.getElementById("instructions");
+scene.add(rover);
 
-instructions.addEventListener("click", function () {
-  controls.lock();
+// Optional: Add a simple box to represent the rover
+const gltfLoader = new GLTFLoader();
+const url = '../images/perseverance.glb';
+gltfLoader.load(url, (gltf) => {
+  const root = gltf.scene;
+  root.scale.set(5, 5, 5);  // Adjust the scale to make the rover larger
+
+  rover.add(root);
 });
 
-controls.addEventListener("lock", function () {
-  instructions.style.display = "none";
-  blocker.style.display = "none";
-});
-
-controls.addEventListener("unlock", function () {
-  blocker.style.display = "block";
-  instructions.style.display = "";
-});
+// const roverGeometry = new THREE.BoxGeometry(5, 2, 10);
+// const roverMaterial = new THREE.MeshLambertMaterial({ color: 0xff0000 });
+// const roverMesh = new THREE.Mesh(roverGeometry, roverMaterial);
+// rover.add(roverMesh);
 
 const keysPressed = {};
 
@@ -191,8 +130,10 @@ document.addEventListener(
   false
 );
 
-const velocity = new THREE.Vector3();
-const direction = new THREE.Vector3();
+const controlParams = {
+  moveSpeed: 50.0,      // Units per second
+  rotationSpeed: Math.PI // Radians per second
+};
 
 const CHUNK_SIZE = 100;
 const chunks = new Map();
@@ -240,59 +181,9 @@ function generateChunk(chunkX, chunkZ) {
   chunks.set(key, chunkMesh);
 }
 
-// function generateChunk(chunkX, chunkZ) {
-//   const geometry = new THREE.PlaneGeometry(CHUNK_SIZE, CHUNK_SIZE, 49, 49);
-//   geometry.rotateX(-Math.PI / 2);
-
-//   const positions = geometry.attributes.position.array;
-//   for (let i = 0; i < positions.length; i += 3) {
-//     const x = positions[i] + chunkX * CHUNK_SIZE;
-//     const z = positions[i + 2] + chunkZ * CHUNK_SIZE;
-
-//     let y = 0;
-
-//     let amplitudeMountain = 20;
-//     let frequencyMountain = 0.1; // Lower frequency for large features
-
-//     let amplitudeRock = 2;
-//     let frequencyRock = 10; // Higher frequency for finer details
-
-//     y +=
-//       amplitudeMountain *
-//       noise.perlin2(
-//         (x * frequencyMountain) / 100,
-//         (z * frequencyMountain) / 100
-//       );
-
-//     y +=
-//       amplitudeRock *
-//       noise.perlin2((x * frequencyRock) / 100, (z * frequencyRock) / 100);
-
-//     // You can tweak `y` scaling here
-//     y *= params.maxHeight * params.terrainScale;
-
-//     positions[i + 1] = y;
-//   }
-
-//   geometry.computeVertexNormals();
-
-//   const material = new THREE.MeshLambertMaterial({
-//     color: params.terrainColor,
-//     wireframe: params.wireframe,
-//   });
-
-//   const chunkMesh = new THREE.Mesh(geometry, material);
-//   chunkMesh.position.set(chunkX * CHUNK_SIZE, 0, chunkZ * CHUNK_SIZE);
-
-//   scene.add(chunkMesh);
-
-//   const key = `${chunkX},${chunkZ}`;
-//   chunks.set(key, chunkMesh);
-// }
-
 function updateChunks() {
-  const playerX = controls.object.position.x;
-  const playerZ = controls.object.position.z;
+  const playerX = rover.position.x;
+  const playerZ = rover.position.z;
 
   const currentChunkX = Math.floor(playerX / CHUNK_SIZE);
   const currentChunkZ = Math.floor(playerZ / CHUNK_SIZE);
@@ -330,35 +221,91 @@ function updateChunks() {
   }
 }
 
-function updateMovement(delta) {
-  velocity.x -= velocity.x * 10.0 * delta;
-  velocity.z -= velocity.z * 10.0 * delta;
-  velocity.y -= velocity.y * 10.0 * delta;
+function updateRoverMovement(delta) {
+  // Forward and Backward Movement
+  if (keysPressed["KeyW"]) {
+    rover.translateZ(-controlParams.moveSpeed * delta);
+  }
+  if (keysPressed["KeyS"]) {
+    rover.translateZ(controlParams.moveSpeed * delta);
+  }
 
-  direction.z = (keysPressed["KeyW"] ? 1 : 0) - (keysPressed["KeyS"] ? 1 : 0);
-  direction.x = (keysPressed["KeyD"] ? 1 : 0) - (keysPressed["KeyA"] ? 1 : 0);
-  direction.normalize();
+  // Rotation Left and Right
+  if (keysPressed["KeyA"]) {
+    rover.rotation.y += controlParams.rotationSpeed * delta;
+  }
+  if (keysPressed["KeyD"]) {
+    rover.rotation.y -= controlParams.rotationSpeed * delta;
+  }
 
-  if (keysPressed["KeyW"] || keysPressed["KeyS"])
-    velocity.z -= direction.z * params.movementSpeed * delta;
-  if (keysPressed["KeyA"] || keysPressed["KeyD"])
-    velocity.x -= direction.x * params.movementSpeed * delta;
+  // Raycast downward from the rover to find terrain height
+  const nearestChunk = getNearestChunk();
+  if (nearestChunk) {
+    const raycaster = new THREE.Raycaster(
+      new THREE.Vector3(rover.position.x, rover.position.y + 10, rover.position.z),
+      new THREE.Vector3(0, -1, 0),
+      0,
+      100
+    );
 
-  // if (keysPressed['Space']) velocity.y += params.movementSpeed * delta;
-  // if (keysPressed['ShiftLeft'] || keysPressed['ShiftRight']) velocity.y -= params.movementSpeed * delta;
+    const intersects = raycaster.intersectObject(nearestChunk);
 
-  controls.moveRight(-velocity.x * delta);
-  controls.moveForward(-velocity.z * delta);
-  // controls.object.position.y += velocity.y * delta;
+    // if (intersects.length > 0) {
+    //   const terrainHeight = intersects[0].point.y;
+    //   rover.position.y = terrainHeight; // Align rover with terrain
+    // }
+    if (intersects.length > 0) {
+        const terrainHeight = intersects[0].point.y;
+        rover.position.y = Math.max(terrainHeight, rover.position.y); // Ensure it doesn't dip below the terrain
+      }
+      
+  }
 
-  const raycaster = new THREE.Raycaster();
-  raycaster.set(controls.object.position, new THREE.Vector3(0, -1, 0)); // Downward ray
+  updateCameraPosition();
+}
+
+function getNearestChunk() {
+  const playerX = rover.position.x;
+  const playerZ = rover.position.z;
+
+  const currentChunkX = Math.floor(playerX / CHUNK_SIZE);
+  const currentChunkZ = Math.floor(playerZ / CHUNK_SIZE);
+  const key = `${currentChunkX},${currentChunkZ}`;
+  return chunks.get(key);
+}
+
+const cameraOffset = new THREE.Vector3(0, 10, 20); // Adjust as needed
+
+function updateCameraPosition() {
+  // Calculate the desired camera position
+  const desiredPosition = new THREE.Vector3().copy(cameraOffset);
+  desiredPosition.applyQuaternion(rover.quaternion);
+  desiredPosition.add(rover.position);
+
+  // Raycast downward to determine terrain slope
+  const raycaster = new THREE.Raycaster(
+    new THREE.Vector3(desiredPosition.x, desiredPosition.y + 10, desiredPosition.z),
+    new THREE.Vector3(0, -1, 0),
+    0,
+    100
+  );
+
   const intersects = raycaster.intersectObjects([...chunks.values()]);
 
   if (intersects.length > 0) {
-    const terrainHeight = intersects[0].point.y;
-    controls.object.position.y = terrainHeight + params.cameraHeight; // Adjust for camera height above terrain
+    const terrainNormal = intersects[0].face.normal;
+    const terrainQuaternion = new THREE.Quaternion().setFromUnitVectors(
+      new THREE.Vector3(0, 1, 0),
+      terrainNormal
+    );
+
+    // Tilt the camera based on terrain normal
+    camera.quaternion.slerp(terrainQuaternion, 0.1);
   }
+
+  // Smoothly interpolate the camera's position
+  camera.position.lerp(desiredPosition, 0.1);
+  camera.lookAt(rover.position);
 }
 
 function updateTerrainMaterial() {
@@ -396,30 +343,8 @@ function regenerateTerrain() {
   updateChunks();
 }
 
-function updateWireframeMode() {
-  for (const chunk of chunks.values()) {
-    chunk.material.wireframe = params.wireframe;
-  }
-}
-
-function updateFogDensity() {
-  if (scene.fog) {
-    scene.fog.density = params.fogDensity;
-  }
-}
-
-function updateLights() {
-  ambientLight.intensity = params.ambientLightIntensity;
-  directionalLight.intensity = params.directionalLightIntensity;
-}
-
-function updateCameraHeight() {
-  controls.object.position.y = params.cameraHeight;
-}
-
-updateTerrainType();
-updateLights();
-updateCameraHeight();
+// updateTerrainType();
+// updateLights();
 
 const clock = new THREE.Clock();
 
@@ -427,14 +352,18 @@ function animate() {
   requestAnimationFrame(animate);
   const delta = clock.getDelta();
 
-  if (controls.isLocked) {
-    updateMovement(delta);
-    updateChunks();
+  if (rover) {
+    updateRoverMovement(delta);
   }
-  skyDome.position.copy(camera.position);
+  updateChunks();
+
+  if (skyDome) {
+    skyDome.position.copy(camera.position);
+  }
 
   renderer.render(scene, camera);
 }
+
 animate();
 
 window.addEventListener("resize", onWindowResize, false);

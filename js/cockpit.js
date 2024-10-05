@@ -88,4 +88,31 @@ window.onload = () => {
   }
 
   init();
+
+    // Grab all the carousel items
+    
 };
+
+
+
+let spawnCards  = () => {
+  console.log("spawning cards");
+}
+
+const carouselItems = document.querySelectorAll(".carousel-item");
+
+// Animate each carousel item with staggered animation
+gsap.fromTo(
+    carouselItems,
+    {
+        opacity: 0,               // Start fully transparent
+        x: '100%',                // Start offscreen to the right
+    },
+    {
+        opacity: 1,               // Fade in to full opacity
+        x: '0%',                  // Move into the view
+        duration: 1,              // Duration of the animation for each item
+        ease: "power3.out",       // Smooth easing for the animation
+        stagger: 0.2,             // Stagger each item by 0.2 seconds
+    }
+);
