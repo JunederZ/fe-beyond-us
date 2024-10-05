@@ -74,7 +74,7 @@ html,body {
 
 @font-face {
     font-family: 'Naza';
-    src: url('fonts/nasalization-rg.otf');
+    src: url('../fonts/nasalization-rg.otf');
 }
 
 .urbanist-font {
