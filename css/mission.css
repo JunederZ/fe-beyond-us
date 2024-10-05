@@ -1,0 +1,131 @@
+@import url('https://fonts.googleapis.com/css2?family=Urbanist:ital,wght@0,100..900;1,100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+
+@font-face {
+    font-family: 'Naza';
+    src: url('../fonts/nasalization-rg.otf');
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 100%;
+    transition: all 0.7s;
+    margin: 0 0 0 0;
+    scroll-behavior: smooth;
+}
+
+nav {
+    font-family: "Inter", sans-serif;
+    font-optical-sizing: auto;
+    font-style: normal;
+    margin: 24px 0 24px 0;
+    display: flex;
+    gap: 42px;
+    color: #B9AEAE;
+}
+
+.navbar-title {
+    font-weight: 700;
+}
+
+.planet-img {
+    filter: brightness(0.7);
+}
+
+.bg-overlay {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+    position: absolute;
+    left: 0;
+    top: 0;
+    z-index: -1;
+}
+
+.main-body {
+    color: aliceblue;
+    display: flex;
+    position: relative;
+    justify-content: center;
+    align-items: center;
+    min-width: 100vw;
+    min-height: 90vh;
+    gap: 10rem;
+}
+
+.left-main {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 20%;
+    align-items: center;
+    gap: 2rem;
+}
+
+.right-main {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 30%;
+    align-items: center;
+    gap: 2rem;
+}
+
+.main-text {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    position: relative;
+    gap: 10px;
+}
+
+
+.main-title {
+    display: flex;
+    align-items: start;
+    font-family: "Naza";
+    font-size: 60px;
+    line-height: 4rem;
+    height: 2rem;
+}
+
+.main-subtitle {
+    display: flex;
+    font-family: "Inter", sans-serif;
+    font-optical-sizing: auto;
+    font-style: normal;
+    font-size: 20px;
+    font-weight: 400;
+    color: #D1D5DB;
+}
+
+.main-small-text {
+    font-family: "Inter", sans-serif;
+    font-optical-sizing: auto;
+    font-style: normal;
+    font-size: 14px;
+    font-weight: 500;
+    margin: 32px 0 0 0;
+    color: #D1D5DB;
+}
+
+.main-button {
+    display: flex;
+    color: aliceblue;
+    justify-content: center;
+    margin: 24px 0 0 0;
+    padding: 17px 41px 17px 41px;
+    border-radius: 6px;
+    font-size: 18px;
+    border: 2px solid aliceblue;
+    background-color: transparent;
+}
+
+.main-button:hover {
+    background-color: aliceblue;
+    cursor: pointer;
+    color: black;
+}
