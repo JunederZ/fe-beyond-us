@@ -1,9 +1,10 @@
 
-// const startButton = document.getElementById('button-start');
+const nextButton = document.getElementById('next-button');
 
-// startButton.addEventListener('click', () => {
-//     console.log('Start button clicked');
-//     document.getElementById('start-overlay').style.visibility = 'visible';
-//     document.getElementById('start-overlay').style.display = 'flex';
-//     document.getElementById('start-overlay').style.backgroundColor = 'rgba(0, 0, 0, 1)';
-// })
+nextButton.addEventListener('click', () => {
+    console.log('Start button clicked');
+    document.body.style.opacity = 0;
+    setTimeout(() => {
+        window.location.href = '/pages/mission.html';
+    }, 2000);
+})

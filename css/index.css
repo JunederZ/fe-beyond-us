@@ -74,7 +74,7 @@ html,body {
 
 @font-face {
     font-family: 'Naza';
-    src: url('fonts/nasalization-rg.otf');
+    src: url('../fonts/nasalization-rg.otf');
 }
 
 .urbanist-font {
@@ -107,6 +107,7 @@ html,body {
     appearance: none;
     border: aliceblue solid 2px;
     color: aliceblue;
+    text-decoration: none;
 }
 
 .button-start:hover {
