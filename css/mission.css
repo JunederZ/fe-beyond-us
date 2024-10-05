@@ -54,6 +54,7 @@ nav {
     min-width: 100vw;
     min-height: 90vh;
     gap: 10rem;
+    overflow: hidden;
 }
 
 .left-main {
@@ -125,6 +126,69 @@ nav {
 }
 
 .main-button:hover {
+    background-color: aliceblue;
+    cursor: pointer;
+    color: black;
+}
+
+.stellar-section {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 60vh;
+    min-width: 100vw;
+    position: relative;
+}
+
+#stellar-video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    position: absolute;
+    z-index: -1;
+}
+
+.stellar-text {
+    display: flex;
+    color: aliceblue;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    position: relative;
+    z-index: 1;
+    line-height: 1rem;
+    height: 1rem;
+}
+
+.stellar-text>h1 {
+    font-family: "Naza";
+    font-size: 60px;
+}
+
+.stellar-text>p {
+    font-family: "Urbanist", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 20px;
+    text-align: center;
+}
+
+.stellar-section>button {
+    display: flex;
+    color: aliceblue;
+    justify-content: center;
+    margin: 8rem 0 0 0;
+    padding: 17px 200px 17px 200px;
+    border-radius: 6px;
+    font-size: 18px;
+    border: 2px solid aliceblue;
+    background-color: transparent;
+}
+
+.stellar-section>button:hover {
     background-color: aliceblue;
     cursor: pointer;
     color: black;
