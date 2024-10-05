@@ -1,0 +1,26 @@
+body, html {
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: red;
+}
+
+#fill {
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 10;
+}
+
+#canvas {
+    background-color: #000;
+    /* height: 100%;
+    width: 100%; */
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -20;
+  }
+  
