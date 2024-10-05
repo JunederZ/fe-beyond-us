@@ -1,0 +1,168 @@
+@import url('https://fonts.googleapis.com/css2?family=Urbanist:ital,wght@0,100..900;1,100..900&display=swap');
+
+
+html,body {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 100%;
+    transition: all 0.7s;
+    margin: 0 0 0 0;
+    scroll-behavior: smooth;
+}
+
+#home-video {
+    height: 100vh;
+    width: 100vw;
+    object-fit: cover;
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    z-index: -1;
+}
+
+.bg-overlay {
+    background-color: rgba(0, 0, 0, 0.548);
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0px;
+    left: 0px;
+    z-index: 1;
+}
+
+.start-overlay {
+    display: flex;
+    visibility: visible;
+    background-color: rgba(0, 0, 0, 0);
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0px;
+    left: 0px;
+    z-index: 2;
+    -webkit-transition: all .5s ease;
+    -moz-transition: all .5s ease;
+    transition: all .5s ease;
+}
+
+.main-body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    min-width: 100vw;
+    position: relative;
+}
+
+
+.main-text {
+    color: aliceblue;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 1;
+}
+
+@font-face {
+    font-family: 'Naza';
+    src: url('fonts/nasalization-rg.otf');
+}
+
+.urbanist-font {
+    font-family: "Urbanist", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 500;
+    font-style: normal;
+}
+
+.upper-text {
+    font-size: 16px;
+}
+
+.title {
+    font-family: 'Naza';
+    text-align: center;
+}
+
+.sub-title {
+    text-align: center;
+    max-width: 768px;
+}
+
+.button-start {
+    font-size: 18px;
+    background-color: transparent;
+    margin-top: 160px;
+    padding: 1px 20px 1px 20px;
+    border-radius: 6px;
+    appearance: none;
+    border: aliceblue solid 2px;
+    color: aliceblue;
+}
+
+.button-start:hover {
+    background-color: aliceblue;
+    cursor: pointer;
+    color: black;
+}
+
+.mission-body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 100vh;
+    min-width: 100vw;
+    position: relative;
+    margin-top: 120px;
+}
+
+.mission-title {
+    font-family: 'Naza';
+    font-size: 60px;
+    text-align: center;
+}
+
+.mission-subtitle {
+    max-width: 1160px;
+    text-align: center;
+}
+
+.mission-image {
+    width: 60%;
+    height: auto;
+    margin-top: 40px;
+}
+
+.footer {
+    display: flex;    
+    justify-content: end;
+    align-items: center;
+    min-width: 65%;
+    position: relative;
+    margin: 0 6% 120px 0;
+}
+
+.next-button {
+    position: relative;
+    font-size: 18px;
+    background-color: transparent;
+    padding: 14px 32px 14px 32px;
+    border-radius: 6px;
+    border: black solid 2px;
+    color: black;
+}
+
+.next-button:hover {
+    background-color: black;
+    cursor: pointer;
+    color: aliceblue;
+}
