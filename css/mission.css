@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Urbanist:ital,wght@0,100..900;1,100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
 
-
-html,body {
+body {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -13,5 +13,14 @@ html,body {
 }
 
 nav {
+    font-family: "Inter", sans-serif;
+    font-optical-sizing: auto;
+    font-style: normal;
+    margin: 24px 0 24px 0;
     display: flex;
+    gap: 20px;
+}
+
+.navbar-title {
+    font-weight: 600;
 }
