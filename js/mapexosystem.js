@@ -11,7 +11,7 @@ function color(temp){
 }
 async function fetchData() {
   try {
-    const response = await fetch('./tesout.json');
+    const response = await fetch('../database/tesout.json');
 
     if (!response.ok) {
       throw new Error('Network response was not ok');
@@ -104,7 +104,7 @@ async function init() {
     const intersects = raycaster.intersectObjects(stars);
     if (intersects.length > 0) {
       const star = intersects[0].object;
-      window.location.replace(window.location.href+"orbit.html?name="+star.userData.hostname);
+      window.location.replace("orbit.html?name="+star.userData.hostname);
        // alert(`system name= ${star.userData.hostname}`);
      
     }
@@ -113,7 +113,7 @@ async function init() {
   // Add event listener for text click
   starText.addEventListener('click', () => {
     if (clickedStar) {
-      window.location.replace(window.location.href+"orbit.html?name="+star.userData.hostname);
+      window.location.replace("orbit.html?name="+star.userData.hostname);
     }
   });
 }

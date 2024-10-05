@@ -1,6 +1,6 @@
 async function fetchData(name) {
   try {
-    const response = await fetch('./systemplanet.json');
+    const response = await fetch('../database/systemplanet.json');
 
     if (!response.ok) {
       throw new Error('Network response was not ok');
