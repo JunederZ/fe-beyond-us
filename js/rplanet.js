@@ -27,7 +27,7 @@ else{return "its a gas giant,maybe we should cover our nose!";}
 
 async function fetchData(namestar) {
   try {
-    const response = await fetch('../data/systemplanet.json');
+    const response = await fetch('/systemplanet.json');
 
     if (!response.ok) {
       throw new Error('Network response was not ok');
