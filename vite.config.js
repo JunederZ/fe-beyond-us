@@ -24,6 +24,11 @@ export default defineConfig({
         system: resolve(__dirname, "pages/system.html"),
         rplanet: resolve(__dirname, "pages/rplanet.html"),
       },
+      output: {
+        entryFileNames: `assets/[name].js`,
+        chunkFileNames: `assets/[name].js`,
+        assetFileNames: `assets/[name].[ext]`
+      }
     },
   },
 });
