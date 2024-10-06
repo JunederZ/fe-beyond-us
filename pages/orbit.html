@@ -15,9 +15,70 @@
             display: block;
         }
     </style>
+    <style>
+
+    #sidebar {
+      position: fixed;
+      top: 0;
+      right: 0;
+      width: 250px;
+      background-color: #333;
+      color: #fff;
+      padding: 20px;
+      transition: width 0.5s;
+    }
+    #sidebar.expanded {
+      width: 500px;
+    }
+    #sidebar.collapsed {
+      width: 50px;
+    }
+    #sidebar button {
+    
+      top: 10px;
+      left: 10px;
+      background-color: #333;
+      color: #fff;
+      border: none;
+      padding: 10px;
+      cursor: pointer;
+    }
+    #sidebar button:hover {
+      background-color: #444;
+      margin-bottom:10px;
+    }
+    #sidebar div {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    #sidebar li {
+      padding: 10px;
+      border-bottom: 1px solid #444;
+    }
+    #sidebar li:hover {
+      background-color: #444;
+    }
+    #sidebar a {
+      color: #fff;
+      text-decoration: none;
+    }
+  </style>
 </head>
 <body>
+ <div id="sidebar" class="collapsed">
+    <button id="toggle-button">Toggle</button>
+    <div id="list-planet">
+    <!--
+      <li><a href="#">Menu Item 1</a></li>
+      <li><a href="#">Menu Item 2</a></li>
+      <li><a href="#">Menu Item 3</a></li>
+      -->
+    </div>
+  </div>
+
     <canvas id="canvas"></canvas>
+    
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/three@0.132.2/examples/js/controls/OrbitControls.js"></script>
     <script src="../js/orbit.js"></script>

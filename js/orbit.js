@@ -1,3 +1,28 @@
+const sidebar = document.getElementById("sidebar");
+const toggleButton = document.getElementById('toggle-button');
+const ulbar = document.getElementById("list-planet");
+toggleButton.addEventListener('click', () => {
+let tes="show"
+  if (sidebar.classList.contains('collapsed')) {
+    sidebar.classList.remove('collapsed');
+    sidebar.classList.add('expanded');
+    tes="show";
+  } else {
+    sidebar.classList.remove('expanded');
+    sidebar.classList.add('collapsed');
+    tes="hide";
+  }
+  console.log(tes);
+});
+function appendListItem(planetname,colour,starname) {
+	planetname=planetname.replace(/ /g, "%20");
+	starname=starname.replace(/ /g, "%20");
+  const listItem = document.createElement('li');
+  listItem.innerHTML ="<a href=/pages/planet?nameplanet="+planetname+"&namestar="+starname+">"+planetname+"</a>";
+
+  ulbar.appendChild(listItem);
+}
+
 function typePlanet(inttype){
 if(inttype==0){return "rocky";}
 else if(inttype==1){return "water";}
@@ -33,7 +58,7 @@ function intToHexColor(intValue) {
   
   return hexColor; // Return hex value as number (e.g., 0x888888)
 }
-async function fetchData(name) {
+async function fetchData(namestar) {
   try {
     const response = await fetch('../database/systemplanet.json');
 
@@ -42,7 +67,7 @@ async function fetchData(name) {
     }
 
     const data = await response.json(); // Parse and return the JSON data
-    return data[name]; // Return the JSON data to be used outside
+    return data[namestar]; // Return the JSON data to be used outside
   } catch (error) {
     console.error('Error fetching JSON file:', error);
     return null; // Return null if there was an error
@@ -83,13 +108,15 @@ async function init() {
   camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
     camera.position.set(50, 20, 50); 
   const canvas = document.getElementById('canvas'); 
-  renderer = new THREE.WebGLRenderer({ canvas: canvas }); 
+  renderer = new THREE.WebGLRenderer({ canvas: canvas,antialias: true }); 
   renderer.setSize(window.innerWidth, window.innerHeight); 
  sun = new THREE.Mesh(
 
         new THREE.SphereGeometry(2, 30, 30),
 
         new THREE.MeshBasicMaterial({ color: 0xffffff })
+        //new THREE.MeshBasicMaterial({ color: 0xffffff,map: THREE.ImageUtils.loadTexture('/images/base5.jpg') })
+
 
     );
 
@@ -117,6 +144,8 @@ async function init() {
     scene.add(text);
   });//end text
   for (key in planetDatax) {
+  console.log("let "+name+" go "+key);
+  appendListItem(key,intToHexColor(planetDatax[key][0]),name);
   const geometry = new THREE.RingGeometry( planetDatax[key][0]+0.3, planetDatax[key][0], 32 ); const material = new THREE.MeshBasicMaterial( { color: 0xffffff, side: THREE.DoubleSide } ); const mesh = new THREE.Mesh( geometry, material );
   geometry.rotateX(Math.PI / 2); scene.add( mesh ); 
 
@@ -134,7 +163,7 @@ async function init() {
         planet.userData.type=planetDatax[key][7];
 
         scene.add(planet);
-
+	
         planets.push(planet);
 //        console.log(planetDatax[key][0],);
 const loader = new THREE.FontLoader();
