@@ -63,7 +63,7 @@ async function init() {
   // Create the yellowish stars
   let stars = [];
   let data= await fetchData();
-  for (obj in data) {
+  for (let obj in data) {
     const starGeometry = new THREE.SphereGeometry(0.08, 32, 32);
     const starMaterial = new THREE.MeshBasicMaterial({ color: color(data[obj]["temperature"]),emissive: 0xffffff,
                                                        emissiveIntensity: 100});
