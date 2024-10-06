@@ -152,6 +152,14 @@ let button = document.getElementById("btn");
 button.addEventListener("click", spawnCards);
 
 function spawnCards() {
+  for (let i = 1; i < 27; i++) {
+    const element = document.getElementById(i);
+    const p = gdata[i - 1];
+    element.addEventListener("click", (e) => {
+      // console.log(p.name);
+      window.location.href = `/pages/planet.html?${encodeToUrlEncoded(p)}`;
+    });
+  }
   const carouselItems = document.querySelectorAll(".carousel-item");
   gsap.fromTo(
     carouselItems,
@@ -182,9 +190,12 @@ rightArrow.addEventListener("click", () => {
   carousel.scrollBy({ left: 300, behavior: "smooth" });
 });
 
+let gdata = [];
+
 fetch("/planets.json")
   .then((response) => response.json())
   .then((data) => {
+    gdata = data;
     data.forEach((p) => {
       let temp = document.createElement("div");
       temp.classList.add("carousel-item");
@@ -194,11 +205,6 @@ fetch("/planets.json")
           <h2>${p.name}</h2>
           <img class="pgif" src="${gifSrc}" alt="">
       </div>`;
-      temp.addEventListener("click", (e) => {
-        console.log(p.name);
-
-        window.location.href = `/pages/planet.html?${encodeToUrlEncoded(p)}`;
-      });
       carousel.appendChild(temp);
     });
   });
