@@ -1,9 +1,11 @@
+import prof from '../images/prof.png';
+import '../css/planet.css';
+import { color } from 'dat.gui';
 export class OverlaySystem {
   constructor(planetInfo, callback) {
     this.planetInfo = planetInfo;
     this.callback = callback;
     this.isActive = false;
-    this.loadFont();
     // Create the overlay elements
     this.createOverlay();
     this.createToggleText();
@@ -16,26 +18,10 @@ export class OverlaySystem {
     });
   }
 
-  loadFont() {
-    const fontFace = `
-          @font-face {
-            font-family: "Naza";
-            src: url("../fonts/nasalization-rg.otf") format("opentype");
-          }
-        `;
-
-    // Create a style element to hold the font-face rule
-    const style = document.createElement("style");
-    style.appendChild(document.createTextNode(fontFace));
-
-    // Append the style to the document head
-    document.head.appendChild(style);
-  }
-
   createOverlay() {
     // Create overlay container
     this.overlayContainer = document.createElement("div");
-    this.overlayContainer.style.fontFamily = '"Naza", sans-serif';
+    this.overlayContainer.style.fontFamily = '"Urbanist", sans-serif';
     this.overlayContainer.id = "overlay-container";
     Object.assign(this.overlayContainer.style, {
       position: "absolute",
@@ -57,13 +43,13 @@ export class OverlaySystem {
     this.hideButton.id = "hide-button";
     this.hideButton.innerText = "❍ Hide Text";
     Object.assign(this.hideButton.style, {
+      color: "white",
       position: "absolute",
       top: "20px",
       left: "20px",
       padding: "10px",
-      background: "rgba(255, 255, 255, 0.8)",
+      background: "rgba(255, 255, 255, 0.0)",
       border: "none",
-      borderRadius: "50%",
       cursor: "pointer",
       fontSize: "1.2rem",
     });
@@ -91,6 +77,7 @@ export class OverlaySystem {
 
     const title = document.createElement("h1");
     title.innerText = this.planetInfo.name;
+    title.style.fontFamily = '"Naza", sans-serif';
     Object.assign(title.style, {
       fontSize: "4rem",
       marginBottom: "1rem",
@@ -141,7 +128,7 @@ export class OverlaySystem {
     // Character image at bottom right
     const characterImage = document.createElement("img");
     // characterImage.src = this.planetInfo.characterImage;
-    characterImage.src = "../images/prof.png"
+    characterImage.src = prof
     characterImage.alt = "Character Image";
     characterImage.onclick = () => {
         this.hideOverlay();

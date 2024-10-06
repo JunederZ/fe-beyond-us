@@ -2,15 +2,20 @@ import * as THREE from "three";
 import { Noise } from "noisejs";
 import * as dat from "dat.gui";
 import sky from "$images/sky.jpg";
-import skygas from "$images/giantgas360.jpg"
+import skygas from "$images/giantgas360.jpg";
 import { GLTFLoader } from "three/addons/loaders/GLTFLoader.js";
-import { DialogueSystem } from './dialogue.js';  // Adjust the path according to your project
-import { OverlaySystem } from './overlay.js';  // Adjust path based on your structure
+import { DialogueSystem } from "./dialogue.js"; // Adjust the path according to your project
+import { OverlaySystem } from "./overlay.js"; // Adjust path based on your structure
+import perseverance from "../images/perseverance.glb";
+import satellite from "../images/voyager.glb";
+import orion from "../images/orion.png";
+import engineer from "../images/engineer.png";
 
 // Define the planet data and other details
 const planetInfo = {
   name: "Kepler 452-b",
-  description: "An 'Earth-cousin' that orbits a star like our sun in the habitable zone, where liquid water could exist.",
+  description:
+    "An 'Earth-cousin' that orbits a star like our sun in the habitable zone, where liquid water could exist.",
   type: "Super-Earth",
   habitable: "No",
   discoveryYear: 2009,
@@ -24,7 +29,7 @@ const planetInfo = {
 
 // Define the callback to trigger the dialogue (decoupled for now)
 function openDialogue() {
-  // console.log("Dialogue triggered!"); 
+  // console.log("Dialogue triggered!");
   dialogueSystem.start();
   // This is where you would later connect your dialogue system
 }
@@ -33,35 +38,41 @@ function openDialogue() {
 const overlaySystem = new OverlaySystem(planetInfo, openDialogue);
 
 // Show the overlay when needed
-document.addEventListener('keydown', (event) => {
-  if (event.code === 'KeyO' && !overlaySystem.isOverlayActive()) {
+document.addEventListener("keydown", (event) => {
+  if (event.code === "KeyO" && !overlaySystem.isOverlayActive()) {
     overlaySystem.showOverlay();
   }
 });
 
 // For testing: Hide the overlay when "Esc" is pressed
-document.addEventListener('keydown', (event) => {
-  if (event.code === 'Escape' && overlaySystem.isOverlayActive()) {
+document.addEventListener("keydown", (event) => {
+  if (event.code === "Escape" && overlaySystem.isOverlayActive()) {
     overlaySystem.hideOverlay();
   }
 });
 
-
 const dialogues = [
-  { name: "Engineer", text: "Welcome to Mars, let's explore!", avatar: "../images/engineer.png" },
-  { name: "ORION", text: "Analyzing the terrain... Data incoming. Analyzing the terrain... Data incoming.Analyzing the terrain... Data incoming.Analyzing the terrain... Data incoming.Analyzing the terrain... Data incoming.Analyzing the terrain... Data incoming.Analyzing the terrain... Data incoming.Analyzing the terrain... Data incoming.", avatar: "../images/orion.png" }
+  {
+    name: "Engineer",
+    text: "Welcome to Mars, let's explore!",
+    avatar: engineer,
+  },
+  {
+    name: "ORION",
+    text: "Analyzing the terrain... Data incoming. Analyzing the terrain... Data incoming.Analyzing the terrain... Data incoming.Analyzing the terrain... Data incoming.Analyzing the terrain... Data incoming.Analyzing the terrain... Data incoming.Analyzing the terrain... Data incoming.Analyzing the terrain... Data incoming.",
+    avatar: orion,
+  },
 ];
 
 // Create dialogue system
 const dialogueSystem = new DialogueSystem(dialogues);
 
 // Start the dialogue when needed
-document.addEventListener('keydown', (event) => {
-  if (event.code === 'KeyE' && !dialogueSystem.isDialogueActive()) {
+document.addEventListener("keydown", (event) => {
+  if (event.code === "KeyE" && !dialogueSystem.isDialogueActive()) {
     dialogueSystem.start();
   }
 });
-
 
 const params = {
   terrainColor: "#704214",
@@ -93,14 +104,12 @@ params.movementSpeed = parseFloat(param.get("spd"));
 params.fogDensity = parseFloat(param.get("fog"));
 params.terrainScale = parseFloat(param.get("tScale"));
 
-
-
 const noise = new Noise(Math.random());
 
 // Skyline
 let skyDome;
 const skyTexture = new THREE.TextureLoader().load(
-  params.terrainType === "Solid"?sky:skygas,
+  params.terrainType === "Solid" ? sky : skygas,
   () => {
     console.log("sky.png loaded successfully");
     const skyGeo = new THREE.SphereGeometry(3000, 32, 32);
@@ -136,7 +145,6 @@ const renderer = new THREE.WebGLRenderer({ antialias: true });
 renderer.setSize(window.innerWidth, window.innerHeight);
 document.body.appendChild(renderer.domElement);
 
-
 const gui = new dat.GUI();
 gui.hide();
 
@@ -165,14 +173,14 @@ roverGroup.add(rover);
 // Load the rover model
 const gltfLoader = new GLTFLoader();
 let url;
-if(params.terrainType == "Solid"){
-  url = '../images/perseverance.glb'
+if (params.terrainType == "Solid") {
+  url = perseverance;
 } else {
-  url = '../images/satellite.glb'
+  url = satellite;
 }
 gltfLoader.load(url, (gltf) => {
   const root = gltf.scene;
-  root.scale.set(5, 5, 5);  // Adjust the scale to make the rover larger
+  root.scale.set(5, 5, 5); // Adjust the scale to make the rover larger
   rover.add(root);
 });
 
@@ -286,57 +294,45 @@ function updateChunks() {
 }
 
 let roverYaw = 0;
-let firstPersonMode = params.terrainType !== "Solid"; // FPS mode if terrain is not solid
 
 function updateRoverMovement(delta) {
   if (dialogueSystem.isDialogueActive()) {
-    return;  // Block movement if dialogue is active
+    return; // Block movement if dialogue is active
   }
 
-  if (firstPersonMode) {
-    // FPS camera movement
-    if (keysPressed["KeyW"]) {
-      camera.translateZ(-controlParams.moveSpeed * delta);
-    }
-    if (keysPressed["KeyS"]) {
-      camera.translateZ(controlParams.moveSpeed * delta);
-    }
-    if (keysPressed["KeyA"]) {
-      camera.rotation.y += controlParams.rotationSpeed * delta;
-    }
-    if (keysPressed["KeyD"]) {
-      camera.rotation.y -= controlParams.rotationSpeed * delta;
-    }
-  } else {
-    // Rover movement
-    if (keysPressed["KeyW"]) {
-      rover.translateZ(-controlParams.moveSpeed * delta);
-    }
-    if (keysPressed["KeyS"]) {
-      rover.translateZ(controlParams.moveSpeed * delta);
-    }
-
-    if (keysPressed["KeyA"]) {
-      roverYaw += controlParams.rotationSpeed * delta;
-    }
-    if (keysPressed["KeyD"]) {
-      roverYaw -= controlParams.rotationSpeed * delta;
-    }
-
-    const roverX = rover.position.x;
-    const roverZ = rover.position.z;
-    const terrainHeight = getTerrainHeight(roverX, roverZ);
-    const roverHeightOffset = 2;
-    rover.position.y = terrainHeight + roverHeightOffset;
-    const terrainNormal = getTerrainNormal(roverX, roverZ);
-    rover.up.copy(terrainNormal);
-    const forward = new THREE.Vector3(Math.sin(roverYaw), 0, Math.cos(roverYaw));
-    const forwardProjected = forward.clone().projectOnPlane(terrainNormal).normalize();
-    const targetPosition = new THREE.Vector3().copy(rover.position).add(forwardProjected);
-    rover.lookAt(targetPosition);
-
-    updateCameraPosition();
+  // Rover movement
+  if (keysPressed["KeyW"]) {
+    rover.translateZ(-controlParams.moveSpeed * delta);
   }
+  if (keysPressed["KeyS"]) {
+    rover.translateZ(controlParams.moveSpeed * delta);
+  }
+
+  if (keysPressed["KeyA"]) {
+    roverYaw += controlParams.rotationSpeed * delta;
+  }
+  if (keysPressed["KeyD"]) {
+    roverYaw -= controlParams.rotationSpeed * delta;
+  }
+
+  const roverX = rover.position.x;
+  const roverZ = rover.position.z;
+  const terrainHeight = getTerrainHeight(roverX, roverZ);
+  const roverHeightOffset = 2;
+  rover.position.y = terrainHeight + roverHeightOffset;
+  const terrainNormal = getTerrainNormal(roverX, roverZ);
+  rover.up.copy(terrainNormal);
+  const forward = new THREE.Vector3(Math.sin(roverYaw), 0, Math.cos(roverYaw));
+  const forwardProjected = forward
+    .clone()
+    .projectOnPlane(terrainNormal)
+    .normalize();
+  const targetPosition = new THREE.Vector3()
+    .copy(rover.position)
+    .add(forwardProjected);
+  rover.lookAt(targetPosition);
+
+  updateCameraPosition();
 }
 
 function getTerrainNormal(x, z) {
@@ -361,7 +357,8 @@ function getTerrainHeight(x, z) {
   const octaves = params.octaves;
 
   for (let o = 0; o < octaves; o++) {
-    y += amplitude * noise.perlin2((x * frequency) / 100, (z * frequency) / 100);
+    y +=
+      amplitude * noise.perlin2((x * frequency) / 100, (z * frequency) / 100);
     amplitude *= persistence;
     frequency *= lacunarity;
   }
@@ -373,13 +370,11 @@ function getTerrainHeight(x, z) {
 const cameraOffset = new THREE.Vector3(0, 10, 20); // Adjust as needed
 
 function updateCameraPosition() {
-  if (!firstPersonMode) {
-    const desiredPosition = new THREE.Vector3().copy(cameraOffset);
-    desiredPosition.applyQuaternion(rover.quaternion);
-    desiredPosition.add(rover.position);
-    camera.position.lerp(desiredPosition, 0.1);
-    camera.lookAt(rover.position);
-  }
+  const desiredPosition = new THREE.Vector3().copy(cameraOffset);
+  desiredPosition.applyQuaternion(rover.quaternion);
+  desiredPosition.add(rover.position);
+  camera.position.lerp(desiredPosition, 0.1);
+  camera.lookAt(rover.position);
 }
 
 function updateTerrainMaterial() {
@@ -389,7 +384,6 @@ function updateTerrainMaterial() {
 }
 
 function updateTerrainType() {
-  firstPersonMode = params.terrainType !== "Solid"; // Toggle FPS mode based on terrain type
 
   switch (params.terrainType) {
     case "Solid":

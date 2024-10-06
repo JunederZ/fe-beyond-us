@@ -1,0 +1,46 @@
+[
+    {
+      "name": "Engineer",
+      "text": "Greetings, brave explorer! You've just landed on PSR B1257+12 b, a rocky world bathed in radiation.",
+      "avatar": "../images/engineer.png"
+    },
+    {
+      "name": "Engineer",
+      "text": "PSR B1257+12 b was one of the first exoplanets ever discovered, way back in 1994. It orbits a pulsar, which is the remnant core of a massive star that has gone supernova.",
+      "avatar": "../images/engineer.png"
+    },
+    {
+      "name": "Engineer",
+      "text": "This planet, along with its siblings, orbits in an environment that's constantly bombarded by intense radiation from the pulsar. It's a harsh and alien world, unlike anything in our solar system.",
+      "avatar": "../images/engineer.png"
+    },
+    {
+      "name": "Engineer",
+      "text": "Want to learn more about this fascinating world? My virtual assistant, Orion, would be happy to help you!",
+      "avatar": "../images/engineer.png"
+    },
+    {
+      "name": "ORION",
+      "text": "Hello there! I'm Orion, and I'm excited to share some fascinating facts about PSR B1257+12 b.",
+      "avatar": "../images/orion.png"
+    },
+    {
+      "name": "ORION",
+      "text": "What are you most curious about?\n* Is this planet habitable?\n* How does this planet compare to Earth?\n* How long would it take to travel here from Earth?",
+      "avatar": "../images/orion.png",
+      "options": [
+        {
+          "question": "Is this planet habitable?",
+          "answer": "PSR B1257+12 b is not habitable. Especially because of the planet is consumed with constant radiation from the star's core"
+        },
+        {
+          "question": "How does this planet compare to Earth?",
+          "answer": "PSR B1257+12 b's mass is 0.02 earths, and the radius is 0.338 x Earth."
+        },
+        {
+          "question": "How long would it take to travel here from Earth?",
+          "answer": "a Car with 60 miles per hour speed or about 96.5 km per hour needs 22 billion years.\na Jet with 600 miles per hour speed or about 965.6 km per hour needs 2 billion years.\n2 thousand years light speed"
+        }
+      ]
+    }
+  ]

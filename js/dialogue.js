@@ -1,3 +1,5 @@
+
+import '../css/planet.css';
 export class DialogueSystem {
     constructor(dialogues) {
       this.dialogues = dialogues;
@@ -43,8 +45,9 @@ export class DialogueSystem {
         this.dialogueContainer.style.color = "white";
         this.dialogueContainer.style.padding = "20px";
         this.dialogueContainer.style.borderRadius = "10px";
-        this.dialogueContainer.style.fontFamily = "Arial, sans-serif";
+        this.dialogueContainer.style.fontFamily = "Urbanist, sans-serif";
         this.dialogueContainer.style.zIndex = "1000";
+        this.dialogueContainer.style.padding = "40px 30px 20px 10px";
         this.dialogueContainer.style.display = "none"; // Ensure it's hidden initially
         document.body.appendChild(this.dialogueContainer);
       
