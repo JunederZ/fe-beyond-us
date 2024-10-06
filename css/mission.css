@@ -321,14 +321,14 @@ nav {
 
 .section-3-upper-text>h1 {
     font-family: "Naza";
-    width: 100%;
+    width: 90%;
     font-size: 60px;
     display: flex;
     justify-content: start;
 }
 
 .section-3-upper-text>p {
-    width: 60%;
+    width: 90%;
     font-size: 20px;
     text-align: start;
     font-family: "Urbanist", sans-serif;
@@ -346,7 +346,7 @@ nav {
     width: 40%;
     position: relative;
     z-index: 1;
-    margin: 0 16rem 0 16rem;
+    margin: 0 8rem 0 8rem;
 }
 
 .section-3-exoplanets {
