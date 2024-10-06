@@ -89,30 +89,37 @@ window.onload = () => {
 
   init();
 
-    // Grab all the carousel items
-    
 };
 
+let button = document.getElementById("btn");
+button.addEventListener("click", spawnCards);
+
+let buttongo = document.getElementsByClassName('go-button')
+
+buttongo.forEach(element => {
+  element.addEventListener('click', () => {
+    console.log('go button clicked')
+  })
+});
 
 
-let spawnCards  = () => {
-  console.log("spawning cards");
-}
-
-const carouselItems = document.querySelectorAll(".carousel-item");
-
-// Animate each carousel item with staggered animation
-gsap.fromTo(
+function spawnCards() {
+  const carouselItems = document.querySelectorAll(".carousel-item");
+  gsap.fromTo(
     carouselItems,
     {
-        opacity: 0,               // Start fully transparent
-        x: '100%',                // Start offscreen to the right
+      opacity: 0, // Start fully transparent
+      x: "100%", // Start offscreen to the right
     },
     {
-        opacity: 1,               // Fade in to full opacity
-        x: '0%',                  // Move into the view
-        duration: 1,              // Duration of the animation for each item
-        ease: "power3.out",       // Smooth easing for the animation
-        stagger: 0.2,             // Stagger each item by 0.2 seconds
+      opacity: 1, // Fade in to full opacity
+      x: "0%", // Move into the view
+      duration: 1, // Duration of the animation for each item
+      ease: "power3.out", // Smooth easing for the animation
+      stagger: 0.2, // Stagger each item by 0.2 seconds
     }
-);
+  );
+  button.hidden = true;
+
+  // Your code here
+}

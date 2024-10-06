@@ -250,6 +250,7 @@ nav {
     padding: 10px 12px 10px 12px;
     width: 213px;
     height: 320px;
+    border-radius: 20px;
     background-color: rgba(0, 0, 0, 0.527);
 }
 

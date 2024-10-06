@@ -1,8 +1,8 @@
 import * as THREE from "three";
 import { Noise } from "noisejs";
 import * as dat from "dat.gui";
-import sky from "../images/sky.jpg";
-import {GLTFLoader} from 'three/addons/loaders/GLTFLoader.js';
+import sky from "$images/sky.jpg";
+import { GLTFLoader } from "three/addons/loaders/GLTFLoader.js";
 
 const noise = new Noise(Math.random());
 
@@ -15,7 +15,7 @@ const skyTexture = new THREE.TextureLoader().load(
     const skyGeo = new THREE.SphereGeometry(3000, 32, 32);
     const skyMat = new THREE.MeshBasicMaterial({
       map: skyTexture,
-      side: THREE.BackSide
+      side: THREE.BackSide,
     });
     skyDome = new THREE.Mesh(skyGeo, skyMat);
     scene.add(skyDome);
@@ -32,8 +32,8 @@ const scene = new THREE.Scene();
 const camera = new THREE.PerspectiveCamera(
   90,
   window.innerWidth / window.innerHeight,
-  10,
-  6000
+  0.1,
+  4000
 );
 camera.position.set(0, 20, 100);
 
@@ -57,8 +57,8 @@ const params = {
   fogDensity: 0.001,
   terrainScale: 1.0,
   wireframe: false,
-  ambientLightIntensity: 0.5,
-  directionalLightIntensity: 1.5,
+  ambientLightIntensity: 2.5,
+  directionalLightIntensity: 2.5,
   cameraHeight: 20,
 };
 
@@ -77,7 +77,6 @@ params.terrainScale = parseFloat(param.get("tScale"));
 const gui = new dat.GUI();
 gui.hide();
 
-
 const ambientLight = new THREE.AmbientLight(
   0x404040,
   params.ambientLightIntensity
@@ -91,26 +90,23 @@ const directionalLight = new THREE.DirectionalLight(
 directionalLight.position.set(-100, 100, -100).normalize();
 scene.add(directionalLight);
 
-// Create a rover object
+// Create a rover group and rover object
+const roverGroup = new THREE.Object3D();
+roverGroup.position.set(0, 0, 0); // Initial position
+scene.add(roverGroup);
+
 const rover = new THREE.Object3D();
 rover.position.set(0, 0, 0); // Starting position
+roverGroup.add(rover);
 
-scene.add(rover);
-
-// Optional: Add a simple box to represent the rover
+// Load the rover model
 const gltfLoader = new GLTFLoader();
 const url = '../images/perseverance.glb';
 gltfLoader.load(url, (gltf) => {
   const root = gltf.scene;
   root.scale.set(5, 5, 5);  // Adjust the scale to make the rover larger
-
   rover.add(root);
 });
-
-// const roverGeometry = new THREE.BoxGeometry(5, 2, 10);
-// const roverMaterial = new THREE.MeshLambertMaterial({ color: 0xff0000 });
-// const roverMesh = new THREE.Mesh(roverGeometry, roverMaterial);
-// rover.add(roverMesh);
 
 const keysPressed = {};
 
@@ -131,8 +127,8 @@ document.addEventListener(
 );
 
 const controlParams = {
-  moveSpeed: 50.0,      // Units per second
-  rotationSpeed: Math.PI // Radians per second
+  moveSpeed: 50.0, // Units per second
+  rotationSpeed: Math.PI, // Radians per second
 };
 
 const CHUNK_SIZE = 100;
@@ -221,6 +217,8 @@ function updateChunks() {
   }
 }
 
+let roverYaw = 0;
+
 function updateRoverMovement(delta) {
   // Forward and Backward Movement
   if (keysPressed["KeyW"]) {
@@ -232,36 +230,80 @@ function updateRoverMovement(delta) {
 
   // Rotation Left and Right
   if (keysPressed["KeyA"]) {
-    rover.rotation.y += controlParams.rotationSpeed * delta;
+    roverYaw += controlParams.rotationSpeed * delta;
   }
   if (keysPressed["KeyD"]) {
-    rover.rotation.y -= controlParams.rotationSpeed * delta;
+    roverYaw -= controlParams.rotationSpeed * delta;
   }
 
-  // Raycast downward from the rover to find terrain height
-  const nearestChunk = getNearestChunk();
-  if (nearestChunk) {
-    const raycaster = new THREE.Raycaster(
-      new THREE.Vector3(rover.position.x, rover.position.y + 10, rover.position.z),
-      new THREE.Vector3(0, -1, 0),
-      0,
-      100
-    );
+  // Get the current rover position
+  const roverX = rover.position.x;
+  const roverZ = rover.position.z;
 
-    const intersects = raycaster.intersectObject(nearestChunk);
+  // Calculate the terrain height at the rover's (x, z) position
+  const terrainHeight = getTerrainHeight(roverX, roverZ);
 
-    // if (intersects.length > 0) {
-    //   const terrainHeight = intersects[0].point.y;
-    //   rover.position.y = terrainHeight; // Align rover with terrain
-    // }
-    if (intersects.length > 0) {
-        const terrainHeight = intersects[0].point.y;
-        rover.position.y = Math.max(terrainHeight, rover.position.y); // Ensure it doesn't dip below the terrain
-      }
-      
-  }
+  // Adjust the rover's y position to stay on the terrain
+  const roverHeightOffset = 2; // Adjust based on your rover model
+  rover.position.y = terrainHeight + roverHeightOffset;
+
+  // Calculate terrain normal at rover's position
+  const terrainNormal = getTerrainNormal(roverX, roverZ);
+
+  // Set the rover's up vector to the terrain normal
+  rover.up.copy(terrainNormal);
+
+  // Compute the forward direction based on roverYaw
+  const forward = new THREE.Vector3(Math.sin(roverYaw), 0, Math.cos(roverYaw));
+
+  // Project the forward vector onto the plane defined by the terrain normal
+  const forwardProjected = forward.clone().projectOnPlane(terrainNormal).normalize();
+
+  // Compute the target position for lookAt
+  const targetPosition = new THREE.Vector3().copy(rover.position).add(forwardProjected);
+
+  // Update the rover's rotation to look at the target position
+  rover.lookAt(targetPosition);
 
   updateCameraPosition();
+}
+
+function getTerrainNormal(x, z) {
+  const delta = 1; // Distance to sample around the point for gradient approximation
+
+  // Heights at the current point and its neighbors
+  const heightL = getTerrainHeight(x - delta, z);
+  const heightR = getTerrainHeight(x + delta, z);
+  const heightD = getTerrainHeight(x, z - delta);
+  const heightU = getTerrainHeight(x, z + delta);
+
+  // Calculate the gradient in the x and z directions
+  const dx = (heightR - heightL) / (2 * delta);
+  const dz = (heightU - heightD) / (2 * delta);
+
+  // The normal vector is perpendicular to the surface
+  const normal = new THREE.Vector3(-dx, 1, -dz).normalize();
+
+  return normal;
+}
+
+function getTerrainHeight(x, z) {
+  let y = 0;
+  let amplitude = 1;
+  let frequency = params.noiseFrequency;
+  const persistence = params.persistence;
+  const lacunarity = params.lacunarity;
+  const octaves = params.octaves;
+
+  for (let o = 0; o < octaves; o++) {
+    y +=
+      amplitude * noise.perlin2((x * frequency) / 100, (z * frequency) / 100);
+    amplitude *= persistence;
+    frequency *= lacunarity;
+  }
+
+  y *= params.maxHeight * params.terrainScale;
+  return y;
 }
 
 function getNearestChunk() {
@@ -282,27 +324,6 @@ function updateCameraPosition() {
   desiredPosition.applyQuaternion(rover.quaternion);
   desiredPosition.add(rover.position);
 
-  // Raycast downward to determine terrain slope
-  const raycaster = new THREE.Raycaster(
-    new THREE.Vector3(desiredPosition.x, desiredPosition.y + 10, desiredPosition.z),
-    new THREE.Vector3(0, -1, 0),
-    0,
-    100
-  );
-
-  const intersects = raycaster.intersectObjects([...chunks.values()]);
-
-  if (intersects.length > 0) {
-    const terrainNormal = intersects[0].face.normal;
-    const terrainQuaternion = new THREE.Quaternion().setFromUnitVectors(
-      new THREE.Vector3(0, 1, 0),
-      terrainNormal
-    );
-
-    // Tilt the camera based on terrain normal
-    camera.quaternion.slerp(terrainQuaternion, 0.1);
-  }
-
   // Smoothly interpolate the camera's position
   camera.position.lerp(desiredPosition, 0.1);
   camera.lookAt(rover.position);
@@ -317,10 +338,7 @@ function updateTerrainMaterial() {
 function updateTerrainType() {
   switch (params.terrainType) {
     case "Solid":
-      scene.fog = new THREE.FogExp2(
-        0x2c3e50,
-        params.fogDensity
-      );
+      scene.fog = new THREE.FogExp2(0x2c3e50, params.fogDensity);
       break;
     case "Liquid":
       scene.fog = new THREE.FogExp2(0x0000ff, params.fogDensity); // Blue fog
@@ -342,9 +360,6 @@ function regenerateTerrain() {
   }
   updateChunks();
 }
-
-// updateTerrainType();
-// updateLights();
 
 const clock = new THREE.Clock();
 

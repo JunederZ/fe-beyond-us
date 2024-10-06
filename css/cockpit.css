@@ -1,88 +1,86 @@
-body, html {
-    margin: 0;
-    padding: 0;
-    overflow: hidden;
-    /* background-color: red; */
+body,
+html {
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  /* background-color: red; */
 }
 
 @font-face {
-    font-family: 'Naza';
-    src: url('../fonts/nasalization-rg.otf');
+  font-family: "Naza";
+  src: url("../fonts/nasalization-rg.otf");
 }
 
 #btn {
-    font-family: 'Naza';
-    position: absolute;
-    top: 71%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    z-index: 101;
-    background-color: #1e2c62;
-    color: #fff;
-    padding: 30px 69px;
-    border: 1px solid #3fc6eb;
-    cursor: pointer;
-    font-size: 20px;
-
+  font-family: "Naza";
+  position: absolute;
+  top: 71%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 101;
+  background-color: #1e2c62;
+  color: #fff;
+  padding: 30px 69px;
+  border: 1px solid #3fc6eb;
+  cursor: pointer;
+  font-size: 20px;
 }
 
-
-
 #fill {
-    height: 100%;
-    width: 100%;
-    position: absolute;
-    top: 0;
-    left: 0;
-    z-index: 10;
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 10;
 }
 
 #canvas {
-    background-color: #000;
-    /* height: 100%;
+  background-color: #000;
+  /* height: 100%;
     width: 100%; */
-    position: absolute;
-    top: 0;
-    left: 0;
-    z-index: -20;
-  }
-  
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: -20;
+}
 
-  .carousel {
-    display: flex;
-    position: absolute;
-    bottom: 0;
-    width: 100%;
-    justify-content: space-around;
-    overflow: hidden;
-    padding: 20px;
-    z-index: 100;
+.carousel {
+  gap: 10px;
+  display: flex;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  justify-content: space-around;
+  overflow: hidden;
+  padding: 20px;
+  z-index: 100;
 }
 
 .carousel-item {
-    background-color: #1e2c62ca;
-    border: 1px solid #3fc6eb;
-    color: white;
-    padding: 20px;
-    text-align: center;
-    width: 200px;
-    height: 300px;
-    opacity: 0; /* Start hidden */
-    transform: translateX(100%); /* Start offscreen to the right */
+  background-color: #1e2c62ca;
+  border: 1px solid #3fc6eb;
+  color: white;
+  padding: 20px;
+  text-align: center;
+  width: 200px;
+  height: 300px;
+  opacity: 0; /* Start hidden */
+  transform: translateX(100%); /* Start offscreen to the right */
 }
 
 .planet-info h2 {
-    font-family: 'Naza';
-    margin: 20px 0;
-    font-size: 24px;
+  font-family: "Naza";
+  margin: 20px 0;
+  font-size: 24px;
 }
 
 .go-button {
-    font-family: 'Naza';
-    background-color: #3fc6eb;
-    color: white;
-    border: none;
-    padding: 10px 20px;
-    cursor: pointer;
-    font-size: 18px;
+  font-family: "Naza";
+  background-color: #3fc6eb;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+  font-size: 18px;
 }

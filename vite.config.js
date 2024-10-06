@@ -3,9 +3,12 @@ import { resolve } from "path";
 import { defineConfig } from "vite";
 
 export default defineConfig({
+  assetsInclude: ["./fonts/**", "./images/**"],
   resolve: {
     alias: {
       $fonts: resolve('./fonts'),
+      $images: resolve('./images'),
+      $: resolve('./'),
     }
   },
   build: {
@@ -15,6 +18,8 @@ export default defineConfig({
         cockpit: resolve(__dirname, "pages/cockpit.html"),
         mission: resolve(__dirname, "pages/mission.html"),
         planet: resolve(__dirname, "pages/planet.html"),
+        gasplanet: resolve(__dirname, "gaspages/planet.html"),
+        loworbit: resolve(__dirname, "pages/loworbit.html"),
       },
     },
   },
