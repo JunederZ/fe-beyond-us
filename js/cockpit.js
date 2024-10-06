@@ -181,7 +181,7 @@ rightArrow.addEventListener("click", () => {
   carousel.scrollBy({ left: 300, behavior: "smooth" });
 });
 
-fetch("/data/planets.json")
+fetch("/public/planets.json")
   .then((response) => response.json())
   .then((data) => {
     data.forEach((p) => {
