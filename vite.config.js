@@ -17,6 +17,7 @@ export default defineConfig({
         planet: resolve(__dirname, "pages/planet.html"),
         orbit: resolve(__dirname, "pages/orbit.html"),
         system: resolve(__dirname, "pages/system.html"),
+        rplanet: resolve(__dirname, "pages/rplanet.html"),
       },
     },
   },
