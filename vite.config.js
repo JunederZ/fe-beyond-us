@@ -3,11 +3,11 @@ import { resolve } from "path";
 import { defineConfig } from "vite";
 
 export default defineConfig({
-  assetsInclude: ["./fonts/**", "./images/**", "./data/**"],
+  assetsInclude: ["./fonts/**", "./images/*", "./data/**"],
   resolve: {
     alias: {
       $fonts: resolve('./fonts'),
-      $images: resolve('./images'),
+      $images: resolve('./images/'),
       $: resolve('./'),
     }
   },
@@ -24,6 +24,11 @@ export default defineConfig({
         system: resolve(__dirname, "pages/system.html"),
         rplanet: resolve(__dirname, "pages/rplanet.html"),
       },
+      output: {
+        entryFileNames: `assets/[name].js`,
+        chunkFileNames: `assets/[name].js`,
+        assetFileNames: `assets/[name].[ext]`
+      }
     },
   },
 });

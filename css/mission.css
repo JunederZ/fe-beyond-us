@@ -6,6 +6,72 @@
     src: url('../fonts/nasalization-rg.otf');
 }
 
+.pc-only {
+    display: none;
+}
+
+@media screen and (max-width: 768px) {
+
+    .pc-only {
+        display: flex;
+    }
+
+    nav {
+        display: none;
+        visibility: hidden;
+    }
+
+    .bg-overlay {
+        display: none;
+    }
+
+    .section-1 {
+        display: none;
+        visibility: hidden;
+    }
+
+    .section-2 {
+        display: none;
+        visibility: hidden;
+    }
+
+    .section-3 {
+        display: none;
+        visibility: hidden;
+    }
+
+    .section-4 {
+        display: none;
+        visibility: hidden;
+    }
+
+    .section-5 {
+        display: none;
+        visibility: hidden;
+    }
+
+    .section-6 {
+        display: none;
+        visibility: hidden;
+    }
+
+    .stellar-section {
+        display: none;
+        visibility: hidden;
+    }
+
+    .section-5-dial {
+        display: none;
+        visibility: hidden;
+    }
+
+    .section-4-bottom {
+        display: none;
+        visibility: hidden;
+    }
+    
+}
+
 body {
     display: flex;
     flex-direction: column;
