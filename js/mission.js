@@ -5,14 +5,14 @@ cockpitButton.addEventListener('click', () => {
     console.log('Start button clicked');
     setTimeout(() => {
         window.location.href = '/pages/cockpit';
-    }, 1500);
+    }, 1);
 })
 
 cockpitButton2.addEventListener('click', () => {
     console.log('Start button clicked');
     setTimeout(() => {
         window.location.href = '/pages/cockpit';
-    }, 1500);
+    }, 1);
 })
 
 
