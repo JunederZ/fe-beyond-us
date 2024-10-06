@@ -13,6 +13,27 @@ let clickedStar = null;
 
 
 
+document.getElementById('close-btn').addEventListener('click', () => {
+    hideAlert();
+});
+
+document.getElementById('explore-btn').addEventListener('click', () => {
+    hideAlert(); // Hide the alert when the "Explore Now" button is clicked
+});
+
+function showAlert() {
+    const alertBox = document.getElementById('custom-alert');
+    alertBox.style.display = 'flex';
+    console.log(1);
+}
+
+function hideAlert() {
+    const alertBox = document.getElementById('custom-alert');
+    alertBox.style.display = 'none';
+    console.log(2);
+}
+
+
 function checkLoading() {
   if (variableValue) {
     isLoading = false;
@@ -149,11 +170,12 @@ async function animate() {
   controls.update();
   renderer.render(scene, camera);
   variableValue = true;
+  
 }
 async function main(){
 
  await init();
  await animate();
-
+showAlert()
 }
 main();
