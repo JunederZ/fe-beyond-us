@@ -1,11 +1,13 @@
-import prof from '../images/prof.png';
+import prof from '../images/enginer.png';
 import '../css/planet.css';
 import { color } from 'dat.gui';
+
 export class OverlaySystem {
   constructor(planetInfo, callback) {
     this.planetInfo = planetInfo;
     this.callback = callback;
     this.isActive = false;
+
     // Create the overlay elements
     this.createOverlay();
     this.createToggleText();
@@ -57,78 +59,64 @@ export class OverlaySystem {
     this.overlayContainer.appendChild(this.hideButton);
 
     // Content container
-    const overlayContent = document.createElement("div");
-    overlayContent.id = "overlay-content";
-    Object.assign(overlayContent.style, {
+    this.overlayContent = document.createElement("div");
+    this.overlayContent.id = "overlay-content";
+    Object.assign(this.overlayContent.style, {
       padding: "40px",
       display: "flex",
       justifyContent: "space-between",
     });
-    this.overlayContainer.appendChild(overlayContent);
+    this.overlayContainer.appendChild(this.overlayContent);
 
     // Left panel for title and description
-    const leftPanel = document.createElement("div");
-    leftPanel.id = "left-panel";
-    Object.assign(leftPanel.style, {
+    this.leftPanel = document.createElement("div");
+    this.leftPanel.id = "left-panel";
+    Object.assign(this.leftPanel.style, {
       flex: "1",
       maxWidth: "50%",
     });
-    overlayContent.appendChild(leftPanel);
+    this.overlayContent.appendChild(this.leftPanel);
 
-    const title = document.createElement("h1");
-    title.innerText = this.planetInfo.name;
-    title.style.fontFamily = '"Naza", sans-serif';
-    Object.assign(title.style, {
+    this.title = document.createElement("h1");
+    this.title.innerText = this.planetInfo.name;
+    this.title.style.fontFamily = '"Naza", sans-serif';
+    Object.assign(this.title.style, {
       fontSize: "4rem",
       marginBottom: "1rem",
     });
-    leftPanel.appendChild(title);
+    this.leftPanel.appendChild(this.title);
 
-    const description = document.createElement("p");
-    description.innerText = this.planetInfo.description;
-    Object.assign(description.style, {
+    this.description = document.createElement("p");
+    this.description.innerText = this.planetInfo.description;
+    Object.assign(this.description.style, {
       fontSize: "1.5rem",
     });
-    leftPanel.appendChild(description);
+    this.leftPanel.appendChild(this.description);
 
-    const distance = document.createElement("p");
-    distance.innerText = `You are ${this.planetInfo.distance} light years from Earth`;
-    Object.assign(distance.style, {
+    this.distance = document.createElement("p");
+    this.distance.innerText = `You are ${this.planetInfo.distance} light years from Earth`;
+    Object.assign(this.distance.style, {
       fontSize: "1.5rem",
       marginTop: "20px",
     });
-    leftPanel.appendChild(distance);
+    this.leftPanel.appendChild(this.distance);
 
     // Right panel for planet properties
-    const rightPanel = document.createElement("div");
-    rightPanel.id = "right-panel";
-    Object.assign(rightPanel.style, {
+    this.rightPanel = document.createElement("div");
+    this.rightPanel.id = "right-panel";
+    Object.assign(this.rightPanel.style, {
       flex: "1",
       maxWidth: "40%",
       textAlign: "right",
     });
-    overlayContent.appendChild(rightPanel);
+    this.overlayContent.appendChild(this.rightPanel);
 
-    const planetDetails = `
-        <p><strong>Planet Type:</strong> ${this.planetInfo.type}</p>
-        <p><strong>Habitable?:</strong> ${this.planetInfo.habitable}</p>
-        <p><strong>Discovered in:</strong> ${this.planetInfo.discoveryYear}</p>
-        <p><strong>Detection Method:</strong> ${this.planetInfo.detectionMethod}</p>
-        <p><strong>Observed by:</strong> ${this.planetInfo.observedBy}</p>
-        <p><strong>Orbital Radius:</strong> ${this.planetInfo.orbitalRadius}</p>
-        <p><strong>Orbital Period:</strong> ${this.planetInfo.orbitalPeriod}</p>
-        <p><strong>Orbital Eccentricity:</strong> ${this.planetInfo.orbitalEccentricity}</p>
-      `;
-    rightPanel.innerHTML = planetDetails;
-    Object.assign(rightPanel.querySelectorAll("p"), {
-      fontSize: "1.2rem",
-      margin: "5px 0",
-    });
+    this.updatePlanetDetails();
 
     // Character image at bottom right
     const characterImage = document.createElement("img");
-    // characterImage.src = this.planetInfo.characterImage;
-    characterImage.src = prof
+    characterImage.src = prof;
+
     characterImage.alt = "Character Image";
     characterImage.onclick = () => {
         this.hideOverlay();
@@ -143,8 +131,24 @@ export class OverlaySystem {
       borderRadius: "50%",
       border: "5px solid white",
       objectFit: "cover",
+      backgroundColor: "white",
     });
     this.overlayContainer.appendChild(characterImage);
+  }
+
+  // Dynamically updates planet details in the overlay
+  updatePlanetDetails() {
+    const planetDetails = `
+        <p><strong>Planet Type:</strong> ${this.planetInfo.type}</p>
+        <p><strong>Habitable?:</strong> ${this.planetInfo.habitable}</p>
+        <p><strong>Discovered in:</strong> ${this.planetInfo.discoveryYear}</p>
+        <p><strong>Detection Method:</strong> ${this.planetInfo.detectionMethod}</p>
+        <p><strong>Observed by:</strong> ${this.planetInfo.observedBy}</p>
+        <p><strong>Orbital Radius:</strong> ${this.planetInfo.orbitalRadius}</p>
+        <p><strong>Orbital Period:</strong> ${this.planetInfo.orbitalPeriod}</p>
+        <p><strong>Orbital Eccentricity:</strong> ${this.planetInfo.orbitalEccentricity}</p>
+      `;
+    this.rightPanel.innerHTML = planetDetails;
   }
 
   createToggleText() {
@@ -180,5 +184,14 @@ export class OverlaySystem {
 
   isOverlayActive() {
     return this.isActive;
+  }
+
+  // Method to update planet info dynamically
+  updatePlanetInfo(newPlanetInfo) {
+    this.planetInfo = newPlanetInfo;
+    this.title.innerText = this.planetInfo.name;
+    this.description.innerText = this.planetInfo.description;
+    this.distance.innerText = `You are ${this.planetInfo.distance} light years from Earth`;
+    this.updatePlanetDetails();
   }
 }

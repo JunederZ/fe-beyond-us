@@ -14,43 +14,16 @@
     <div class="cockpit">
         <img id="fill" src="../images/cockpits.png" alt="">
         <div class="button-container">
-            <button id="btn" onclick="spawnCards()">START</button>
+            <button id="btn">START</button>
         </div>
     </div>
-    <div class="carousel">
-        <div class="carousel-item" id="kepler452">
-            <div class="planet-info">
-                <h2>Kepler-452 b</h2>
-                <img src="../videos/kepler452.gif" alt="">
-            </div>
-        </div>
-        <div class="carousel-item" id="kepler186">
-            <div class="planet-info">
-                <h2>Kepler-186 f</h2>
-                <img src="../videos/kepler186.gif" alt="">
-            </div>
-        </div>
-        <div class="carousel-item" id="cancri">
-            <div class="planet-info">
-                <h2>55 Cancri e</h2>
-                <img src="../videos/cancri.gif" alt="">
-            </div>
-        </div>
-        <div class="carousel-item" id="proxima">
-            <div class="planet-info">
-                <h2>Proxima Centauri b</h2>
-                <img src="../videos/proxima.gif" alt="">
-            </div>
-        </div>
-        <div class="carousel-item" id="koi">
-            <div class="planet-info">
-                <h2>KOI-55 b</h2>
-                <img src="../videos/koi.gif" alt="">
-            </div>
-        </div>
+    
+    <div class="carousel-container">
+        <div class="arrow left-arrow" id="left-arrow">&#10094;</div>
+        <div class="carousel" id="carousel"></div>
+        <div class="arrow right-arrow" id="right-arrow">&#10095;</div>
     </div>
     
     <canvas id="canvas"></canvas>
-    
 </body>
 </html>

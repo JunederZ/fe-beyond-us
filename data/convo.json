@@ -1,46 +1,659 @@
-[
-    {
-      "name": "Engineer",
-      "text": "Greetings, brave explorer! You've just landed on PSR B1257+12 b, a rocky world bathed in radiation.",
-      "avatar": "../images/engineer.png"
+{
+  "4": {
+    "explorer_greeting": "Greetings, brave explorer! You've just landed on Kepler-7 b, a giant planet composed mainly of gas. Kepler-7 b, a massive world called a hot Jupiter, Kepler-7b was the first exoplanet to have its clouds mapped.",
+    "virtual_assistant_greeting": "Dare to learn more? My virtual assistant, Orion, would be happy to help you!",
+    "orion_greeting": "Hello there! I'm Orion, and I'm excited to share some fascinating facts.",
+    "options": [
+      "Is this planet habitable?",
+      "Planet compared to Jupiter",
+      "How long to travel here from earth?"
+    ],
+    "responses": {
+      "Is_this_planet_habitable": {
+        "text": "Kepler-7 b is not habitable. Kepler-7b's temperature was between 1,500 and 1,800 degrees Fahrenheit (820 and 980 degrees Celsius). To compare, earth's highest temperature is 134 degrees Fahrenheit (56.7 degrees Celsius)."
+      },
+      "Planet_compared_to_Jupiter": {
+        "text": "Kepler-7 b's mass is 0.441 Jupiters, and the radius is 1.622 x Jupiter."
+      },
+      "How_long_to_travel_here_from_earth": {
+        "text": "A car with 60 miles per hour speed or about 96.5 km per hour needs 34 billion years. A jet with 600 miles per hour speed or about 965.6 km per hour needs 3 billion years. 3 thousand years at light speed."
+      }
     },
-    {
-      "name": "Engineer",
-      "text": "PSR B1257+12 b was one of the first exoplanets ever discovered, way back in 1994. It orbits a pulsar, which is the remnant core of a massive star that has gone supernova.",
-      "avatar": "../images/engineer.png"
+    "sources": [
+      "https://wmo.asu.edu/content/world-highest-temperature",
+      "https://eyes.nasa.gov/apps/exo/?destinations=/alien-worlds/strange-new-worlds/#/planet/Kepler-7_b"
+    ]
+  },
+  "KOI-55_b": {
+    "explorer_greeting": "Greetings, brave explorer! You've just landed on KOI-55 b, a rocky world hotter than the Sun.",
+    "virtual_assistant_greeting": "Dare to learn more? My virtual assistant, Orion, would be happy to help you!",
+    "orion_greeting": "Hello there! I'm Orion, and I'm excited to share some fascinating facts.",
+    "options": [
+      "Is this planet habitable?",
+      "Planet compared to earth",
+      "How long to travel here from earth?"
+    ],
+    "responses": {
+      "Is_this_planet_habitable": {
+        "text": "KOI-55 b is not habitable. The planet will be too hot for life to survive."
+      },
+      "Planet_compared_to_earth": {
+        "text": "KOI-55 b's mass is 0.44 earths, and the radius is 0.759 x Earth."
+      },
+      "How_long_to_travel_here_from_earth": {
+        "text": "A car with 60 miles per hour speed or about 96.5 km per hour needs 45 billion years. A jet with 600 miles per hour speed or about 965.6 km per hour needs 4 billion years. 4 thousand years at light speed."
+      }
     },
-    {
-      "name": "Engineer",
-      "text": "This planet, along with its siblings, orbits in an environment that's constantly bombarded by intense radiation from the pulsar. It's a harsh and alien world, unlike anything in our solar system.",
-      "avatar": "../images/engineer.png"
+    "sources": [
+      "https://eyes.nasa.gov/apps/exo/?destinations=/alien-worlds/strange-new-worlds/#/planet/KOI-55_b"
+    ]
+  },
+  "20": {
+    "explorer_greeting": "Greetings, brave explorer! You've just landed on 55 Cancri e, a lava world with sparkling skies.",
+    "virtual_assistant_greeting": "Dare to learn more? My virtual assistant, Orion, would be happy to help you!",
+    "orion_greeting": "Hello there! I'm Orion, and I'm excited to share some fascinating facts.",
+    "options": [
+      "Is this planet habitable?",
+      "Planet compared to earth",
+      "How long to travel here from earth?"
+    ],
+    "responses": {
+      "Is_this_planet_habitable": {
+        "text": "Unfortunately for the prospects of life, 55 Cancri e is quite inhospitable. It is so hot that scientists think its surface is a vast magma ocean instead of being solid."
+      },
+      "Planet_compared_to_earth": {
+        "text": "55 Cancri e's mass is 7.99 earths, and the radius is 1.875 x Earth."
+      },
+      "How_long_to_travel_here_from_earth": {
+        "text": "A car with 60 miles per hour speed or about 96.5 km per hour needs 459 million years. A jet with 600 miles per hour speed or about 965.6 km per hour needs 46 million years. 41 years at light speed."
+      }
     },
-    {
-      "name": "Engineer",
-      "text": "Want to learn more about this fascinating world? My virtual assistant, Orion, would be happy to help you!",
-      "avatar": "../images/engineer.png"
+    "sources": [
+      "https://eyes.nasa.gov/apps/exo/?destinations=/alien-worlds/strange-new-worlds/#/planet/55_Cnc_e"
+    ]
+  },
+  "TRAPPIST-1_e": {
+    "explorer_greeting": "Greetings, brave explorer! You've just landed on TRAPPIST-1 e, a rocky world outside our solar system.",
+    "virtual_assistant_greeting": "Dare to learn more? My virtual assistant, Orion, would be happy to help you!",
+    "orion_greeting": "Hello there! I'm Orion, and I'm excited to share some fascinating facts.",
+    "options": [
+      "Is this planet habitable?",
+      "Planet compared to earth",
+      "How long to travel here from earth?"
+    ],
+    "responses": {
+      "Is_this_planet_habitable": {
+        "text": "TRAPPIST-1 e was possibly habitable. Sadly, scientists have discovered that TRAPPIST-1 e is having its atmosphere stripped, a process that may eventually render the world inhospitable to life."
+      },
+      "Planet_compared_to_earth": {
+        "text": "TRAPPIST-1 e's mass is 0.692 earths, and the radius is 0.92 x Earth."
+      },
+      "How_long_to_travel_here_from_earth": {
+        "text": "A car with 60 miles per hour speed or about 96.5 km per hour needs 453 million years. A jet with 600 miles per hour speed or about 965.6 km per hour needs 45 million years. 41 years at light speed."
+      }
     },
-    {
-      "name": "ORION",
-      "text": "Hello there! I'm Orion, and I'm excited to share some fascinating facts about PSR B1257+12 b.",
-      "avatar": "../images/orion.png"
+    "sources": [
+      "https://eyes.nasa.gov/apps/exo/?destinations=/alien-worlds/strange-new-worlds/#/planet/TRAPPIST-1_e"
+    ]
+  },
+  "21": {
+    "explorer_greeting": "Greetings, brave explorer! You've just landed on OGLE-2016-BLG-1195L b, a potentially rocky world, larger than Earth.",
+    "virtual_assistant_greeting": "Dare to learn more? My virtual assistant, Orion, would be happy to help you!",
+    "orion_greeting": "Hello there! I'm Orion, and I'm excited to share some fascinating facts.",
+    "options": [
+      "Is this planet habitable?",
+      "Planet compared to earth",
+      "How long to travel here from earth?"
+    ],
+    "responses": {
+      "Is_this_planet_habitable": {
+        "text": "No, OGLE-2016-BLG-1195L b is too cold to be habitable. Scientists believe that OGLE-2016-BLG-1195Lb is one of the absolute coldest known exoplanets, with a temperature around 31 Kelvin, or less than negative 400 degrees Fahrenheit."
+      },
+      "Planet_compared_to_earth": {
+        "text": "OGLE-2016-BLG-1195L b's mass is 1.43 earths, and the radius is 1.11 x Earth."
+      },
+      "How_long_to_travel_here_from_earth": {
+        "text": "A car with 60 miles per hour speed or about 96.5 km per hour needs 143 billion years. A jet with 600 miles per hour speed or about 965.6 km per hour needs 14 billion years. 13 thousand years at light speed."
+      }
     },
-    {
-      "name": "ORION",
-      "text": "What are you most curious about?\n* Is this planet habitable?\n* How does this planet compare to Earth?\n* How long would it take to travel here from Earth?",
-      "avatar": "../images/orion.png",
-      "options": [
-        {
-          "question": "Is this planet habitable?",
-          "answer": "PSR B1257+12 b is not habitable. Especially because of the planet is consumed with constant radiation from the star's core"
-        },
-        {
-          "question": "How does this planet compare to Earth?",
-          "answer": "PSR B1257+12 b's mass is 0.02 earths, and the radius is 0.338 x Earth."
-        },
-        {
-          "question": "How long would it take to travel here from Earth?",
-          "answer": "a Car with 60 miles per hour speed or about 96.5 km per hour needs 22 billion years.\na Jet with 600 miles per hour speed or about 965.6 km per hour needs 2 billion years.\n2 thousand years light speed"
-        }
-      ]
+    "sources": [
+      "https://eyes.nasa.gov/apps/exo/?destinations=/alien-worlds/strange-new-worlds/#/star/OGLE-2016-BLG-1195L",
+      "http://www.exoplanetkyoto.org/exohtml/OGLE-2016-BLG-1195L_b.html",
+      "https://scienceline.org/2020/07/sciencelines-guide-to-the-exoplanets-the-ice-dot/"
+    ]
+  },
+  "14": {
+    "explorer_greeting": "Greetings, brave explorer! You've just landed on OGLE-2005-BLG-390L b, a Neptune-like giant planet.",
+    "virtual_assistant_greeting": "Dare to learn more? My virtual assistant, Orion, would be happy to help you!",
+    "orion_greeting": "Hello there! I'm Orion, and I'm excited to share some fascinating facts.",
+    "options": [
+      "Is this planet habitable?",
+      "Planet compared to earth",
+      "How long to travel here from earth?"
+    ],
+    "responses": {
+      "Is_this_planet_habitable": {
+        "text": "OGLE-2005-BLG-390L b is not habitable."
+      },
+      "Planet_compared_to_earth": {
+        "text": "OGLE-2005-BLG-390L b's mass is 5.5 earths, and the radius is 2.21 x Earth."
+      },
+      "How_long_to_travel_here_from_earth": {
+        "text": "A car with 60 miles per hour speed or about 96.5 km per hour needs 241 billion years. A jet with 600 miles per hour speed or about 965.6 km per hour needs 24 billion years. 22 thousand years at light speed."
+      }
+    },
+    "sources": [
+      "https://eyes.nasa.gov/apps/exo/?destinations=/alien-worlds/strange-new-worlds/#/planet/OGLE-2005-BLG-390L_b"
+    ]
+  },
+  "5": {
+    "explorer_greeting": "Greetings, brave explorer! You've just landed on HIP 65426 b, a giant planet composed mainly of gas.",
+    "virtual_assistant_greeting": "Dare to learn more? My virtual assistant, Orion, would be happy to help you!",
+    "orion_greeting": "Hello there! I'm Orion, and I'm excited to share some fascinating facts.",
+    "options": [
+      "Is this planet habitable?",
+      "Planet compared to Jupiter",
+      "How long to travel here from earth?"
+    ],
+    "responses": {
+      "Is_this_planet_habitable": {
+        "text": "HIP 65426 b is a gas giant, which means it has no rocky surface and could not be habitable."
+      },
+      "Planet_compared_to_Jupiter": {
+        "text": "HIP 65426 b's mass is 9 Jupiters, and the radius is 1.5 x Jupiter."
+      },
+      "How_long_to_travel_here_from_earth": {
+        "text": "A car with 60 miles per hour speed or about 96.5 km per hour needs 4 billion years. A jet with 600 miles per hour speed or about 965.6 km per hour needs 397 million years. 355 years at light speed."
+      }
+    },
+    "sources": [
+      "https://earthsky.org/space/webb-images-1st-exoplanet-hip-65426-b/",
+      "https://eyes.nasa.gov/apps/exo/?destinations=/alien-worlds/strange-new-worlds/#/planet/HIP_65426_b"
+    ]
+  },
+  "6": {
+    "explorer_greeting": "Greetings, brave explorer! You've just landed on HD 17156 b, a giant planet composed mostly of gas and named for an Alaskan river.",
+    "virtual_assistant_greeting": "Dare to learn more? My virtual assistant, Orion, would be happy to help you!",
+    "orion_greeting": "Hello there! I'm Orion, and I'm excited to share some fascinating facts.",
+    "options": [
+      "Is this planet habitable?",
+      "Planet compared to Jupiter",
+      "How long to travel here from earth?"
+    ],
+    "responses": {
+      "Is_this_planet_habitable": {
+        "text": "HD 17156 b is not habitable."
+      },
+      "Planet_compared_to_Jupiter": {
+        "text": "HD 17156 b's mass is 3.51 Jupiters, and the radius is 1.1 x Jupiter."
+      },
+      "How_long_to_travel_here_from_earth": {
+        "text": "A car with 60 miles per hour speed or about 96.5 km per hour needs 3 billion years. A jet with 600 miles per hour speed or about 965.6 km per hour needs 285 million years. 255 years at light speed."
+      }
+    },
+    "sources": [
+      "https://eyes.nasa.gov/apps/exo/?destinations=/alien-worlds/strange-new-worlds/#/planet/HD_17156_b"
+    ]
+  },
+  "7": {
+    "explorer_greeting": "Greetings, brave explorer! You've just landed on WASP-39 b, the first exoplanet studied by Webb and a gas giant 700 light-years away.",
+    "virtual_assistant_greeting": "Dare to learn more? My virtual assistant, Orion, would be happy to help you!",
+    "orion_greeting": "Hello there! I'm Orion, and I'm excited to share some fascinating facts.",
+    "options": [
+      "Is this planet habitable?",
+      "Planet compared to Jupiter",
+      "How long to travel here from earth?"
+    ],
+    "responses": {
+      "Is_this_planet_habitable": {
+        "text": "At an estimated temperature of 1,600 degrees Fahrenheit (900 degrees Celsius) and an atmosphere made mostly of hydrogen, WASP-39 b is not believed to be habitable."
+      },
+      "Planet_compared_to_Jupiter": {
+        "text": "WASP-39 b's mass is 0.28 Jupiters, and the radius is 1.332 x Jupiter."
+      },
+      "How_long_to_travel_here_from_earth": {
+        "text": "A car with 60 miles per hour speed or about 96.5 km per hour needs 8 billion years. A jet with 600 miles per hour speed or about 965.6 km per hour needs 781 million years. 698 years at light speed."
+      }
+    },
+    "sources": [
+      "https://news.umich.edu/new-from-jwst-an-exoplanet-atmosphere-as-never-seen-before/",
+      "https://eyes.nasa.gov/apps/exo/?destinations=/alien-worlds/strange-new-worlds/#/planet/WASP-39_b"
+    ]
+  },
+  "8": {
+    "explorer_greeting": "Greetings, brave explorer! You've just landed on WASP-96 b. Webb Telescope provides the first full spectrum of this hot, puffy gas giant planet.",
+    "virtual_assistant_greeting": "Dare to learn more? My virtual assistant, Orion, would be happy to help you!",
+    "orion_greeting": "Hello there! I'm Orion, and I'm excited to share some fascinating facts.",
+    "options": [
+      "Is this planet habitable?",
+      "Planet compared to Jupiter",
+      "How long to travel here from earth?"
+    ],
+    "responses": {
+      "Is_this_planet_habitable": {
+        "text": "WASP-96 b is not habitable, one of the reasons is its temperature greater than 1000°F."
+      },
+      "Planet_compared_to_Jupiter": {
+        "text": "WASP-96 b's mass is 0.48 Jupiters, and the radius is 1.2 x Jupiter."
+      },
+      "How_long_to_travel_here_from_earth": {
+        "text": "A car with 60 miles per hour speed or about 96.5 km per hour needs 13 billion years. A jet with 600 miles per hour speed or about 965.6 km per hour needs 1 billion years. 1 thousand years at light speed."
+      }
+    },
+    "sources": [
+      "https://www.nasa.gov/image-article/nasas-webb-reveals-steamy-atmosphere-of-distant-planet-detail/",
+      "https://eyes.nasa.gov/apps/exo/?destinations=/alien-worlds/strange-new-worlds/#/planet/WASP-96_b"
+    ]
+  },
+  "9": {
+    "explorer_greeting": "Greetings, brave explorer! You've just landed on WASP-12 b, an egg-shaped world being devoured by its star.",
+    "virtual_assistant_greeting": "Dare to learn more? My virtual assistant, Orion, would be happy to help you!",
+    "orion_greeting": "Hello there! I'm Orion, and I'm excited to share some fascinating facts.",
+    "options": [
+      "Is this planet habitable?",
+      "Planet compared to Jupiter",
+      "How long to travel here from earth?"
+    ],
+    "responses": {
+      "Is_this_planet_habitable": {
+        "text": "WASP-12 b is not habitable. It's a 'hot Jupiter' type exoplanet that orbits very close to its star, making it too hot to support life as we know it."
+      },
+      "Planet_compared_to_Jupiter": {
+        "text": "WASP-12 b's mass is 1.465 Jupiters, and the radius is 1.937 x Jupiter."
+      },
+      "How_long_to_travel_here_from_earth": {
+        "text": "A car with 60 miles per hour speed or about 96.5 km per hour needs 16 billion years. A jet with 600 miles per hour speed or about 965.6 km per hour needs 2 billion years. 1 thousand years at light speed."
+      }
+    },
+    "sources": [
+      "https://www.ck12.org/flexi/earth-science/exoplanets/wasp-12b-is-an-exoplanet-that-exists-in-the-habitable-zone/",
+      "https://eyes.nasa.gov/apps/exo/?destinations=/alien-worlds/strange-new-worlds/#/planet/WASP-12_b"
+    ]
+  },
+  "15": {
+    "explorer_greeting": "Greetings, brave explorer! You've just landed on AU Microscopii b, a young planet blasted by its angry young star.",
+    "virtual_assistant_greeting": "Dare to learn more? My virtual assistant, Orion, would be happy to help you!",
+    "orion_greeting": "Hello there! I'm Orion, and I'm excited to share some fascinating facts.",
+    "options": [
+      "Is this planet habitable?",
+      "Planet compared to Jupiter",
+      "How long to travel here from earth?"
+    ],
+    "responses": {
+      "Is_this_planet_habitable": {
+        "text": "AU Microscopii b is not habitable. AU Microscopii b's atmosphere is severe and characterized by harmful radiation that ranges from X-rays to radio waves."
+      },
+      "Planet_compared_to_Jupiter": {
+        "text": "AU Microscopii b's mass is 20.12 Earths, and the radius is 0.353 x Jupiter."
+      },
+      "How_long_to_travel_here_from_earth": {
+        "text": "A car with 60 miles per hour speed or about 96.5 km per hour needs 355 million years. A jet with 600 miles per hour speed or about 965.6 km per hour needs 35 million years. 32 years at light speed."
+      }
+    },
+    "sources": [
+      "https://unacademy.com/content/upsc/study-material/science-and-technology/planets-beyond-our-solar-system-au-microscopii-b/",
+      "https://eyes.nasa.gov/apps/exo/?destinations=/alien-worlds/strange-new-worlds/#/planet/AU_Mic_b"
+    ]
+  },
+  "12": {
+    "explorer_greeting": "Greetings, brave explorer! You've just landed on TrES-2 b, a world of eternal darkness.",
+    "virtual_assistant_greeting": "Dare to learn more? My virtual assistant, Orion, would be happy to help you!",
+    "orion_greeting": "Hello there! I'm Orion, and I'm excited to share some fascinating facts.",
+    "options": [
+      "Is this planet habitable?",
+      "Planet compared to Jupiter",
+      "How long to travel here from earth?"
+    ],
+    "responses": {
+      "Is_this_planet_habitable": {
+        "text": "TrES-2 b is not habitable."
+      },
+      "Planet_compared_to_Jupiter": {
+        "text": "TrES-2 b's mass is 1.49 Jupiters, and the radius is 1.36 x Jupiter."
+      },
+      "How_long_to_travel_here_from_earth": {
+        "text": "A car with 60 miles per hour speed or about 96.5 km per hour needs 8 billion years. A jet with 600 miles per hour speed or about 965.6 km per hour needs 785 million years. 703 years at light speed."
+      }
+    },
+    "sources": [
+      "http://www.exoplanetkyoto.org/exohtml/TrES-2_b.html",
+      "https://eyes.nasa.gov/apps/exo/?destinations=/alien-worlds/strange-new-worlds/#/planet/TrES-2_b"
+    ]
+  },
+  "10": {
+    "explorer_greeting": "Greetings, brave explorer! You've just landed on TOI-3757 b, a giant planet with the density of a marshmallow.",
+    "virtual_assistant_greeting": "Dare to learn more? My virtual assistant, Orion, would be happy to help you!",
+    "orion_greeting": "Hello there! I'm Orion, and I'm excited to share some fascinating facts.",
+    "options": [
+      "Is this planet habitable?",
+      "Planet compared to Jupiter",
+      "How long to travel here from earth?"
+    ],
+    "responses": {
+      "Is_this_planet_habitable": {
+        "text": "TOI-3757 b is not habitable because the planet is too hot to sustain liquid water, and it is a gas giant with no surface."
+      },
+      "Planet_compared_to_Jupiter": {
+        "text": "TOI-3757 b's mass is 0.26838 Jupiters, and the radius is 1.071 x Jupiter."
+      },
+      "How_long_to_travel_here_from_earth": {
+        "text": "A car with 60 miles per hour speed or about 96.5 km per hour needs 7 billion years. A jet with 600 miles per hour speed or about 965.6 km per hour needs 661 million years. 591 years at light speed."
+      }
+    },
+    "sources": [
+      "https://www.stellarcatalog.com/exoplanet.php?planetID=100777",
+      "https://eyes.nasa.gov/apps/exo/?destinations=/alien-worlds/strange-new-worlds/#/planet/TOI-3757_b"
+    ]
+  },
+  "11": {
+    "explorer_greeting": "Greetings, brave explorer! You've just landed on TOI-849 b, a battered, blasted world.",
+    "virtual_assistant_greeting": "Dare to learn more? My virtual assistant, Orion, would be happy to help you!",
+    "orion_greeting": "Hello there! I'm Orion, and I'm excited to share some fascinating facts.",
+    "options": [
+      "Is this planet habitable?",
+      "Planet compared to Jupiter",
+      "How long to travel here from earth?"
+    ],
+    "responses": {
+      "Is_this_planet_habitable": {
+        "text": "TOI-849 b is not habitable. One of the reasons is the estimated surface temperature of nearly 2,800 degrees Fahrenheit."
+      },
+      "Planet_compared_to_Jupiter": {
+        "text": "TOI-849 b's mass is 0.13152 Jupiters, and the radius is 0.325 x Jupiter."
+      },
+      "How_long_to_travel_here_from_earth": {
+        "text": "A car with 60 miles per hour speed or about 96.5 km per hour needs 8 billion years. A jet with 600 miles per hour speed or about 965.6 km per hour needs 823 million years. 737 years at light speed."
+      }
+    },
+    "sources": [
+      "https://science.nasa.gov/universe/exoplanets/battered-blasted-a-giant-planet-core-laid-bare/",
+      "https://eyes.nasa.gov/apps/exo/?destinations=/alien-worlds/strange-new-worlds/#/planet/TOI-3757_b"
+    ]
+  },
+  "13": {
+    "explorer_greeting": "Greetings, brave explorer! You've just landed on TrES-4 b, a giant planet composed mainly of gas.",
+    "virtual_assistant_greeting": "Dare to learn more? My virtual assistant, Orion, would be happy to help you!",
+    "orion_greeting": "Hello there! I'm Orion, and I'm excited to share some fascinating facts.",
+    "options": [
+      "Is this planet habitable?",
+      "Planet compared to Jupiter",
+      "How long to travel here from earth?"
+    ],
+    "responses": {
+      "Is_this_planet_habitable": {
+        "text": "TrES-4 b is not habitable."
+      },
+      "Planet_compared_to_Jupiter": {
+        "text": "TrES-4 b's mass is 0.78 Jupiters, and the radius is 1.61 x Jupiter."
+      },
+      "How_long_to_travel_here_from_earth": {
+        "text": "A car with 60 miles per hour speed or about 96.5 km per hour needs 19 billion years. A jet with 600 miles per hour speed or about 965.6 km per hour needs 2 billion years. 2 thousand years at light speed."
+      }
     }
-  ]
+  },
+  "22": {
+    "explorer_greeting": "Greetings, brave explorer! You've just landed on GJ 15 A b, a neighboring world with an abundance of strange properties.",
+    "virtual_assistant_greeting": "Dare to learn more? My virtual assistant, Orion, would be happy to help you!",
+    "orion_greeting": "Hello there! I'm Orion, and I'm excited to share some fascinating facts.",
+    "options": [
+      "Is this planet habitable?",
+      "Planet compared to earth",
+      "How long to travel here from earth?"
+    ],
+    "responses": {
+      "Is_this_planet_habitable": {
+        "text": "GJ 15 A b is not habitable."
+      },
+      "Planet_compared_to_earth": {
+        "text": "GJ 15 A b's mass is 3.03 Earths, and the radius is 1.55 x Earth."
+      },
+      "How_long_to_travel_here_from_earth": {
+        "text": "A car with 60 miles per hour speed or about 96.5 km per hour needs 130 million years. A jet with 600 miles per hour speed or about 965.6 km per hour needs 13 million years. 12 years at light speed."
+      }
+    }
+  },
+  "23": {
+    "explorer_greeting": "Greetings, brave explorer! You've just landed on Proxima Centauri b, a potentially rocky world, larger than Earth.",
+    "virtual_assistant_greeting": "Dare to learn more? My virtual assistant, Orion, would be happy to help you!",
+    "orion_greeting": "Hello there! I'm Orion, and I'm excited to share some fascinating facts.",
+    "options": [
+      "Is this planet habitable?",
+      "Planet compared to earth",
+      "How long to travel here from earth?"
+    ],
+    "responses": {
+      "Is_this_planet_habitable": {
+        "text": "Just because Proxima b's orbit is in the habitable zone, which is the distance from its host star where liquid water could pool on a planet's surface, doesn't mean it's habitable. It doesn't take into account, for example, whether water actually exists on the planet, or whether an atmosphere could survive at that orbit."
+      },
+      "Planet_compared_to_earth": {
+        "text": "Proxima Centauri b's mass is 1.07 Earths, and the radius is 1.03 x Earth."
+      },
+      "How_long_to_travel_here_from_earth": {
+        "text": "A car with 60 miles per hour speed or about 96.5 km per hour needs 47 million years. A jet with 600 miles per hour speed or about 965.6 km per hour needs 5 million years. 4 years at light speed."
+      }
+    },
+    "sources": [
+      "https://science.nasa.gov/resource/proxima-b-3d-model/",
+      "https://eyes.nasa.gov/apps/exo/?destinations=/alien-worlds/strange-new-worlds/#/planet/Proxima_Cen_b"
+    ]
+  },
+  "16": {
+    "explorer_greeting": "Greetings, brave explorer! You've just landed on GJ 1132 b, a world on its Second Atmosphere.",
+    "virtual_assistant_greeting": "Dare to learn more? My virtual assistant, Orion, would be happy to help you!",
+    "orion_greeting": "Hello there! I'm Orion, and I'm excited to share some fascinating facts.",
+    "options": [
+      "Is this planet habitable?",
+      "Planet compared to earth",
+      "How long to travel here from earth?"
+    ],
+    "responses": {
+      "Is_this_planet_habitable": {
+        "text": "Sadly, GJ 1132 b is not habitable."
+      },
+      "Planet_compared_to_earth": {
+        "text": "GJ 1132 b's mass is 1.83705 earths, and the radius is 1.192 x Earth."
+      },
+      "How_long_to_travel_here_from_earth": {
+        "text": "A car with 60 miles per hour speed or about 96.5 km per hour needs 460 million years. A jet with 600 miles per hour speed or about 965.6 km per hour needs 46 million years. 41 years light speed."
+      }
+    }
+  },
+  "1": {
+    "explorer_greeting": "Greetings, brave explorer! You've just landed on HD 189733 b, a giant planet where it rains glass.",
+    "virtual_assistant_greeting": "Dare to learn more? My virtual assistant, Orion, would be happy to help you!",
+    "orion_greeting": "Hello there! I'm Orion, and I'm excited to share some fascinating facts.",
+    "options": [
+      "Is this planet habitable?",
+      "Planet compared to Jupiter",
+      "How long to travel here from earth?"
+    ],
+    "responses": {
+      "Is_this_planet_habitable": {
+        "text": "HD 189733 b is not habitable. Especially because of the planet's deadly weather."
+      },
+      "Planet_compared_to_Jupiter": {
+        "text": "HD 189733 b's mass is 1.13 Jupiters, and the radius is 1.13 x Jupiter."
+      },
+      "How_long_to_travel_here_from_earth": {
+        "text": "A car with 60 miles per hour speed or about 96.5 km per hour needs 721 million years. A jet with 600 miles per hour speed or about 965.6 km per hour needs 72 million years. 65 years light speed."
+      }
+    }
+  },
+  "2": {
+    "explorer_greeting": "Greetings, brave explorer! You've just landed on KELT-9 b, an ultra-hot world hotter than some stars. KELT-9 b is so hot that the heat tears molecules apart on the dayside.",
+    "virtual_assistant_greeting": "Dare to learn more? My virtual assistant, Orion, would be happy to help you!",
+    "orion_greeting": "Hello there! I'm Orion, and I'm excited to share some fascinating facts.",
+    "options": [
+      "Is this planet habitable?",
+      "Planet compared to Jupiter",
+      "How long to travel here from earth?"
+    ],
+    "responses": {
+      "Is_this_planet_habitable": {
+        "text": "KELT-9 b is not habitable. Especially because of the planet's extreme heat."
+      },
+      "Planet_compared_to_Jupiter": {
+        "text": "KELT-9 b's mass is 2.88 Jupiters, and the radius is 1.891 x Jupiter."
+      },
+      "How_long_to_travel_here_from_earth": {
+        "text": "A car with 60 miles per hour speed or about 96.5 km per hour needs 7 billion years. A jet with 600 miles per hour speed or about 965.6 km per hour needs 746 million years. 667 years light speed."
+      }
+    }
+  },
+  "3": {
+    "explorer_greeting": "Greetings, brave explorer! You've just landed on Kepler-16 b, a giant planet composed mainly of gas.",
+    "virtual_assistant_greeting": "Dare to learn more? My virtual assistant, Orion, would be happy to help you!",
+    "orion_greeting": "Hello there! I'm Orion, and I'm excited to share some fascinating facts.",
+    "options": [
+      "Is this planet habitable?",
+      "Planet compared to Jupiter",
+      "How long to travel here from earth?"
+    ],
+    "responses": {
+      "Is_this_planet_habitable": {
+        "text": "No, Kepler-16 b is not habitable."
+      },
+      "Planet_compared_to_Jupiter": {
+        "text": "Kepler-16 b's mass is 0.333 Jupiters, and the radius is 0.754 x Jupiter."
+      },
+      "How_long_to_travel_here_from_earth": {
+        "text": "A car with 60 miles per hour speed or about 96.5 km per hour needs 3 billion years. A jet with 600 miles per hour speed or about 965.6 km per hour needs 274 million years. 245 years light speed."
+      }
+    }
+  },
+  "17": {
+    "explorer_greeting": "Greetings, brave explorer! You've just landed on Kepler-186 f, a potentially rocky world, larger than Earth.",
+    "virtual_assistant_greeting": "Dare to learn more? My virtual assistant, Orion, would be happy to help you!",
+    "orion_greeting": "Hello there! I'm Orion, and I'm excited to share some fascinating facts.",
+    "options": [
+      "Is this planet habitable?",
+      "Planet compared to Earth",
+      "How long to travel here from earth?"
+    ],
+    "responses": {
+      "Is_this_planet_habitable": {
+        "text": "Yes! Kepler-186f, the first Earth-sized extrasolar planet to be found within its star's habitable zone—the orbital region where an Earth-like planet could possess liquid water on its surface and thus possibly support life."
+      },
+      "Planet_compared_to_Earth": {
+        "text": "Kepler-186 f's mass is 1.71 Earths, and the radius is 1.17 x Earth."
+      },
+      "How_long_to_travel_here_from_earth": {
+        "text": "A car with 60 miles per hour speed or about 96.5 km per hour needs 6 billion years. A jet with 600 miles per hour speed or about 965.6 km per hour needs 648 million years. 580 years light speed."
+      }
+    }
+  },
+  "18": {
+    "explorer_greeting": "Greetings, brave explorer! You've just landed on Kepler-22 b, a potentially rocky world, larger than Earth.",
+    "virtual_assistant_greeting": "Dare to learn more? My virtual assistant, Orion, would be happy to help you!",
+    "orion_greeting": "Hello there! I'm Orion, and I'm excited to share some fascinating facts.",
+    "options": [
+      "Is this planet habitable?",
+      "Planet compared to earth",
+      "How long to travel here from earth?"
+    ],
+    "responses": {
+      "Is_this_planet_habitable": {
+        "text": "Kepler-22 b is a part of a set of 54 habitable planet candidates. But, a Kepler team member also suggested that the planet, at more than double Earth's size, may not be able to host life on its surface. Instead, it could have an environment that is closer to Neptune: rocky core, large ocean."
+      },
+      "Planet_compared_to_earth": {
+        "text": "Kepler-22 b's mass is 9.1 earths, and the radius is 2.1 x Earth."
+      },
+      "How_long_to_travel_here_from_earth": {
+        "text": "A car with 60 miles per hour speed or about 96.5 km per hour needs 7 billion years. A jet with 600 miles per hour speed or about 965.6 km per hour needs 710 million years. 635 years light speed."
+      }
+    }
+  },
+  "19": {
+    "explorer_greeting": "Greetings, brave explorer! You've just landed on Kepler-452 b, a potentially rocky world, larger than Earth. Kepler-452 b, an 'Earth-cousin' that orbits a star like our sun in the habitable zone, where liquid water could exist.",
+    "virtual_assistant_greeting": "Dare to learn more? My virtual assistant, Orion, would be happy to help you!",
+    "orion_greeting": "Hello there! I'm Orion, and I'm excited to share some fascinating facts.",
+    "options": [
+      "Is this planet habitable?",
+      "Planet compared to earth",
+      "How long to travel here from earth?"
+    ],
+    "responses": {
+      "Is_this_planet_habitable": {
+        "text": "Kepler-452 b is potentially habitable. It is larger than Earth, its 385-day orbit is only 5 percent longer. The planet is 5 percent farther from its parent star Kepler-452 than Earth is from the Sun. Kepler-452 is 6 billion years old, 1.5 billion years older than our sun, has the same temperature, and is 20 percent brighter and has a diameter 10 percent larger. Kepler-452b may be Earth's close cousin, but living on the newfound world would still be an alien experience."
+      },
+      "Planet_compared_to_earth": {
+        "text": "Kepler-452 b's mass is 3.29 earths, and the radius is 1.63 x Earth."
+      },
+      "How_long_to_travel_here_from_earth": {
+        "text": "A car with 60 miles per hour speed or about 96.5 km per hour needs 20 billion years. A jet with 600 miles per hour speed or about 965.6 km per hour needs 2 billion years. 2 thousand years light speed."
+      }
+    }
+  },
+  "24": {
+    "explorer_greeting": "Greetings, brave explorer! You've just landed on PSR B1257+12 b, a rocky world bathed in radiation.",
+    "virtual_assistant_greeting": "Dare to learn more? My virtual assistant, Orion, would be happy to help you!",
+    "orion_greeting": "Hello there! I'm Orion, and I'm excited to share some fascinating facts.",
+    "options": [
+      "Is this planet habitable?",
+      "Planet compared to earth",
+      "How long to travel here from earth?"
+    ],
+    "responses": {
+      "Is_this_planet_habitable": {
+        "text": "PSR B1257+12 b is not habitable. Especially because the planet is consumed with constant radiation from the star's core."
+      },
+      "Planet_compared_to_earth": {
+        "text": "PSR B1257+12 b's mass is 0.02 earths, and the radius is 0.338 x Earth."
+      },
+      "How_long_to_travel_here_from_earth": {
+        "text": "A car with 60 miles per hour speed or about 96.5 km per hour needs 22 billion years. A jet with 600 miles per hour speed or about 965.6 km per hour needs 2 billion years. 2 thousand years at light speed."
+      }
+    }
+  },
+  "25": {
+    "explorer_greeting": "Greetings, brave explorer! You've just landed on 55 Cancri e, a lava world with sparkling skies.",
+    "virtual_assistant_greeting": "Dare to learn more? My virtual assistant, Orion, would be happy to help you!",
+    "orion_greeting": "Hello there! I'm Orion, and I'm excited to share some fascinating facts.",
+    "options": [
+      "Is this planet habitable?",
+      "Planet compared to earth",
+      "How long to travel here from earth?"
+    ],
+    "responses": {
+      "Is_this_planet_habitable": {
+        "text": "Unfortunately for the prospects of life, 55 Cancri e is quite inhospitable. It is so hot that scientists think its surface is a vast magma ocean instead of being solid."
+      },
+      "Planet_compared_to_earth": {
+        "text": "55 Cancri e's mass is 7.99 earths, and the radius is 1.875 x Earth."
+      },
+      "How_long_to_travel_here_from_earth": {
+        "text": "A car with 60 miles per hour speed or about 96.5 km per hour needs 459 million years. A jet with 600 miles per hour speed or about 965.6 km per hour needs 46 million years. 41 years at light speed."
+      }
+    },
+    "sources": [
+      "https://eyes.nasa.gov/apps/exo/?destinations=/alien-worlds/strange-new-worlds/#/planet/55_Cnc_e"
+    ]
+  },
+  "26": {
+    "explorer_greeting": "Greetings, brave explorer! You've just landed on TRAPPIST-1 e, a rocky world outside our solar system.",
+    "virtual_assistant_greeting": "Dare to learn more? My virtual assistant, Orion, would be happy to help you!",
+    "orion_greeting": "Hello there! I'm Orion, and I'm excited to share some fascinating facts.",
+    "options": [
+      "Is this planet habitable?",
+      "Planet compared to earth",
+      "How long to travel here from earth?"
+    ],
+    "responses": {
+      "Is_this_planet_habitable": {
+        "text": "TRAPPIST-1 e was possibly habitable. Sadly, scientists have discovered that TRAPPIST-1 e is having its atmosphere stripped, a process that may eventually render the world inhospitable to life."
+      },
+      "Planet_compared_to_earth": {
+        "text": "TRAPPIST-1 e's mass is 0.692 earths, and the radius is 0.92 x Earth."
+      },
+      "How_long_to_travel_here_from_earth": {
+        "text": "A car with 60 miles per hour speed or about 96.5 km per hour needs 453 million years. A jet with 600 miles per hour speed or about 965.6 km per hour needs 45 million years. 41 years at light speed."
+      }
+    },
+    "sources": [
+      "https://eyes.nasa.gov/apps/exo/?destinations=/alien-worlds/strange-new-worlds/#/planet/TRAPPIST-1_e"
+    ]
+  }
+
+
+
+}

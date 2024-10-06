@@ -3,12 +3,15 @@ html {
   margin: 0;
   padding: 0;
   overflow: hidden;
-  /* background-color: red; */
 }
 
 @font-face {
   font-family: "Naza";
   src: url("../fonts/nasalization-rg.otf");
+}
+
+.pgif {
+  width: 200px;
 }
 
 #btn {
@@ -37,33 +40,37 @@ html {
 
 #canvas {
   background-color: #000;
-  /* height: 100%;
-    width: 100%; */
   position: absolute;
   top: 0;
   left: 0;
   z-index: -20;
 }
 
-.carousel {
-  gap: 10px;
-  display: flex;
+.carousel-container {
   position: absolute;
   bottom: 0;
   width: 100%;
-  justify-content: space-around;
-  overflow: hidden;
-  padding: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   z-index: 100;
+}
+
+.carousel {
+  gap: 10px;
+  display: flex;
+  overflow: hidden;
+  width: 80%;
 }
 
 .carousel-item {
   background-color: #1e2c62ca;
   border: 1px solid #3fc6eb;
   color: white;
+
   padding: 5px;
   text-align: center;
-  width: 200px;
+  width: 500px;
   height: 300px;
   opacity: 0; /* Start hidden */
   transform: translateX(100%); /* Start offscreen to the right */
@@ -75,12 +82,30 @@ html {
   font-size: 24px;
 }
 
-.go-button {
-  font-family: "Naza";
-  background-color: #3fc6eb;
-  color: white;
-  border: none;
-  padding: 10px 20px;
+.planet-info {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.arrow {
   cursor: pointer;
-  font-size: 18px;
+  font-size: 40px;
+  padding: 10px;
+  background-color: rgba(0, 0, 0, 0.5);
+  color: #fff;
+  user-select: none;
+  z-index: 100;
+}
+
+.left-arrow {
+  position: absolute;
+  left: 10px;
+}
+
+.right-arrow {
+  position: absolute;
+  right: 10px;
 }

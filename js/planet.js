@@ -11,69 +11,6 @@ import satellite from "../images/voyager.glb";
 import orion from "../images/orion.png";
 import engineer from "../images/engineer.png";
 
-// Define the planet data and other details
-const planetInfo = {
-  name: "Kepler 452-b",
-  description:
-    "An 'Earth-cousin' that orbits a star like our sun in the habitable zone, where liquid water could exist.",
-  type: "Super-Earth",
-  habitable: "No",
-  discoveryYear: 2009,
-  detectionMethod: "Transit",
-  observedBy: "Siapa",
-  distance: "3,009 light-years",
-  orbitalRadius: "0.06067 AU",
-  orbitalPeriod: "4.9 days",
-  orbitalEccentricity: "0",
-};
-
-// Define the callback to trigger the dialogue (decoupled for now)
-function openDialogue() {
-  // console.log("Dialogue triggered!");
-  dialogueSystem.start();
-  // This is where you would later connect your dialogue system
-}
-
-// Create the overlay system and pass the planetInfo and callback
-const overlaySystem = new OverlaySystem(planetInfo, openDialogue);
-
-// Show the overlay when needed
-document.addEventListener("keydown", (event) => {
-  if (event.code === "KeyO" && !overlaySystem.isOverlayActive()) {
-    overlaySystem.showOverlay();
-  }
-});
-
-// For testing: Hide the overlay when "Esc" is pressed
-document.addEventListener("keydown", (event) => {
-  if (event.code === "Escape" && overlaySystem.isOverlayActive()) {
-    overlaySystem.hideOverlay();
-  }
-});
-
-const dialogues = [
-  {
-    name: "Engineer",
-    text: "Welcome to Mars, let's explore!",
-    avatar: engineer,
-  },
-  {
-    name: "ORION",
-    text: "Analyzing the terrain... Data incoming. Analyzing the terrain... Data incoming.Analyzing the terrain... Data incoming.Analyzing the terrain... Data incoming.Analyzing the terrain... Data incoming.Analyzing the terrain... Data incoming.Analyzing the terrain... Data incoming.Analyzing the terrain... Data incoming.",
-    avatar: orion,
-  },
-];
-
-// Create dialogue system
-const dialogueSystem = new DialogueSystem(dialogues);
-
-// Start the dialogue when needed
-document.addEventListener("keydown", (event) => {
-  if (event.code === "KeyE" && !dialogueSystem.isDialogueActive()) {
-    dialogueSystem.start();
-  }
-});
-
 const params = {
   terrainColor: "#704214",
   terrainType: "Solid",
@@ -103,6 +40,123 @@ params.lacunarity = parseFloat(param.get("lac"));
 params.movementSpeed = parseFloat(param.get("spd"));
 params.fogDensity = parseFloat(param.get("fog"));
 params.terrainScale = parseFloat(param.get("tScale"));
+
+// Define the planet data and other details
+let planetInfo = {
+  name: "Loading...",
+  description: "Fetching data...",
+  type: "Unknown",
+  habitable: "Unknown",
+  discoveryYear: "Unknown",
+  detectionMethod: "Unknown",
+  observedBy: "Unknown",
+  distance: "Unknown",
+  orbitalRadius: "Unknown",
+  orbitalPeriod: "Unknown",
+  orbitalEccentricity: "Unknown",
+};
+
+// let dialogues = []
+
+function fetchPlanetInfo() {
+  fetch("/data/planets.json")
+    .then((response) => response.json())
+    .then((data) => {
+      const planetId = parseInt(param.get("id"));
+      const fetchedPlanet = data.find((planet) => planet.id === planetId);
+
+      if (fetchedPlanet) {
+        planetInfo = fetchedPlanet;
+        overlaySystem.updatePlanetInfo(planetInfo);
+      } else {
+        console.error("Planet data not found.");
+      }
+      let dialogues = [];
+
+      fetch("/data/convo.json")
+        .then((response) => response.json())
+        .then((data) => {
+          let pdata = data[planetId.toString()];
+          dialogues.push({
+            name: "Engineer",
+            text: pdata["explorer_greeting"],
+            avatar: engineer,
+          });
+          dialogues.push({
+            name: "Engineer",
+            text: pdata["virtual_assistant_greeting"],
+            avatar: engineer,
+          });
+          dialogues.push({
+            name: "ORION",
+            text: pdata["orion_greeting"],
+            avatar: orion,
+          });
+          dialogues.push({
+            name: "ORION",
+            text: "Ask me anything about the planet:",
+            avatar: orion,
+            options: pdata["options"].concat(["quit"]),
+            responses: pdata["responses"],
+          });
+        })
+        .catch((error) => console.error("Error fetching planet data:", error));
+      
+      console.log(dialogues);
+      dialogueSystem = new DialogueSystem(dialogues);
+    })
+    .catch((error) => console.error("Error fetching planet data:", error));
+}
+
+// Call the fetch function
+fetchPlanetInfo();
+
+// Define the callback to trigger the dialogue (decoupled for now)
+function openDialogue() {
+  // console.log("Dialogue triggered!");
+  dialogueSystem.start();
+  // This is where you would later connect your dialogue system
+}
+
+// Create the overlay system and pass the planetInfo and callback
+const overlaySystem = new OverlaySystem(planetInfo, openDialogue);
+
+// Show the overlay when needed
+document.addEventListener("keydown", (event) => {
+  if (event.code === "KeyO" && !overlaySystem.isOverlayActive()) {
+    overlaySystem.showOverlay();
+  }
+});
+
+// For testing: Hide the overlay when "Esc" is pressed
+document.addEventListener("keydown", (event) => {
+  if (event.code === "Escape" && overlaySystem.isOverlayActive()) {
+    overlaySystem.hideOverlay();
+  }
+});
+
+// const dialogues = [
+//   {
+//     name: "Engineer",
+//     text: "Welcome to Mars, let's explore!",
+//     avatar: engineer,
+//   },
+//   {
+//     name: "ORION",
+//     text: "Analyzing the terrain... Data incoming. Analyzing the terrain... Data incoming.Analyzing the terrain... Data incoming.Analyzing the terrain... Data incoming.Analyzing the terrain... Data incoming.Analyzing the terrain... Data incoming.Analyzing the terrain... Data incoming.Analyzing the terrain... Data incoming.",
+//     avatar: orion,
+//   },
+// ];
+
+// Create dialogue system
+let dialogueSystem;
+
+// Start the dialogue when needed
+document.addEventListener("keydown", (event) => {
+  if (event.code === "KeyE" && !dialogueSystem.isDialogueActive()) {
+    dialogueSystem.start();
+  }
+});
 
 const noise = new Noise(Math.random());
 
@@ -203,7 +257,7 @@ document.addEventListener(
 );
 
 const controlParams = {
-  moveSpeed: 50.0, // Units per second
+  moveSpeed: 20.0, // Units per second
   rotationSpeed: Math.PI, // Radians per second
 };
 
@@ -296,6 +350,7 @@ function updateChunks() {
 let roverYaw = 0;
 
 function updateRoverMovement(delta) {
+  if (!dialogueSystem) return;
   if (dialogueSystem.isDialogueActive()) {
     return; // Block movement if dialogue is active
   }
@@ -384,7 +439,6 @@ function updateTerrainMaterial() {
 }
 
 function updateTerrainType() {
-
   switch (params.terrainType) {
     case "Solid":
       scene.fog = new THREE.FogExp2(0x2c3e50, params.fogDensity);

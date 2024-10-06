@@ -1,6 +1,61 @@
+import p1 from "../videos/pls/1.gif";
+import p2 from "../videos/pls/2.gif";
+import p3 from "../videos/pls/3.gif";
+import p4 from "../videos/pls/4.gif";
+import p5 from "../videos/pls/5.gif";
+import p6 from "../videos/pls/6.gif";
+import p7 from "../videos/pls/7.gif";
+import p8 from "../videos/pls/8.gif";
+import p9 from "../videos/pls/9.gif";
+import p10 from "../videos/pls/10.gif";
+import p11 from "../videos/pls/11.gif";
+import p12 from "../videos/pls/12.gif";
+import p13 from "../videos/pls/13.gif";
+import p14 from "../videos/pls/14.gif";
+import p15 from "../videos/pls/15.gif";
+import p16 from "../videos/pls/16.gif";
+import p17 from "../videos/pls/17.gif";
+import p18 from "../videos/pls/18.gif";
+import p19 from "../videos/pls/19.gif";
+import p20 from "../videos/pls/20.gif";
+import p21 from "../videos/pls/21.gif";
+import p22 from "../videos/pls/22.gif";
+import p23 from "../videos/pls/23.gif";
+import p24 from "../videos/pls/24.gif";
+import p25 from "../videos/pls/25.gif";
+import p26 from "../videos/pls/26.gif";
+
+const planetvideos = [
+  p1,
+  p2,
+  p3,
+  p4,
+  p5,
+  p6,
+  p7,
+  p8,
+  p9,
+  p10,
+  p11,
+  p12,
+  p13,
+  p14,
+  p15,
+  p16,
+  p17,
+  p18,
+  p19,
+  p20,
+  p21,
+  p22,
+  p23,
+  p24,
+  p25,
+  p26,
+];
+
 window.onload = () => {
   var myCanvas = document.getElementById("canvas");
-
   var ctx = myCanvas.getContext("2d");
 
   myCanvas.width = innerWidth;
@@ -87,12 +142,10 @@ window.onload = () => {
   }
 
   init();
-
 };
 
-var stars=300;
+var stars = 300;
 var warpSpeed = 0;
-
 
 let button = document.getElementById("btn");
 button.addEventListener("click", spawnCards);
@@ -114,26 +167,42 @@ function spawnCards() {
     }
   );
   button.hidden = true;
-
-  // Your code here
 }
 
-const koi = document.getElementById('koi');
-const proxima = document.getElementById('proxima');
-const kepler452 = document.getElementById('kepler452');
-const kepler186 = document.getElementById('kepler186');
-const cancri = document.getElementById('cancri');
+const carousel = document.getElementById("carousel");
+const leftArrow = document.getElementById("left-arrow");
+const rightArrow = document.getElementById("right-arrow");
 
-function handlePlanetClick() {
-  stars = 1000;
-  warpSpeed = 1;
-  setTimeout(() => {
-    window.location.href = '/pages/planet?tColor=%23441212&noiseFreq=0.3&maxHeight=40&octaves=8&per=0.4&lac=2.2&tScale=2&spd=600&fog=0.0001&tType=Solid';
-  }, 100);
+leftArrow.addEventListener("click", () => {
+  carousel.scrollBy({ left: -300, behavior: "smooth" });
+});
+
+rightArrow.addEventListener("click", () => {
+  carousel.scrollBy({ left: 300, behavior: "smooth" });
+});
+
+fetch("/data/planets.json")
+  .then((response) => response.json())
+  .then((data) => {
+    data.forEach((p) => {
+      let temp = document.createElement("div");
+      temp.classList.add("carousel-item");
+      temp.innerHTML = `
+      <div class="planet-info" id="${p.id}">
+          <h2>${p.name}</h2>
+          <img class="pgif" src="../videos/pls/${p.id}.gif" alt="">
+      </div>`;
+      temp.addEventListener("click", (e) => {
+        console.log(p.name);
+
+        window.location.href = `/pages/planet.html?${encodeToUrlEncoded(p)}`;
+      });
+      carousel.appendChild(temp);
+    });
+  });
+
+function encodeToUrlEncoded(json) {
+  return Object.keys(json)
+    .map((key) => encodeURIComponent(key) + "=" + encodeURIComponent(json[key]))
+    .join("&");
 }
-
-koi.addEventListener('click', handlePlanetClick);
-proxima.addEventListener('click', handlePlanetClick);
-kepler452.addEventListener('click', handlePlanetClick);
-kepler186.addEventListener('click', handlePlanetClick);
-cancri.addEventListener('click', handlePlanetClick);
