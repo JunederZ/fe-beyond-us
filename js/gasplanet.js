@@ -1,111 +1,118 @@
+// js/gasplanet.js
+
 import * as THREE from 'three';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
-import sky from '$images/sky.jpg'; // Import the sky texture
 
-// Setup scene, camera, and renderer
-const scene = new THREE.Scene();
-const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
-const renderer = new THREE.WebGLRenderer({ antialias: true });
-renderer.setSize(window.innerWidth, window.innerHeight);
-document.body.appendChild(renderer.domElement);
+// Class to encapsulate the Gas Planet functionality
+class GasPlanet {
+    constructor(containerId, texturePath) {
+        this.container = document.getElementById(containerId);
+        this.texturePath = texturePath;
 
-// Controls
-const controls = new OrbitControls(camera, renderer.domElement);
-camera.position.set(0, 50, 100);
-controls.update();
+        this.scene = new THREE.Scene();
 
-// Create a skydome using a large sphere
-const skyTexture = new THREE.TextureLoader().load(sky); // Replace with your sky texture
-const skydomeGeometry = new THREE.SphereGeometry(500, 32, 32);
-const skydomeMaterial = new THREE.MeshBasicMaterial({
-    map: skyTexture,
-    side: THREE.BackSide // Render inside of the sphere
-});
-const skydome = new THREE.Mesh(skydomeGeometry, skydomeMaterial);
-scene.add(skydome);
+        // Setup Camera
+        const fov = 60;
+        const aspect = window.innerWidth / window.innerHeight;
+        const near = 0.1;
+        const far = 2000;
+        this.camera = new THREE.PerspectiveCamera(fov, aspect, near, far);
+        this.camera.position.set(0, 0, 500); // Position the camera outside the sphere
 
-// Cloud uniform for the shader (time for movement)
-const uniforms = {
-  time: { value: 0.0 },
-  cloudColor: { value: new THREE.Color(0xddddff) }
-};
+        // Setup Renderer
+        this.renderer = new THREE.WebGLRenderer({ antialias: true });
+        this.renderer.setSize(window.innerWidth, window.innerHeight);
+        this.container.appendChild(this.renderer.domElement);
 
-// Vertex shader (no need to modify much)
-const vertexShader = `
-  varying vec2 vUv;
-  void main() {
-    vUv = uv;
-    gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0);
-  }
-`;
+        // Setup Controls
+        this.controls = new OrbitControls(this.camera, this.renderer.domElement);
+        this.controls.enableZoom = true;
+        this.controls.enablePan = true;
+        this.controls.rotateSpeed = 0.5;
+        this.controls.zoomSpeed = 1.2;
+        this.controls.panSpeed = 0.8;
 
-// Fragment shader for flowing clouds using noise
-const fragmentShader = `
-  uniform float time;
-  uniform vec3 cloudColor;
-  varying vec2 vUv;
+        // Add Ambient Light
+        const ambientLight = new THREE.AmbientLight(0xffffff, 0.5);
+        this.scene.add(ambientLight);
 
-  float random(vec2 st) {
-    return fract(sin(dot(st.xy, vec2(12.9898,78.233))) * 43758.5453123);
-  }
+        // Add Directional Light
+        const directionalLight = new THREE.DirectionalLight(0xffffff, 1);
+        directionalLight.position.set(5, 3, 5);
+        this.scene.add(directionalLight);
 
-  // Simple noise function
-  float noise(vec2 st) {
-    vec2 i = floor(st);
-    vec2 f = fract(st);
-    vec2 u = f*f*(3.0-2.0*f);
-    return mix(mix(random(i + vec2(0.0, 0.0)),
-                   random(i + vec2(1.0, 0.0)), u.x),
-               mix(random(i + vec2(0.0, 1.0)),
-                   random(i + vec2(1.0, 1.0)), u.x), u.y);
-  }
+        // Bind the animate method to the class instance
+        this.animate = this.animate.bind(this);
 
-  void main() {
-    vec2 uv = vUv;
-    uv.y += time * 0.05; // Flow clouds along y-axis
-    uv.x += time * 0.02; // Slight flow along x-axis
+        // Handle window resize
+        window.addEventListener('resize', () => this.onWindowResize(), false);
+    }
 
-    // Layered noise for cloud texture
-    float clouds = noise(uv * 3.0) * 0.6 + noise(uv * 6.0) * 0.4;
+    // Initialize the scene
+    init() {
+        // Load Texture
+        const loader = new THREE.TextureLoader();
+        loader.load(
+            this.texturePath,
+            (texture) => {
+                this.createSphere(texture);
+            },
+            undefined,
+            (error) => {
+                console.error('Error loading texture:', error);
+            }
+        );
 
-    vec3 finalColor = mix(vec3(0.2, 0.5, 0.8), cloudColor, clouds);
-    gl_FragColor = vec4(finalColor, 1.0);
-  }
-`;
+        // Optionally, add a background
+        const bgLoader = new THREE.TextureLoader();
+        bgLoader.load(
+            '../textures/starfield.jpg', // Optional: Replace with your own background texture
+            (texture) => {
+                this.scene.background = texture;
+            },
+            undefined,
+            (error) => {
+                console.error('Error loading background texture:', error);
+            }
+        );
+    }
 
-// Create the cloud layer below the camera
-const cloudGeometry = new THREE.PlaneGeometry(1000, 1000, 100, 100);
-const cloudMaterial = new THREE.ShaderMaterial({
-  uniforms: uniforms,
-  vertexShader: vertexShader,
-  fragmentShader: fragmentShader,
-  transparent: true,
-  side: THREE.DoubleSide
-});
+    // Create the sphere with the loaded texture
+    createSphere(texture) {
+        const geometry = new THREE.SphereGeometry(200, 64, 64);
+        const material = new THREE.MeshPhongMaterial({
+            map: texture,
+            shininess: 10
+        });
 
-const cloudPlane = new THREE.Mesh(cloudGeometry, cloudMaterial);
-cloudPlane.rotation.x = -Math.PI / 2; // Make the plane flat under the camera
-scene.add(cloudPlane);
+        const sphere = new THREE.Mesh(geometry, material);
+        this.scene.add(sphere);
 
-// Resize handling
-window.addEventListener('resize', () => {
-  renderer.setSize(window.innerWidth, window.innerHeight);
-  camera.aspect = window.innerWidth / window.innerHeight;
-  camera.updateProjectionMatrix();
-});
+        // Optional: Add some atmospheric effects or clouds
+        // For simplicity, this example uses only the basic sphere
+    }
 
-// Animation loop
-function animate() {
-  requestAnimationFrame(animate);
+    // Handle window resizing
+    onWindowResize() {
+        this.camera.aspect = window.innerWidth / window.innerHeight;
+        this.camera.updateProjectionMatrix();
 
-  // Update cloud movement
-  uniforms.time.value += 0.02;
+        this.renderer.setSize(window.innerWidth, window.innerHeight);
+    }
 
-  // Move the skydome to follow the camera
-  skydome.position.copy(camera.position);
-
-  controls.update();
-  renderer.render(scene, camera);
+    // Animation loop
+    animate() {
+        requestAnimationFrame(this.animate);
+        this.controls.update();
+        this.renderer.render(this.scene, this.camera);
+    }
 }
 
-animate();
+// Initialize and run the GasPlanet
+document.addEventListener('DOMContentLoaded', () => {
+    // Replace 'your_texture.jpg' with the actual path to your gas planet texture
+    const texturePath = '../images/neptunelike360.jpg';
+    const gasPlanet = new GasPlanet('container', texturePath);
+    gasPlanet.init();
+    gasPlanet.animate();
+});

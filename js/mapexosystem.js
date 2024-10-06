@@ -11,7 +11,7 @@ function color(temp){
 }
 async function fetchData() {
   try {
-    const response = await fetch('../database/tesout.json');
+    const response = await fetch('../data/tesout.json');
 
     if (!response.ok) {
       throw new Error('Network response was not ok');

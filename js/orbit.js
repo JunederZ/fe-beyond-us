@@ -70,7 +70,7 @@ function intToHexColor(intValue) {
 }
 async function fetchData(namestar) {
   try {
-    const response = await fetch('../database/systemplanet.json');
+    const response = await fetch('../data/systemplanet.json');
 
     if (!response.ok) {
       throw new Error('Network response was not ok');
@@ -85,7 +85,7 @@ async function fetchData(namestar) {
 }
 async function fetchData2(namesistem) {
   try {
-    const response = await fetch('../database/tesout.json');
+    const response = await fetch('../data/tesout.json');
 
     if (!response.ok) {
       throw new Error('Network response was not ok');
