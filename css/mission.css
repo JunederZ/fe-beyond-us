@@ -645,3 +645,18 @@ nav {
     cursor: pointer;
     color: aliceblue;
 }
+
+.navbar-title {
+    color: #fff;
+}
+
+.navbar-items {
+    color: #ccc;
+    text-decoration: none;
+    margin-left: 20px;
+    transition: color 0.3s ease;
+}
+
+.navbar-items:hover {
+    color: #fff;
+}

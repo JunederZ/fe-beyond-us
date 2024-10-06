@@ -6,7 +6,6 @@
     <title>beyond us</title>
     <link rel="stylesheet" href="../css/mission.css">
     <link rel="shortcut icon" href="../images/icon.png" type="image/x-icon">
-
 </head>
 
 <div class="pc-only">
@@ -17,14 +16,15 @@
 
 <nav class="navbar">
     <div class="navbar-title">ORION Mission</div>
-    <div class="navbar-items">Steller Map</div>
-    <div class="navbar-items">Exoplanet</div>
-    <div class="navbar-items">Planet Type</div>
-    <div class="navbar-items">Telescopes</div>
-    <div class="navbar-items">Detection Method</div>
+    <a href="#section-1" class="navbar-items">Stellar Map</a>
+    <a href="#section-2" class="navbar-items">Exoplanet</a>
+    <a href="#section-3" class="navbar-items">Planet Type</a>
+    <a href="#section-4" class="navbar-items">Telescopes</a>
+    <a href="#section-5" class="navbar-items">Detection Method</a>
 </nav>
+
 <body>
-    <div class="section-1">
+    <div id="section-1" class="section-1">
         <img src="../images/bekgron.png" class="bg-overlay"></img>
         <div class="main-body">
             <div class="left-main">
@@ -45,43 +45,17 @@
             </div>
         </div>
     </div>
-    <!-- <div class="stellar-section">
-        <video autoplay muted loop id="stellar-video">
-            <source src="../videos/stellar_map-video.webm" type="video/webm">
-        </video>
-        <div class="stellar-text">
-            <p class="stellar-subtitle">
-                DIVE INTO THE IMMERSIVE EXOPLANET SYSTEM
-            </p>
-            <h1 class="stellar-title">
-                Exoplanet System: Stellar Map
-            </h1>
-            <p class="stellar-subtitle">
-                Explore the cosmos with Stellar Map - an interactive 3D visualization of 4416 star systems 5760 planets.
-            </p>
-        </div>
-        <button class="stellar-button" id="stellar-button">
-            VISIT STELLAR MAP
-        </button>
-    </div> -->
-    <div class="section-2">
-        <h1>
-            What is Exoplanet?
-        </h1>
-        <p>
-            An exoplanet is a planet outside our solar system, usually orbiting another star. They are also sometimes called "extrasolar planets," "extra-" implying that they are outside of our solar system.
-        </p>
+
+    <div id="section-2" class="section-2">
+        <h1>What is Exoplanet?</h1>
+        <p>An exoplanet is a planet outside our solar system, usually orbiting another star. They are also sometimes called "extrasolar planets," "extra-" implying that they are outside of our solar system.</p>
     </div>
-    <div class="section-3">
+
+    <div id="section-3" class="section-3">
         <img src="../images/space.jpeg" alt="">
         <div class="section-3-upper-text">
-            <h1>
-                Types of
-                <br>Exoplanet
-            </h1>
-            <p>
-                Each exoplanet type is unique, shaped by its composition. Our catalog features over 1,500 gas giants, 1,200 Neptune-like worlds, 200 terrestrial planets, 1,400 super-Earths, and around 900 unknown types. These diverse worlds offer endless mysteries and possibilities for exploration.
-            </p>
+            <h1>Types of<br>Exoplanet</h1>
+            <p>Each exoplanet type is unique, shaped by its composition. Our catalog features over 1,500 gas giants, 1,200 Neptune-like worlds, 200 terrestrial planets, 1,400 super-Earths, and around 900 unknown types. These diverse worlds offer endless mysteries and possibilities for exploration.</p>
         </div>
         <div class="section-3-exoplanets">
             <div class="section-3-exo-1">
@@ -95,7 +69,7 @@
                 <img class="exoplanet-img" src="../videos/neptunian.gif" alt="">
                 <div class="exo-text">
                     <h2 class="exo-text-title">Neptunian</h2>
-                    <p class="exo-text-subtitle">Neotunian planets are similar in size to Neptune or Uranus in our solar system.</p>
+                    <p class="exo-text-subtitle">Neptunian planets are similar in size to Neptune or Uranus in our solar system.</p>
                 </div>
             </div>
             <div class="section-3-exo-3">
@@ -114,59 +88,35 @@
             </div>
         </div>
     </div>
-    <div class="section-4">
+
+    <div id="section-4" class="section-4">
         <div class="section-4-left">
             <img src="../images/kepler2.png" alt="">
         </div>
         <div class="section-4-right">
-            <h1>
-                Kepler - 2
-            </h1>
-            <p>
-                The Kepler space telescope was NASA’s first planet-hunting mission, assigned to search a portion of the Milky Way galaxy for Earth-sized planets orbiting stars outside our solar system. During nine years in deep space Kepler, and its second act, the extended mission dubbed K2, showed our galaxy contains billions of hidden "exoplanets," many of which could be promising places for life. They proved that our night sky is filled with more planets than even stars — knowledge that revolutionizes the understanding of our place in the cosmos.
-            </p>
+            <h1>Kepler - 2</h1>
+            <p>The Kepler space telescope was NASA’s first planet-hunting mission, assigned to search a portion of the Milky Way galaxy for Earth-sized planets orbiting stars outside our solar system. During nine years in deep space Kepler, and its second act, the extended mission dubbed K2, showed our galaxy contains billions of hidden "exoplanets," many of which could be promising places for life.</p>
         </div>
     </div>
-    <div class="section-4-bottom">
-        <ul class="section-4-items">
-            <div class="section-4-telescope telescope-active">
-                <img src="../images/Kepler.png" alt="">
-                <p class="telescope-name telescope-name-active">Kepler/K2</p>
-            </div>
-            <div class="section-4-telescope">
-                <img src="../images/Hubble.png" alt="">
-                <p class="telescope-name">Hubble</p>
-            </div>
-            <div class="section-4-telescope">
-                <img src="../images/TESS.png" alt="">
-                <p class="telescope-name">TESS</p>
-            </div>
-            <div class="section-4-telescope">
-                <img src="../images/Spitzer.png" alt="">
-                <p class="telescope-name">Spitzer</p>
-            </div>
-            <div class="section-4-telescope">
-                <img src="../images/JWST.png" alt="">
-                <p class="telescope-name">JWST</p>
-            </div>
-        </ul>
-    </div>
-    <div class="section-5">
+
+    <div id="section-5" class="section-5">
         <div class="section-5-left">
             <h4>Detection Method of exoplanets</h4>
             <h1>Pulsar Timing</h1>
-            <p>If a planet passes directly between a star and an observer's line of sight, it blocks out a tiny portion of the star's light, thus reducing its apparent brightness. Sensitive instruments can detect this periodic dip in brightness. From the period and depth of the transits, the orbit and size of the planetary companions can be calculated. Smaller planets will produce a smaller effect, and vice-versa. A terrestrial planet in an Earth-like orbit, for example, would produce a minute dip in stellar brightness that would last just a few hours.</p>
+            <p>If a planet passes directly between a star and an observer's line of sight, it blocks out a tiny portion of the star's light, thus reducing its apparent brightness. Sensitive instruments can detect this periodic dip in brightness.</p>
         </div>
         <div class="section-5-right">
             <img src="../images/pulsar.jpeg" alt="">
         </div>
     </div>
+
     <div class="section-5-dial">
         <div class="section-5-dot active-dot"></div>
         <div class="section-5-dot"></div>
         <div class="section-5-dot"></div>
         <div class="section-5-dot"></div>
     </div>
+
     <div class="section-6">
         <button id="cockpit-bottom-button" class="section-6-bottom-button">
             LAUNCH ORION MISSION
