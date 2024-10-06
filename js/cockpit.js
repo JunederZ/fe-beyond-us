@@ -129,7 +129,7 @@ function handlePlanetClick() {
   warpSpeed = 1;
   setTimeout(() => {
     window.location.href = '/pages/planet?tColor=%23441212&noiseFreq=0.3&maxHeight=40&octaves=8&per=0.4&lac=2.2&tScale=2&spd=600&fog=0.0001&tType=Solid';
-  }, 1500);
+  }, 100);
 }
 
 koi.addEventListener('click', handlePlanetClick);
