@@ -26,7 +26,7 @@ import p25 from "../videos/pls/25.gif";
 import p26 from "../videos/pls/26.gif";
 import { gsap } from 'gsap';
 
-const planetvideos = [
+const gifArray = [
   p1,
   p2,
   p3,
@@ -188,10 +188,11 @@ fetch("/planets.json")
     data.forEach((p) => {
       let temp = document.createElement("div");
       temp.classList.add("carousel-item");
+      const gifSrc = gifArray[p.id - 1];
       temp.innerHTML = `
       <div class="planet-info" id="${p.id}">
           <h2>${p.name}</h2>
-          <img class="pgif" src="../videos/pls/${p.id}.gif" alt="">
+          <img class="pgif" src="${gifSrc}" alt="">
       </div>`;
       temp.addEventListener("click", (e) => {
         console.log(p.name);
