@@ -19,7 +19,6 @@ window.onload = () => {
 
   var xMod = 0;
   var yMod = 0;
-  var warpSpeed = 0;
 
   Star.prototype.updatePos = function () {
     var speedMult = 0.02;
@@ -51,7 +50,7 @@ window.onload = () => {
   var starField = [];
   var starCounter = 0;
 
-  while (starCounter < 300) {
+  while (starCounter < stars) {
     var newStar = new Star();
     starField.push(newStar);
     starCounter++;
@@ -91,17 +90,12 @@ window.onload = () => {
 
 };
 
+var stars=300;
+var warpSpeed = 0;
+
+
 let button = document.getElementById("btn");
 button.addEventListener("click", spawnCards);
-
-let buttongo = document.getElementsByClassName('go-button')
-
-buttongo.forEach(element => {
-  element.addEventListener('click', () => {
-    console.log('go button clicked')
-  })
-});
-
 
 function spawnCards() {
   const carouselItems = document.querySelectorAll(".carousel-item");
@@ -123,3 +117,23 @@ function spawnCards() {
 
   // Your code here
 }
+
+const koi = document.getElementById('koi');
+const proxima = document.getElementById('proxima');
+const kepler452 = document.getElementById('kepler452');
+const kepler186 = document.getElementById('kepler186');
+const cancri = document.getElementById('cancri');
+
+function handlePlanetClick() {
+  stars = 1000;
+  warpSpeed = 1;
+  setTimeout(() => {
+    window.location.href = '/pages/planet?tColor=%23441212&noiseFreq=0.3&maxHeight=40&octaves=8&per=0.4&lac=2.2&tScale=2&spd=600&fog=0.0001&tType=Solid';
+  }, 1500);
+}
+
+koi.addEventListener('click', handlePlanetClick);
+proxima.addEventListener('click', handlePlanetClick);
+kepler452.addEventListener('click', handlePlanetClick);
+kepler186.addEventListener('click', handlePlanetClick);
+cancri.addEventListener('click', handlePlanetClick);
