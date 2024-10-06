@@ -23,13 +23,13 @@ textcontent.appendChild(founded);
 }
 
 function typeTexture(inte){
-if(inte==1){return "1_merahbanget.png";}
-else if(inte==2){return "2_merahdikit.png";}  
-else if(inte==3){return "3_merahmars.png";}    
-else if(inte==4){return "4_kuning.png";}
-else if(inte==5){return "5_putihabuabu.png";}
-else if(inte==6){return "6_birudikitmerah.png";}
-else {return "7_birubanget.png";}    
+if(inte==1){return merahbanget;}
+else if(inte==2){return merahdikit;}  
+else if(inte==3){return merahmars;}    
+else if(inte==4){return kuning;}
+else if(inte==5){return putihabuabu;}
+else if(inte==6){return birudikitmerah;}
+else {return birubanget;}    
 }
 function typePlanet(inttype){
 if(inttype==0){return "a rocky planet, perfect for playing rock paper scissor!";}
@@ -71,11 +71,11 @@ async function init() {
 
   // bikin bintang merah
   const redStarGeometry = new THREE.SphereGeometry(4, 32, 32);
-  const redStarMaterial = new THREE.MeshBasicMaterial({ color: 0xf5fa93,map: THREE.ImageUtils.loadTexture("/images/"+typeTexture(planetdata[7])) });
+  const redStarMaterial = new THREE.MeshBasicMaterial({ color: 0xf5fa93,map: THREE.ImageUtils.loadTexture(typeTexture(planetdata[7])) });
   const redStar = new THREE.Mesh(redStarGeometry, redStarMaterial);
   redStar.position.set(0,0,0);
   scene.add(redStar);
-  let starTexture = new THREE.TextureLoader().load('/images/starback.jpg');
+  let starTexture = new THREE.TextureLoader().load(starback);
  starTexture.encoding = THREE.sRGBEncoding;
    starTexture.mapping = THREE.EquirectangularReflectionMapping;
     scene.background = starTexture;
