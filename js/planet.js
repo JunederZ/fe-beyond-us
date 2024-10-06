@@ -59,7 +59,7 @@ let planetInfo = {
 // let dialogues = []
 
 function fetchPlanetInfo() {
-  fetch("/public/planets.json")
+  fetch("/planets.json")
     .then((response) => response.json())
     .then((data) => {
       const planetId = parseInt(param.get("id"));
@@ -73,7 +73,7 @@ function fetchPlanetInfo() {
       }
       let dialogues = [];
 
-      fetch("/public/convo.json")
+      fetch("/convo.json")
         .then((response) => response.json())
         .then((data) => {
           let pdata = data[planetId.toString()];

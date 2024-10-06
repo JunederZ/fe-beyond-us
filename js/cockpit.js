@@ -24,6 +24,7 @@ import p23 from "../videos/pls/23.gif";
 import p24 from "../videos/pls/24.gif";
 import p25 from "../videos/pls/25.gif";
 import p26 from "../videos/pls/26.gif";
+import { gsap } from 'gsap';
 
 const planetvideos = [
   p1,
@@ -181,7 +182,7 @@ rightArrow.addEventListener("click", () => {
   carousel.scrollBy({ left: 300, behavior: "smooth" });
 });
 
-fetch("/public/planets.json")
+fetch("/planets.json")
   .then((response) => response.json())
   .then((data) => {
     data.forEach((p) => {
