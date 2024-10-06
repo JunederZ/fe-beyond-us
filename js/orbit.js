@@ -153,7 +153,7 @@ async function init() {
     
     scene.add(text);
   });//end text
-  for (key in planetDatax) {
+  for (let key in planetDatax) {
   console.log("let "+name+" go "+key);
   appendListItem(key,intToHexColor(planetDatax[key][0]),name);
   const geometry = new THREE.RingGeometry( planetDatax[key][0]+0.3, planetDatax[key][0], 32 ); const material = new THREE.MeshBasicMaterial( { color: 0xffffff, side: THREE.DoubleSide } ); const mesh = new THREE.Mesh( geometry, material );
@@ -251,7 +251,7 @@ async function animate() {
 
     // Rotate each planet around the sun
 		let i=0;
-    for (key in planetDatax) {
+    for (let key in planetDatax) {
 
         const planet = planets[i];
 				const tex=texts[i];
