@@ -3,6 +3,24 @@ import { Noise } from "noisejs";
 import * as dat from "dat.gui";
 import sky from "$images/sky.jpg";
 import { GLTFLoader } from "three/addons/loaders/GLTFLoader.js";
+import { DialogueSystem } from './dialogue.js';  // Adjust the path according to your project
+
+const dialogues = [
+  { name: "Engineer", text: "Welcome to Mars, let's explore!", avatar: "../images/engineer.png" },
+  { name: "ORION", text: "Analyzing the terrain... Data incoming. Analyzing the terrain... Data incoming.Analyzing the terrain... Data incoming.Analyzing the terrain... Data incoming.Analyzing the terrain... Data incoming.Analyzing the terrain... Data incoming.Analyzing the terrain... Data incoming.Analyzing the terrain... Data incoming.", avatar: "../images/orion.png" }
+];
+
+// Create dialogue system
+const dialogueSystem = new DialogueSystem(dialogues);
+
+// Start the dialogue when needed
+document.addEventListener('keydown', (event) => {
+  if (event.code === 'KeyE' && !dialogueSystem.isDialogueActive()) {
+    dialogueSystem.start();
+  }
+});
+
+
 
 const noise = new Noise(Math.random());
 
@@ -220,6 +238,9 @@ function updateChunks() {
 let roverYaw = 0;
 
 function updateRoverMovement(delta) {
+  if (dialogueSystem.isDialogueActive()) {
+    return;  // Block movement if dialogue is active
+  }
   // Forward and Backward Movement
   if (keysPressed["KeyW"]) {
     rover.translateZ(-controlParams.moveSpeed * delta);
