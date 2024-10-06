@@ -1,7 +1,33 @@
 let scene, camera, renderer, controls, raycaster, mouse;
+let isLoading = false;
+let variableValue = false;
+ isLoading = true;
+  document.getElementById('loading-animation').style.display = 'flex';
+  
+  
+startLoadingAnimation();
+checkLoading();
 window.location.href.replace(window.location.search,'');
 let starText = document.getElementById('star-text');
 let clickedStar = null;
+
+
+
+function checkLoading() {
+  if (variableValue) {
+    isLoading = false;
+    document.getElementById('loading-animation').style.display = 'none';
+    variableValue=false;
+  } else {
+    requestAnimationFrame(checkLoading);
+  }
+}
+
+function startLoadingAnimation() {
+  if (isLoading) {
+    requestAnimationFrame(startLoadingAnimation);
+  }
+}
 function color(temp){
   if(temp<3500){return 0xfa360a;}
   else if(temp>=3500&&temp<6000){return 0xfad20a;}
@@ -122,8 +148,10 @@ async function animate() {
   requestAnimationFrame(animate);
   controls.update();
   renderer.render(scene, camera);
+  variableValue = true;
 }
 async function main(){
+
  await init();
  await animate();
 

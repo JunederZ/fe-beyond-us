@@ -26,11 +26,46 @@
       
     }
     
+    
   </style>
+  <style>
+#loading-animation {
+  position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+     display: none;
+    justify-content: center;
+    align-items: center;
+   
+    color: white;
+    z-index: 9999; /* High z-index to overlay on top */
+}
+
+.loader {
+  border: 8px solid rgba(255, 255, 255, 0.3);
+    border-top: 8px solid #fff;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+   0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+</style>
 </head>
 <body>
 
-<p class="star-text">click any star to see details</p>
+<div id="loading-animation">
+  <div class="loader"></div>
+  <p>Loading...</p>
+</div>
+
   <canvas id="canvas"></canvas>
   <div id="star-text" class="star-text"></div>
   <script src="https://cdn.jsdelivr.net/npm/three@0.132.2/build/three.min.js"></script>
