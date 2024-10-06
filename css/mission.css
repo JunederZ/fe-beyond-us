@@ -403,16 +403,40 @@ nav {
     height: auto;
     object-fit: cover;
     filter: brightness(1);
-    cursor: not-allowed;
+    cursor: default;
+    transition: all 0.5s;
 }
-
-
 
 .section-4-telescope.telescope-active > img{
     width: 270px;
     height: auto;
     object-fit: cover;
     filter: brightness(1);
+}
+
+.telescope-name.telescope-name-active {
+    display: none;
+}
+
+.section-4-telescope {
+    position: relative;
+    transition: all 0.5s;
+}
+
+.telescope-name {
+    font-size: 24px;
+    color: aliceblue;
+    position: absolute;
+    left: 35%;
+    top: 35%;
+    display: flex;
+    visibility: hidden;
+    transition: all 1s;
+}
+
+.section-4-telescope > img:hover:not(.telescope-active > img) + .telescope-name{
+    visibility: visible;
+    cursor: default;
 }
 
 .section-5 {

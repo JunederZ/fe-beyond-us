@@ -6,5 +6,5 @@ nextButton.addEventListener('click', () => {
     document.body.style.opacity = 0;
     setTimeout(() => {
         window.location.href = '/pages/mission';
-    }, 2000);
+    }, 1500);
 })

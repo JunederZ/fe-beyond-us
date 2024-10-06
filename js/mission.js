@@ -1,12 +1,14 @@
 const cockpitButton = document.getElementById('cockpit-button');
+const cockpitButton2 = document.getElementById('cockpit-bottom-button');
 
-cockpitButton.addEventListener('click', () => {
+cockpitButton2.addEventListener('click', () => {
     console.log('Start button clicked');
     document.body.style.opacity = 0;
     setTimeout(() => {
         window.location.href = '/pages/cockpit';
-    }, 2000);
+    }, 1500);
 })
+
 
 
 
@@ -20,3 +22,5 @@ stellarButton.addEventListener('click', () => {
         window.location.href = '/pages/system';
     }, 1);
 })
+
+
