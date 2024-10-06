@@ -1,3 +1,12 @@
+import merahbanget from '../images/1_merahbanget.png';
+import merahdikit from '../images/2_merahdikit.png';
+import merahmars from '../images/3_merahmars.png';
+import kuning from '../images/4_kuning.png';
+import putihabuabu from '../images/5_putihabuabu.png';
+import birudikitmerah from '../images/6_birudikitmerah.png';
+import birubanget from '../images/7_birubanget.png';
+import starback from '../images/starback.jpg';
+
 const textcontent=document.getElementById("content");
 function appendText(name,contentext){
 const titlesystem = document.createElement('h1');
@@ -101,8 +110,8 @@ async function animate() {
   renderer.render(scene, camera);
 }
 async function main(){
- stardata=await fetchData(namestar);
- planetdata=stardata[nameplanet];
+  stardata=await fetchData(namestar);
+  planetdata=stardata[nameplanet];
  appendText(nameplanet,typePlanet(planetdata[8]));
  await init();
  await animate();

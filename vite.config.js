@@ -3,11 +3,11 @@ import { resolve } from "path";
 import { defineConfig } from "vite";
 
 export default defineConfig({
-  assetsInclude: ["./fonts/**", "./images/**", "./data/**"],
+  assetsInclude: ["./fonts/**", "./images/*", "./data/**"],
   resolve: {
     alias: {
       $fonts: resolve('./fonts'),
-      $images: resolve('./images'),
+      $images: resolve('./images/'),
       $: resolve('./'),
     }
   },
