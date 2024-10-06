@@ -1,3 +1,5 @@
+
+
 import merahbanget from '../images/1_merahbanget.png';
 import merahdikit from '../images/2_merahdikit.png';
 import merahmars from '../images/3_merahmars.png';
@@ -111,7 +113,10 @@ async function init() {
 async function animate() {
   requestAnimationFrame(animate);
   controls.update();
+ 
   renderer.render(scene, camera);
+  
+  
 }
 async function main(){
   stardata=await fetchData(namestar);
@@ -119,6 +124,7 @@ async function main(){
  appendText(nameplanet,typePlanet(planetdata[8]),planetdata[3],planetdata[4]);
  await init();
  await animate();
+ 
 
 }
 main();

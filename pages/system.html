@@ -23,14 +23,143 @@
       position: absolute;
       font-size: 14px;
       color: #fff;
+       top: 0;
+    left: 50%;
       
     }
     
+    
   </style>
+  <style>
+#loading-animation {
+  position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+     display: none;
+    justify-content: center;
+    align-items: center;
+   
+    color: white;
+    z-index: 9999; /* High z-index to overlay on top */
+}
+
+.loader {
+  border: 8px solid rgba(255, 255, 255, 0.3);
+    border-top: 8px solid #fff;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+   0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+</style>
+
+<style>
+body {
+    font-family: Arial, sans-serif;
+}
+
+/* Overlay for the alert box */
+#custom-alert {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999; /* High z-index to overlay on top */
+}
+
+
+/* Alert box content */
+.alert-content {
+    background: rgba(1, 0, 16, 1);
+    padding: 20px;
+    width: 400px;
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1); /* Slight shadow */
+    border-radius: 10px; /* Rounded corners */
+    position: relative;
+    text-align: center;
+}
+
+/* Close button */
+.close-btn {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    font-size: 24px;
+    font-weight: bold;
+    color: #999;
+    cursor: pointer;
+}
+
+.close-btn:hover {
+    color: #333;
+}
+
+/* Title styling */
+.alert-title {
+    font-size: 24px;
+    margin-bottom: 15px;
+    color: rgba(248, 248, 250, 0.8);
+}
+
+/* Text styling */
+.alert-text {
+    font-size: 16px;
+    margin-bottom: 20px;
+    color: rgba(248, 248, 250, 0.8);
+}
+
+/* Explore button */
+.explore-button {
+    background-color: #3498db;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 5px;
+    margin-top: 15px;
+}
+
+.explore-button:hover {
+    background-color: #2980b9;
+}
+
+</style>
 </head>
 <body>
 
-<p class="star-text">click any star to see details</p>
+<div id="loading-animation">
+  <div class="loader"></div>
+  <p>Loading...</p>
+</div>
+<!-- Custom Alert Box -->
+    <div id="custom-alert" >
+        <div class="alert-content">
+            <span class="close-btn" id="close-btn">&times;</span> <!-- Close button (X) -->
+            <h2 class="alert-title">Did you know?</h2>
+            <p class="alert-text">
+                There are about more than 4000 star system and 5000 confirmed planets?
+            </p>
+            <p class="alert-text">
+                <span style="font-weight: bold;">Click any dot/star</span> to see details, and after that, you can also see the planet details in right sidebar!
+            </p>
+            <button id="explore-btn" class="explore-button">Explore Now</button> <!-- Main button -->
+        </div>
+    </div>
+
   <canvas id="canvas"></canvas>
   <div id="star-text" class="star-text"></div>
   <script src="https://cdn.jsdelivr.net/npm/three@0.132.2/build/three.min.js"></script>

@@ -1,7 +1,31 @@
+function checkLoading() {
+  if (variableValue) {
+    isLoading = false;
+    document.getElementById('loading-animation').style.display = 'none';
+    variableValue=false;
+  } else {
+    requestAnimationFrame(checkLoading);
+  }
+}
+
+function startLoadingAnimation() {
+  if (isLoading) {
+    requestAnimationFrame(startLoadingAnimation);
+  }
+}
+
 const sidebar = document.getElementById("sidebar");
 const toggleButton = document.getElementById('toggle-button');
 const ulbar = document.getElementById("list-planet");
 const textcontent=document.getElementById("content");
+let isLoading = false;
+let variableValue = false;
+ isLoading = true;
+  document.getElementById('loading-animation').style.display = 'flex';
+  
+  
+startLoadingAnimation();
+checkLoading();
 toggleButton.addEventListener('click', () => {
 let tes="show"
   if (sidebar.classList.contains('collapsed')) {
@@ -263,7 +287,9 @@ async function animate() {
         i+=1;
 
     }
+    
     renderer.render(scene, camera);
+    variableValue = true;
 }
 async function main(){
 planetDatax=await fetchData(name);
