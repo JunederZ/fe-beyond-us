@@ -16,7 +16,7 @@ let tes="show"
   console.log(tes);
 });
 function appendListItem(planetname,colour,starname) {
-	planetnames=planetname.replace(/ /g, "%20");
+	let planetnames=planetname.replace(/ /g, "%20");
 	starname=starname.replace(/ /g, "%20");
   const listItem = document.createElement('li');
   listItem.innerHTML ="<a href=/pages/rplanet?nameplanet="+planetnames+"&namestar="+starname+">"+planetname+"</a>";
@@ -100,8 +100,8 @@ async function fetchData2(namesistem) {
 }
 
 let scene, camera, renderer, controls, raycaster, mouse;
-planets = [];
-texts=[]
+let planets = [];
+let texts=[]
 let params = new URLSearchParams(document.location.search); //htttp*/?
 let name = params.get("name");
 let namesistem=params.get("sistem");
@@ -120,7 +120,7 @@ async function init() {
   const canvas = document.getElementById('canvas'); 
   renderer = new THREE.WebGLRenderer({ canvas: canvas,antialias: true }); 
   renderer.setSize(window.innerWidth, window.innerHeight); 
- sun = new THREE.Mesh(
+ let sun = new THREE.Mesh(
 
         new THREE.SphereGeometry(2, 30, 30),
 

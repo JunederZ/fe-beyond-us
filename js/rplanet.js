@@ -62,7 +62,7 @@ async function init() {
   const redStar = new THREE.Mesh(redStarGeometry, redStarMaterial);
   redStar.position.set(0,0,0);
   scene.add(redStar);
-  starTexture = new THREE.TextureLoader().load('/images/starback.jpg');
+  let starTexture = new THREE.TextureLoader().load('/images/starback.jpg');
  starTexture.encoding = THREE.sRGBEncoding;
    starTexture.mapping = THREE.EquirectangularReflectionMapping;
     scene.background = starTexture;
