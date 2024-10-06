@@ -62,10 +62,32 @@
     #sidebar a {
       color: #fff;
       text-decoration: none;
+      margin-top:5px;
     }
+       #bottom-text {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 50vw; /* 50% screen width */
+  padding: 20px;
+  color:white;
+  
+  box-sizing: border-box;
+}
+.text-content {
+  margin: 0;
+  padding: 0;
+  
+  font-family: Arial, Helvetica, sans-serif;
+  line-height: 1.5;
+  word-wrap: break-word; /* Wrap text at 50% screen width */
+}
   </style>
 </head>
 <body>
+<div id="bottom-text">
+  <div id="content"></div>
+</div>
  <div id="sidebar" class="collapsed">
     <button id="toggle-button">Toggle</button>
     <div id="list-planet">

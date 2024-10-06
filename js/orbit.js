@@ -1,6 +1,7 @@
 const sidebar = document.getElementById("sidebar");
 const toggleButton = document.getElementById('toggle-button');
 const ulbar = document.getElementById("list-planet");
+const textcontent=document.getElementById("content");
 toggleButton.addEventListener('click', () => {
 let tes="show"
   if (sidebar.classList.contains('collapsed')) {
@@ -15,14 +16,23 @@ let tes="show"
   console.log(tes);
 });
 function appendListItem(planetname,colour,starname) {
-	planetname=planetname.replace(/ /g, "%20");
+	planetnames=planetname.replace(/ /g, "%20");
 	starname=starname.replace(/ /g, "%20");
   const listItem = document.createElement('li');
-  listItem.innerHTML ="<a href=/pages/planet?nameplanet="+planetname+"&namestar="+starname+">"+planetname+"</a>";
+  listItem.innerHTML ="<a href=/pages/planet?nameplanet="+planetnames+"&namestar="+starname+">"+planetname+"</a>";
 
   ulbar.appendChild(listItem);
 }
-
+function appendText(name,planetnum,distance){
+const titlesystem = document.createElement('h1');
+const systemdec = document.createElement('p');
+titlesystem.innerHTML=name;
+systemdec.innerHTML=`this star's system has ${planetnum} planet(s), ${parseInt(distance*3.26)} light years from earth.`;
+titlesystem.classList.add("text-content");
+systemdec.classList.add("text-content");
+textcontent.appendChild(titlesystem );
+textcontent.appendChild(systemdec);
+}
 function typePlanet(inttype){
 if(inttype==0){return "rocky";}
 else if(inttype==1){return "water";}
@@ -258,6 +268,7 @@ async function animate() {
 async function main(){
 planetDatax=await fetchData(name);
 sistemDatax= await fetchData2(namesistem);
+appendText(name,sistemDatax["jumlah_planet"],sistemDatax["jarak_parsec"]);
 console.log("let it go");
 console.log(sistemDatax);
  await init();

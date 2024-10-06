@@ -1,3 +1,13 @@
+const textcontent=document.getElementById("content");
+function appendText(name,contentext){
+const titlesystem = document.createElement('h1');
+const systemdec = document.createElement('p');
+titlesystem.innerHTML=name;
+systemdec.innerHTML=contentext;
+systemdec.classList.add("text-content");
+textcontent.appendChild(titlesystem );
+textcontent.appendChild(systemdec);
+}
 
 function typeTexture(inte){
 if(inte==1){return "1_merahbanget.png";}
@@ -93,6 +103,7 @@ async function animate() {
 async function main(){
  stardata=await fetchData(namestar);
  planetdata=stardata[nameplanet];
+ appendText(nameplanet,typePlanet(planetdata[8]));
  await init();
  await animate();
 
