@@ -8,14 +8,18 @@ import birubanget from '../images/7_birubanget.png';
 import starback from '../images/starback.jpg';
 
 const textcontent=document.getElementById("content");
-function appendText(name,contentext){
+function appendText(name,contentext,foundedyear,bywho){
 const titlesystem = document.createElement('h1');
 const systemdec = document.createElement('p');
+const founded =document.createElement('p');
 titlesystem.innerHTML=name;
 systemdec.innerHTML=contentext;
+founded.innerHTML=`founded by ${bywho} at ${foundedyear}`;
 systemdec.classList.add("text-content");
+founded.classList.add("text-content");
 textcontent.appendChild(titlesystem );
 textcontent.appendChild(systemdec);
+textcontent.appendChild(founded);
 }
 
 function typeTexture(inte){
@@ -112,7 +116,7 @@ async function animate() {
 async function main(){
   stardata=await fetchData(namestar);
   planetdata=stardata[nameplanet];
- appendText(nameplanet,typePlanet(planetdata[8]));
+ appendText(nameplanet,typePlanet(planetdata[8]),planetdata[3],planetdata[4]);
  await init();
  await animate();
 
