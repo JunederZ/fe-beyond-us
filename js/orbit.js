@@ -19,7 +19,7 @@ function appendListItem(planetname,colour,starname) {
 	planetnames=planetname.replace(/ /g, "%20");
 	starname=starname.replace(/ /g, "%20");
   const listItem = document.createElement('li');
-  listItem.innerHTML ="<a href=/pages/planet?nameplanet="+planetnames+"&namestar="+starname+">"+planetname+"</a>";
+  listItem.innerHTML ="<a href=/pages/rplanet?nameplanet="+planetnames+"&namestar="+starname+">"+planetname+"</a>";
 
   ulbar.appendChild(listItem);
 }
