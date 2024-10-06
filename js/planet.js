@@ -1,4 +1,6 @@
+
 import * as THREE from "three";
+import { PointerLockControls } from "three/examples/jsm/controls/PointerLockControls.js";
 import { Noise } from "noisejs";
 import * as dat from "dat.gui";
 import sky from "$images/sky.jpg";
@@ -6,8 +8,8 @@ import { GLTFLoader } from "three/addons/loaders/GLTFLoader.js";
 
 const noise = new Noise(Math.random());
 
-// Skyline
-let skyDome;
+//skyline
+var skyDome;
 const skyTexture = new THREE.TextureLoader().load(
   sky,
   () => {
@@ -18,6 +20,10 @@ const skyTexture = new THREE.TextureLoader().load(
       side: THREE.BackSide,
     });
     skyDome = new THREE.Mesh(skyGeo, skyMat);
+    console.log(skyTexture);
+    console.log(skyTexture.image); 
+
+    // skyDome.material.side = THREE.BackSide;
     scene.add(skyDome);
   },
   undefined,
@@ -27,6 +33,7 @@ const skyTexture = new THREE.TextureLoader().load(
 );
 
 const scene = new THREE.Scene();
+// scene.background = new THREE.Color("#2c3e50"); // Initial sky color
 
 // Camera setup
 const camera = new THREE.PerspectiveCamera(
@@ -36,10 +43,10 @@ const camera = new THREE.PerspectiveCamera(
   4000
 );
 camera.position.set(0, 20, 100);
-
 const light = new THREE.DirectionalLight(0xffffff, 1);
 light.position.set(0, 1, 0).normalize();
 scene.add(light);
+
 
 const renderer = new THREE.WebGLRenderer({ antialias: true });
 renderer.setSize(window.innerWidth, window.innerHeight);
@@ -60,11 +67,13 @@ const params = {
   ambientLightIntensity: 2.5,
   directionalLightIntensity: 2.5,
   cameraHeight: 20,
+  // skyColor: "#2c3e50",
 };
 
 let param = new URLSearchParams(document.location.search);
 console.log(param.get("tColor"));
 params.terrainColor = param.get("tColor");
+// params.terrainType = param.get("tType");
 params.noiseFrequency = parseFloat(param.get("noiseFreq"));
 params.maxHeight = parseInt(param.get("maxHeight"));
 params.octaves = parseInt(param.get("octaves"));
@@ -73,6 +82,10 @@ params.lacunarity = parseFloat(param.get("lac"));
 params.movementSpeed = parseFloat(param.get("spd"));
 params.fogDensity = parseFloat(param.get("fog"));
 params.terrainScale = parseFloat(param.get("tScale"));
+// params.ambientLightIntensity = parseFloat(param.get("ambient"));
+// params.directionalLightIntensity = parseFloat(param.get("light"));
+// params.cameraHeight = parseFloat(param.get("cameraHeight"));
+
 
 const gui = new dat.GUI();
 gui.hide();
@@ -177,9 +190,59 @@ function generateChunk(chunkX, chunkZ) {
   chunks.set(key, chunkMesh);
 }
 
+// function generateChunk(chunkX, chunkZ) {
+//   const geometry = new THREE.PlaneGeometry(CHUNK_SIZE, CHUNK_SIZE, 49, 49);
+//   geometry.rotateX(-Math.PI / 2);
+
+//   const positions = geometry.attributes.position.array;
+//   for (let i = 0; i < positions.length; i += 3) {
+//     const x = positions[i] + chunkX * CHUNK_SIZE;
+//     const z = positions[i + 2] + chunkZ * CHUNK_SIZE;
+
+//     let y = 0;
+
+//     let amplitudeMountain = 20;
+//     let frequencyMountain = 0.1; // Lower frequency for large features
+
+//     let amplitudeRock = 2;
+//     let frequencyRock = 10; // Higher frequency for finer details
+
+//     y +=
+//       amplitudeMountain *
+//       noise.perlin2(
+//         (x * frequencyMountain) / 100,
+//         (z * frequencyMountain) / 100
+//       );
+
+//     y +=
+//       amplitudeRock *
+//       noise.perlin2((x * frequencyRock) / 100, (z * frequencyRock) / 100);
+
+//     // You can tweak `y` scaling here
+//     y *= params.maxHeight * params.terrainScale;
+
+//     positions[i + 1] = y;
+//   }
+
+//   geometry.computeVertexNormals();
+
+//   const material = new THREE.MeshLambertMaterial({
+//     color: params.terrainColor,
+//     wireframe: params.wireframe,
+//   });
+
+//   const chunkMesh = new THREE.Mesh(geometry, material);
+//   chunkMesh.position.set(chunkX * CHUNK_SIZE, 0, chunkZ * CHUNK_SIZE);
+
+//   scene.add(chunkMesh);
+
+//   const key = `${chunkX},${chunkZ}`;
+//   chunks.set(key, chunkMesh);
+// }
+
 function updateChunks() {
-  const playerX = rover.position.x;
-  const playerZ = rover.position.z;
+  const playerX = controls.object.position.x;
+  const playerZ = controls.object.position.z;
 
   const currentChunkX = Math.floor(playerX / CHUNK_SIZE);
   const currentChunkZ = Math.floor(playerZ / CHUNK_SIZE);
@@ -367,18 +430,14 @@ function animate() {
   requestAnimationFrame(animate);
   const delta = clock.getDelta();
 
-  if (rover) {
-    updateRoverMovement(delta);
+  if (controls.isLocked) {
+    updateMovement(delta);
+    updateChunks();
   }
-  updateChunks();
-
-  if (skyDome) {
-    skyDome.position.copy(camera.position);
-  }
+  skyDome.position.copy(camera.position);
 
   renderer.render(scene, camera);
 }
-
 animate();
 
 window.addEventListener("resize", onWindowResize, false);
