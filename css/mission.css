@@ -123,6 +123,7 @@ nav {
     font-size: 18px;
     border: 2px solid aliceblue;
     background-color: transparent;
+    transition: all 0.5s;
 }
 
 .main-button:hover {
@@ -186,6 +187,7 @@ nav {
     font-size: 18px;
     border: 2px solid aliceblue;
     background-color: transparent;
+    transition: all 0.5s;
 }
 
 .stellar-section>button:hover {
@@ -344,7 +346,7 @@ nav {
 .section-4-left>img {
     width: auto;
     height: 60vh;
-    transform: rotate(11deg) translateY(10%);
+    transform: rotate(11deg);
     object-fit: cover;
     overflow: auto;
 }
@@ -370,4 +372,131 @@ nav {
     font-size: 20px;
     text-align: end;
     margin: 0 8rem 0 0;
+}
+
+.section-4-bottom {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100vw;
+    height: 40vh;
+}
+
+.section-4-items {
+    display: grid;
+    grid-auto-flow: column;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+}
+
+.section-4-telescope > img {
+    width: 256px;
+    height: auto;
+    object-fit: cover;
+    filter: brightness(0.7);
+    transition: all 0.5s;
+}
+
+.section-4-telescope > img:hover:not(.telescope-active > img) {
+    width: 270px;
+    height: auto;
+    object-fit: cover;
+    filter: brightness(1);
+    cursor: not-allowed;
+}
+
+
+
+.section-4-telescope.telescope-active > img{
+    width: 270px;
+    height: auto;
+    object-fit: cover;
+    filter: brightness(1);
+}
+
+.section-5 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 50vh;
+    min-width: 100vw;
+    position: relative;
+}
+
+.section-5-right {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 40%;
+}
+
+.section-5-right>img {
+    width: auto;
+    height: 299;
+    object-fit: cover;
+    overflow: auto;
+    border-radius: 14px;
+}
+
+.section-5-left {
+    color: #6B7280;
+    width: 40%;
+}
+
+.section-5-left > h4 {
+    font-family: "Urbanist", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 600;
+    font-style: normal;
+    font-size: 20px;
+    display: flex;
+    justify-content: start;
+    margin: 0 0 0 8rem;
+}
+
+.section-5-left > h1 {
+    font-family: "Naza";
+    font-size: 60px;
+    display: flex;
+    justify-content: start;
+    margin: 0 0 0 8rem;
+    color: #111827;
+}
+
+.section-5-left > p {
+    font-family: "Urbanist", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 20px;
+    text-align: start;
+    margin: 0 0 0 8rem;
+}
+
+.section-5-dial {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    margin: 0 0 5rem 0;
+}
+
+.section-5-dot {
+    width: 20px;
+    height: 20px;
+    background-color: #D9D9D9;
+    border-radius: 50%;
+    transition: all 0.5s;
+}
+
+.section-5-dot:hover:not(.active-dot) {
+    background-color: #000000;
+    cursor: not-allowed;
+}
+
+.section-5-dot.active-dot {
+    background-color: #000000;
+    width: 50px;
+    border-radius: 10px;
 }
