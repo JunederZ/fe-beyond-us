@@ -16,7 +16,7 @@ let tes="show"
   console.log(tes);
 });
 function appendListItem(planetname,colour,starname) {
-	planetnames=planetname.replace(/ /g, "%20");
+	let planetnames=planetname.replace(/ /g, "%20");
 	starname=starname.replace(/ /g, "%20");
   const listItem = document.createElement('li');
   listItem.innerHTML ="<a href=/pages/rplanet?nameplanet="+planetnames+"&namestar="+starname+">"+planetname+"</a>";
@@ -70,7 +70,7 @@ function intToHexColor(intValue) {
 }
 async function fetchData(namestar) {
   try {
-    const response = await fetch('../data/systemplanet.json');
+    const response = await fetch('/systemplanet.json');
 
     if (!response.ok) {
       throw new Error('Network response was not ok');
@@ -85,7 +85,7 @@ async function fetchData(namestar) {
 }
 async function fetchData2(namesistem) {
   try {
-    const response = await fetch('../data/tesout.json');
+    const response = await fetch('/tesout.json');
 
     if (!response.ok) {
       throw new Error('Network response was not ok');
@@ -100,8 +100,8 @@ async function fetchData2(namesistem) {
 }
 
 let scene, camera, renderer, controls, raycaster, mouse;
-planets = [];
-texts=[]
+let planets = [];
+let texts=[]
 let params = new URLSearchParams(document.location.search); //htttp*/?
 let name = params.get("name");
 let namesistem=params.get("sistem");
@@ -120,7 +120,7 @@ async function init() {
   const canvas = document.getElementById('canvas'); 
   renderer = new THREE.WebGLRenderer({ canvas: canvas,antialias: true }); 
   renderer.setSize(window.innerWidth, window.innerHeight); 
- sun = new THREE.Mesh(
+ let sun = new THREE.Mesh(
 
         new THREE.SphereGeometry(2, 30, 30),
 
@@ -153,7 +153,7 @@ async function init() {
     
     scene.add(text);
   });//end text
-  for (key in planetDatax) {
+  for (let key in planetDatax) {
   console.log("let "+name+" go "+key);
   appendListItem(key,intToHexColor(planetDatax[key][0]),name);
   const geometry = new THREE.RingGeometry( planetDatax[key][0]+0.3, planetDatax[key][0], 32 ); const material = new THREE.MeshBasicMaterial( { color: 0xffffff, side: THREE.DoubleSide } ); const mesh = new THREE.Mesh( geometry, material );
@@ -251,7 +251,7 @@ async function animate() {
 
     // Rotate each planet around the sun
 		let i=0;
-    for (key in planetDatax) {
+    for (let key in planetDatax) {
 
         const planet = planets[i];
 				const tex=texts[i];

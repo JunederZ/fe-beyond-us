@@ -27,7 +27,7 @@ else{return "its a gas giant,maybe we should cover our nose!";}
 
 async function fetchData(namestar) {
   try {
-    const response = await fetch('../data/systemplanet.json');
+    const response = await fetch('/systemplanet.json');
 
     if (!response.ok) {
       throw new Error('Network response was not ok');
@@ -62,7 +62,7 @@ async function init() {
   const redStar = new THREE.Mesh(redStarGeometry, redStarMaterial);
   redStar.position.set(0,0,0);
   scene.add(redStar);
-  starTexture = new THREE.TextureLoader().load('/images/starback.jpg');
+  let starTexture = new THREE.TextureLoader().load('/images/starback.jpg');
  starTexture.encoding = THREE.sRGBEncoding;
    starTexture.mapping = THREE.EquirectangularReflectionMapping;
     scene.background = starTexture;

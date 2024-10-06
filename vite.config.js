@@ -18,7 +18,7 @@ export default defineConfig({
         cockpit: resolve(__dirname, "pages/cockpit.html"),
         mission: resolve(__dirname, "pages/mission.html"),
         planet: resolve(__dirname, "pages/planet.html"),
-        gasplanet: resolve(__dirname, "gaspages/planet.html"),
+        gasplanet: resolve(__dirname, "pages/planet.html"),
         loworbit: resolve(__dirname, "pages/loworbit.html"),
         orbit: resolve(__dirname, "pages/orbit.html"),
         system: resolve(__dirname, "pages/system.html"),
