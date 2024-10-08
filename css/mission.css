@@ -7,10 +7,31 @@
 }
 
 .pc-only {
+    color: #FFFFFF;
     display: none;
+    font-size: 4vw;
+    height: 100vh;
+    justify-content: center;
+    align-items: center;
+    font-family: "Urbanist", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 400;
+    font-style: normal;
+    text-align: center;
+    padding: 0 4rem 0 4rem;
 }
 
-@media screen and (max-width: 768px) {
+.only-pc.text {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+@media screen and (max-width: 900px) {
+
+    body {
+        background-color: #091726;
+    }
 
     .pc-only {
         display: flex;
@@ -125,7 +146,7 @@ nav {
 .section-1 {
     /* position: relative; */
     display: flex;
-    height: 90vh;
+    height: 100vh;
 }
 
 .main-body {
@@ -138,6 +159,7 @@ nav {
     min-height: 100vh;
     gap: 10rem;
     overflow: hidden;
+    margin-top: 5rem;
 }
 
 .left-main {
@@ -156,6 +178,22 @@ nav {
     width: 30%;
     align-items: center;
     gap: 2rem;
+}
+
+@media screen and (max-width: 1400px) {
+    .right-main {
+        width: 40%;
+        scale: 0.7;
+        margin-top: 0;
+    }
+
+    .main-body {
+        margin-top: 0;
+    }
+
+    .left-main {
+        width: 40%;
+    }
 }
 
 .main-text {
