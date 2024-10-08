@@ -25,6 +25,7 @@ textcontent.appendChild(founded);
 }
 
 function typeTexture(inte){
+console.log(inte,"timen");
 if(inte==1){return merahbanget;}
 else if(inte==2){return merahdikit;}  
 else if(inte==3){return merahmars;}    
@@ -72,8 +73,9 @@ async function init() {
   renderer.setSize(window.innerWidth, window.innerHeight); 
 
   // bikin bintang merah
+  console.log("full",planetdata);
   const redStarGeometry = new THREE.SphereGeometry(4, 32, 32);
-  const redStarMaterial = new THREE.MeshBasicMaterial({ color: 0xf5fa93,map: THREE.ImageUtils.loadTexture(typeTexture(planetdata[7])) });
+  const redStarMaterial = new THREE.MeshBasicMaterial({ map: THREE.ImageUtils.loadTexture(typeTexture(planetdata[8])) });
   const redStar = new THREE.Mesh(redStarGeometry, redStarMaterial);
   redStar.position.set(0,0,0);
   scene.add(redStar);
@@ -121,7 +123,7 @@ async function animate() {
 async function main(){
   stardata=await fetchData(namestar);
   planetdata=stardata[nameplanet];
- appendText(nameplanet,typePlanet(planetdata[8]),planetdata[3],planetdata[4]);
+ appendText(nameplanet,typePlanet(planetdata[7]),planetdata[3],planetdata[4]);
  await init();
  await animate();
  
