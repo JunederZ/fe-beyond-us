@@ -5,16 +5,24 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>beyond us</title>
     <link rel="stylesheet" href="../css/cockpit.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.5/gsap.min.js"></script>
-
+    <script src="../js/cockpit.js" type="module"></script>
+    <link rel="shortcut icon" href="../images/icon.png" type="image/x-icon">
 </head>
 
 <body>
     <div class="cockpit">
         <img id="fill" src="../images/cockpits.png" alt="">
+        <div class="button-container">
+            <button id="btn">START</button>
+        </div>
     </div>
-    <canvas id="canvas"></canvas>
-    <script src="../js/cockpit.js"></script>
     
+    <div class="carousel-container">
+        <div class="arrow left-arrow" id="left-arrow">&#10094;</div>
+        <div class="carousel" id="carousel"></div>
+        <div class="arrow right-arrow" id="right-arrow">&#10095;</div>
+    </div>
+    
+    <canvas id="canvas"></canvas>
 </body>
 </html>

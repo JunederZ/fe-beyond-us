@@ -1,26 +1,111 @@
-body, html {
-    margin: 0;
-    padding: 0;
-    overflow: hidden;
-    background-color: red;
+body,
+html {
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+}
+
+@font-face {
+  font-family: "Naza";
+  src: url("../fonts/nasalization-rg.otf");
+}
+
+.pgif {
+  width: 200px;
+}
+
+#btn {
+  font-family: "Naza";
+  position: absolute;
+  top: 71%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 101;
+  background-color: #1e2c62;
+  color: #fff;
+  padding: 30px 69px;
+  border: 1px solid #3fc6eb;
+  cursor: pointer;
+  font-size: 20px;
 }
 
 #fill {
-    height: 100%;
-    width: 100%;
-    position: absolute;
-    top: 0;
-    left: 0;
-    z-index: 10;
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 10;
 }
 
 #canvas {
-    background-color: #000;
-    /* height: 100%;
-    width: 100%; */
-    position: absolute;
-    top: 0;
-    left: 0;
-    z-index: -20;
-  }
-  
+  background-color: #000;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: -20;
+}
+
+.carousel-container {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 100;
+}
+
+.carousel {
+  gap: 10px;
+  display: flex;
+  overflow: hidden;
+  width: 80%;
+}
+
+.carousel-item {
+  background-color: #1e2c62ca;
+  border: 1px solid #3fc6eb;
+  color: white;
+
+  padding: 5px;
+  text-align: center;
+  width: 500px;
+  height: 300px;
+  opacity: 0; /* Start hidden */
+  transform: translateX(100%); /* Start offscreen to the right */
+}
+
+.planet-info h2 {
+  font-family: "Naza";
+  margin: 20px 0;
+  font-size: 24px;
+}
+
+.planet-info {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.arrow {
+  cursor: pointer;
+  font-size: 40px;
+  padding: 10px;
+  background-color: rgba(0, 0, 0, 0.5);
+  color: #fff;
+  user-select: none;
+  z-index: 100;
+}
+
+.left-arrow {
+  position: absolute;
+  left: 10px;
+}
+
+.right-arrow {
+  position: absolute;
+  right: 10px;
+}

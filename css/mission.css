@@ -6,6 +6,93 @@
     src: url('../fonts/nasalization-rg.otf');
 }
 
+.pc-only {
+    color: #FFFFFF;
+    display: none;
+    font-size: 4vw;
+    height: 100vh;
+    justify-content: center;
+    align-items: center;
+    font-family: "Urbanist", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 400;
+    font-style: normal;
+    text-align: center;
+    padding: 0 4rem 0 4rem;
+}
+
+.only-pc.text {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+@media screen and (max-width: 900px) {
+
+    body {
+        background-color: #091726;
+    }
+
+    .pc-only {
+        display: flex;
+    }
+
+    nav {
+        display: none;
+        visibility: hidden;
+    }
+
+    .bg-overlay {
+        display: none;
+    }
+
+    .section-1 {
+        display: none;
+        visibility: hidden;
+    }
+
+    .section-2 {
+        display: none;
+        visibility: hidden;
+    }
+
+    .section-3 {
+        display: none;
+        visibility: hidden;
+    }
+
+    .section-4 {
+        display: none;
+        visibility: hidden;
+    }
+
+    .section-5 {
+        display: none;
+        visibility: hidden;
+    }
+
+    .section-6 {
+        display: none;
+        visibility: hidden;
+    }
+
+    .stellar-section {
+        display: none;
+        visibility: hidden;
+    }
+
+    .section-5-dial {
+        display: none;
+        visibility: hidden;
+    }
+
+    .section-4-bottom {
+        display: none;
+        visibility: hidden;
+    }
+    
+}
+
 body {
     display: flex;
     flex-direction: column;
@@ -45,15 +132,34 @@ nav {
     z-index: -1;
 }
 
+/* @media screen and ((max-width: 1300px)) {
+    .bg-overlay {
+        height: max-content ;
+    }
+
+    .section-1 {
+        height: 110ch;
+    }
+    
+} */
+
+.section-1 {
+    /* position: relative; */
+    display: flex;
+    height: 100vh;
+}
+
 .main-body {
     color: aliceblue;
     display: flex;
     position: relative;
     justify-content: center;
-    align-items: center;
+    align-items: start;
     min-width: 100vw;
-    min-height: 90vh;
+    min-height: 100vh;
     gap: 10rem;
+    overflow: hidden;
+    margin-top: 5rem;
 }
 
 .left-main {
@@ -72,6 +178,22 @@ nav {
     width: 30%;
     align-items: center;
     gap: 2rem;
+}
+
+@media screen and (max-width: 1400px) {
+    .right-main {
+        width: 40%;
+        scale: 0.7;
+        margin-top: 0;
+    }
+
+    .main-body {
+        margin-top: 0;
+    }
+
+    .left-main {
+        width: 40%;
+    }
 }
 
 .main-text {
@@ -93,7 +215,6 @@ nav {
 }
 
 .main-subtitle {
-    display: flex;
     font-family: "Inter", sans-serif;
     font-optical-sizing: auto;
     font-style: normal;
@@ -122,6 +243,7 @@ nav {
     font-size: 18px;
     border: 2px solid aliceblue;
     background-color: transparent;
+    transition: all 0.5s;
 }
 
 .main-button:hover {
@@ -129,6 +251,70 @@ nav {
     cursor: pointer;
     color: black;
 }
+/* 
+.stellar-section {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 60vh;
+    min-width: 100vw;
+    position: relative;
+}
+
+#stellar-video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    position: absolute;
+    z-index: -1;
+}
+
+.stellar-text {
+    display: flex;
+    color: aliceblue;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    position: relative;
+    z-index: 1;
+    line-height: 1rem;
+    height: 1rem;
+}
+
+.stellar-text>h1 {
+    font-family: "Naza";
+    font-size: 60px;
+}
+
+.stellar-text>p {
+    font-family: "Urbanist", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 20px;
+    text-align: center;
+}
+
+.stellar-section>button {
+    display: flex;
+    color: aliceblue;
+    justify-content: center;
+    margin: 8rem 0 0 0;
+    padding: 17px 200px 17px 200px;
+    border-radius: 6px;
+    font-size: 18px;
+    border: 2px solid aliceblue;
+    background-color: transparent;
+    transition: all 0.5s;
+}
+
+.stellar-section>button:hover {
+    background-color: aliceblue;
+    cursor: pointer;
+    color: black;
+} */
 
 .section-2 {
     display: flex;
@@ -138,10 +324,10 @@ nav {
     min-height: 30vh;
     min-width: 100vw;
     position: relative;
-    margin: 50px 0 50px 0;
+    margin: 0 0 50px 0;
 }
 
-.section-2 p {
+.section-2>p {
     max-width: 1160px;
     font-size: 20px;
     text-align: center;
@@ -151,7 +337,364 @@ nav {
     font-style: normal;
 }
 
-.section-2 h1 {
+.section-2>h1 {
     font-family: "Naza";
     font-size: 60px;
+}
+
+.section-3 {
+    position: relative;
+    display: flex;
+    width: 100vw;
+}
+
+.section-3>img {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: -1;
+    filter: brightness(0.4);
+}
+
+.section-3-upper-text>h1 {
+    font-family: "Naza";
+    width: 90%;
+    font-size: 60px;
+    display: flex;
+    justify-content: start;
+}
+
+.section-3-upper-text>p {
+    width: 90%;
+    font-size: 20px;
+    text-align: start;
+    font-family: "Urbanist", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 500;
+    font-style: normal;
+}
+
+.section-3-upper-text {
+    color: aliceblue;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: start;
+    width: 40%;
+    position: relative;
+    z-index: 1;
+    margin: 0 8rem 0 8rem;
+}
+
+.section-3-exoplanets {
+    margin: 3rem 0 3rem 0;
+    width: 60%;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem; /* Reduced gap to make items more tight */
+    row-gap: 0.5rem; /* Adjusted column gap to make items more tight */
+}
+
+.exo-text {
+    display: flex;
+    flex-direction: column;
+    justify-content: end;
+    align-items: center;
+    text-align: center;
+    line-height: 16px;
+}
+
+.exo-text-title {
+    color: aliceblue;
+    display: flex;
+    align-items: end;
+    width: auto;
+    z-index: 1;
+    margin: 0 0 12px 0;
+    font-family: "Urbanist", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 500;
+    font-style: normal;
+    font-weight: 700;
+}
+.exo-text-subtitle {
+    color: aliceblue;
+    display: flex;
+    align-items: end;
+    width: auto;
+    z-index: 1;
+    margin: 0 0 24px 0;
+    font-family: "Urbanist", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 500;
+    font-style: normal;
+    font-weight: 700;
+} 
+
+
+.section-3-exoplanets>div {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 10px 12px 10px 12px;
+    width: 213px;
+    height: 320px;
+    border-radius: 20px;
+    background-color: rgba(0, 0, 0, 0.527);
+}
+
+.exoplanet-img {
+    width: auto;
+    height: 210px;
+    z-index: 1;
+}
+
+
+.section-4 {
+    display: flex;
+    position: relative;
+    width: 100vw;
+    height: 50vh;
+    justify-content: center;
+    align-items: center;
+    background-color: black;
+}
+
+.section-4-left {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 50%;
+}
+
+.section-4-left>img {
+    width: auto;
+    height: 60vh;
+    transform: rotate(11deg);
+    object-fit: cover;
+    overflow: auto;
+}
+
+.section-4-right {
+    color: aliceblue;
+    width: 50%;
+}
+
+.section-4-right > h1 {
+    font-family: "Naza";
+    font-size: 60px;
+    display: flex;
+    justify-content: end;
+    margin: 0 8rem 0 0;
+}
+
+.section-4-right > p {
+    font-family: "Urbanist", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 500;
+    font-style: normal;
+    font-size: 20px;
+    text-align: end;
+    margin: 0 8rem 0 0;
+}
+
+.section-4-bottom {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100vw;
+    height: 40vh;
+}
+
+.section-4-items {
+    display: grid;
+    grid-auto-flow: column;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+}
+
+.section-4-telescope > img {
+    width: 256px;
+    height: auto;
+    object-fit: cover;
+    filter: brightness(0.7);
+    transition: all 0.5s;
+}
+
+.section-4-telescope > img:hover:not(.telescope-active > img) {
+    width: 270px;
+    height: auto;
+    object-fit: cover;
+    filter: brightness(1);
+    cursor: default;
+    transition: all 0.5s;
+}
+
+.section-4-telescope.telescope-active > img{
+    width: 270px;
+    height: auto;
+    object-fit: cover;
+    filter: brightness(1);
+}
+
+.telescope-name.telescope-name-active {
+    display: none;
+}
+
+.section-4-telescope {
+    position: relative;
+    transition: all 0.5s;
+}
+
+.telescope-name {
+    font-size: 24px;
+    color: aliceblue;
+    position: absolute;
+    left: 35%;
+    top: 35%;
+    display: flex;
+    visibility: hidden;
+    transition: all 1s;
+}
+
+.section-4-telescope > img:hover:not(.telescope-active > img) + .telescope-name{
+    visibility: visible;
+    cursor: default;
+}
+
+.section-5 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 50vh;
+    min-width: 100vw;
+    position: relative;
+}
+
+.section-5-right {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 40%;
+}
+
+.section-5-right>img {
+    width: auto;
+    height: 299;
+    object-fit: cover;
+    overflow: auto;
+    border-radius: 14px;
+}
+
+.section-5-left {
+    color: #6B7280;
+    width: 40%;
+}
+
+.section-5-left > h4 {
+    font-family: "Urbanist", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 600;
+    font-style: normal;
+    font-size: 20px;
+    display: flex;
+    justify-content: start;
+    margin: 0 0 0 8rem;
+}
+
+.section-5-left > h1 {
+    font-family: "Naza";
+    font-size: 60px;
+    display: flex;
+    justify-content: start;
+    margin: 0 0 0 8rem;
+    color: #111827;
+}
+
+.section-5-left > p {
+    font-family: "Urbanist", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 20px;
+    text-align: start;
+    margin: 0 0 0 8rem;
+}
+
+.section-5-dial {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    margin: 0 0 5rem 0;
+}
+
+.section-5-dot {
+    width: 20px;
+    height: 20px;
+    background-color: #D9D9D9;
+    border-radius: 50%;
+    transition: all 0.5s;
+}
+
+.section-5-dot:hover:not(.active-dot) {
+    background-color: #000000;
+    cursor: not-allowed;
+}
+
+.section-5-dot.active-dot {
+    background-color: #000000;
+    width: 50px;
+    border-radius: 10px;
+}
+
+.section-6 {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 10vh;
+    min-width: 100vw;
+    margin: 0 0 6rem 0;
+    position: relative;
+}
+
+.section-6-bottom-button {
+    display: flex;
+    color: rgb(0, 0, 0);
+    justify-content: center;
+    margin: 1rem 0 0 0;
+    padding: 17px 0 17px 0;
+    border-radius: 6px;
+    font-size: 18px;
+    width: 590px;
+    border: 2px solid rgb(0, 0, 0);
+    background-color: transparent;
+    transition: all 0.5s;
+}
+
+.section-6-bottom-button:hover {
+    background-color: rgb(0, 0, 0);
+    cursor: pointer;
+    color: aliceblue;
+}
+
+.navbar-title {
+    color: #fff;
+}
+
+.navbar-items {
+    color: #ccc;
+    text-decoration: none;
+    margin-left: 20px;
+    transition: color 0.3s ease;
+}
+
+.navbar-items:hover {
+    color: #fff;
 }
