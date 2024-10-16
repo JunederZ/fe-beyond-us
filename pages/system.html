@@ -137,13 +137,54 @@ body {
     background-color: #2980b9;
 }
 
+
+
+    #bottom-text {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 50vw; /* 50% screen width */
+  padding: 20px;
+  color:white;
+  box-sizing: border-box;
+}
+ #top-text {
+  position: fixed;
+  top: 0;
+  left: 37%;
+  width: 50vw; /* 50% screen width */
+  padding: 20px;
+  color:white;
+  box-sizing: border-box;
+}
+
+.text-content {
+  margin: 0;
+  padding: 0;
+  font-size: 26px;
+  font-family: Arial, Helvetica, sans-serif;
+  line-height: 1.5;
+  word-wrap: break-word; /* Wrap text at 50% screen width */
+}
+  
 </style>
 </head>
 <body>
-
+<div id="top-text">
+  <div id="content" >
+  <p>360 view | zoom in | zoom out | click any star/dot</p>
+  </div>
+  </div>
 <div id="loading-animation">
   <div class="loader"></div>
   <p>Loading...</p>
+</div>
+<div id="bottom-text" class="text-content">
+  <div id="content">
+  <h1>Milky Way</h1>
+  <h3>4,310 solar systems | 5,766 confirmed planets</h3>
+  
+  </div>
 </div>
 <!-- Custom Alert Box -->
     <div id="custom-alert" >

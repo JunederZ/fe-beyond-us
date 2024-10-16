@@ -163,7 +163,33 @@ async function init() {
       window.location.href=("/pages/orbit?name="+star.userData.hostname);
     }
   });
-}
+  
+  
+  // Create a text mesh for the hovering text
+const textGeometry = new THREE.SphereGeometry(0.1, 32, 32);
+const textMaterial = new THREE.MeshBasicMaterial({ color: 0xffffff });
+const textMesh = new THREE.Mesh(textGeometry, textMaterial);
+textMesh.visible = false;
+scene.add(textMesh);
+// Handle mouse events
+document.addEventListener('mousemove', (event) => {
+    mouse.x = (event.clientX / window.innerWidth) * 2 - 1;
+    mouse.y = -(event.clientY / window.innerHeight) * 2 + 1;
+    raycaster.setFromCamera(mouse, camera);
+    const intersects = raycaster.intersectObjects(stars);
+    if (intersects.length > 0) {
+        const star = intersects[0].object;
+        textMesh.position.copy(star.position);
+     
+        textMesh.visible = true;
+        textMesh.lookAt(camera.position);
+ } else {
+        textMesh.visible = false;
+    }
+});
+
+  
+}//end init
 
 async function animate() {
   requestAnimationFrame(animate);
